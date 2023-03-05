@@ -15,6 +15,8 @@ import javafx.scene.control.Slider;
 
 public class GraphController implements Initializable {
     private final static int AMPLITUDE = 1;
+    private final static int OFFSET = 1;
+    public static final double PHASE_SHIFT = Math.PI / 2;
 
     @FXML
     private LineChart<Double, Double> lineGraph;
@@ -70,13 +72,13 @@ public class GraphController implements Initializable {
 
     @FXML
     private void handleOneHertz(final ActionEvent event) {
-        plotFunction(x -> getFrequency(1, x, 0));
+        plotFunction(x -> getFrequency(5, x, OFFSET));
         oneHertz.setDisable(true);
     }
 
     @FXML
     private void handleTwoHertz(final ActionEvent event) {
-        plotFunction(x -> getFrequency(2, x, 0));
+        plotFunction(x -> getFrequency(2, x, OFFSET));
         twoHertz.setDisable(true);
     }
 
@@ -88,7 +90,7 @@ public class GraphController implements Initializable {
 
     @FXML
     private void handleSquared(final ActionEvent event) {
-        plotFunction(x -> getFrequency(3, x, 0));
+        plotFunction(x -> getFrequency(3, x, OFFSET));
     }
 
     @FXML
@@ -109,7 +111,7 @@ public class GraphController implements Initializable {
 
     private void handleSlider(double value) {
         clear();
-        plotFunction(x -> getFrequency(value, x, 1));
+        plotFunction(x -> getFrequency(value, x, OFFSET));
     }
 
     private void clear() {
@@ -120,10 +122,10 @@ public class GraphController implements Initializable {
     }
 
     private static double getFrequency(int f, double x, int offset) {
-        return AMPLITUDE * Math.sin(2 * Math.PI * f * x) + offset;
+        return AMPLITUDE * Math.sin(2 * Math.PI * f * x + PHASE_SHIFT) + offset;
     }
 
     private static double getFrequency(double f, double x, int offset) {
-        return AMPLITUDE * Math.sin(2 * Math.PI * f * x) + offset;
+        return AMPLITUDE * Math.sin(2 * Math.PI * f * x + PHASE_SHIFT) + offset;
     }
 }

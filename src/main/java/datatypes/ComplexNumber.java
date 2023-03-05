@@ -19,16 +19,34 @@ public class ComplexNumber {
         return im;
     }
 
+    public ComplexNumber add(ComplexNumber other) {
+        double realSum = this.re + other.re;
+        double imaginarySum = this.im + other.im;
+        return new ComplexNumber(realSum, imaginarySum);
+    }
+
     public ComplexNumber multiply(ComplexNumber other) {
         double re = this.re * other.re - this.im * other.im;
         double im = this.re * other.im + this.im * other.re;
         return new ComplexNumber(re, im);
     }
 
+    public ComplexNumber multiply(double factor) {
+        double realProduct = this.re * factor;
+        double imaginaryProduct = this.im * factor;
+        return new ComplexNumber(realProduct, imaginaryProduct);
+    }
+
     public static ComplexNumber exp(double theta) {
         double re = Math.cos(theta);
         double im = Math.sin(theta);
         return new ComplexNumber(re, im);
+    }
+
+    public ComplexNumber divide(double divisor) {
+        double realQuotient = this.re / divisor;
+        double imaginaryQuotient = this.im / divisor;
+        return new ComplexNumber(realQuotient, imaginaryQuotient);
     }
 
     @Override

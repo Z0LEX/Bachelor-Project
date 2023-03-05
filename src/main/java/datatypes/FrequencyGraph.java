@@ -8,6 +8,7 @@ import javafx.scene.chart.XYChart;
 
 public class FrequencyGraph implements Graph {
 
+    public static final double DETAIL = 0.01;
     private XYChart<Double, Double> graph;
     private ArrayList<Function> functions;
     private double range;
@@ -21,7 +22,7 @@ public class FrequencyGraph implements Graph {
     public void plot(Function<Double, Double> function) {
         functions.add(function);
         XYChart.Series<Double, Double> series = new XYChart.Series<Double, Double>();
-        for (double x = 0; x <= range; x = x + 0.01) {
+        for (double x = 0; x <= range; x += DETAIL) {
             plotPoint(x, function.apply(x), series);
         }
         graph.getData().add(series);
@@ -31,7 +32,8 @@ public class FrequencyGraph implements Graph {
         XYChart.Series<Double, Double> series = new XYChart.Series<Double, Double>();
         Function<Double, Double> sum = sumFunction;
         EulerGraph.setFunction(sum);
-        for (double x = 0; x <= range; x = x + 0.01) {
+//        clear();
+        for (double x = 0; x <= range; x += DETAIL) {
             plotPoint(x, sum.apply(x), series);
         }
         graph.getData().add(series);

@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.scene.chart.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="graph-style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GraphController">
+<AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="graph-style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GraphController">
     <children>
         <HBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -18,9 +21,6 @@
                             <yAxis>
                                 <NumberAxis autoRanging="false" lowerBound="-2.5" side="LEFT" tickUnit="1" upperBound="7.5" />
                             </yAxis>
-                            <cursor>
-                                <Cursor fx:constant="CROSSHAIR" />
-                            </cursor>
                         </LineChart>
                     </children>
                 </AnchorPane>
@@ -28,9 +28,9 @@
                     <children>
                         <Button fx:id="oneHertz" maxHeight="Infinity" mnemonicParsing="false" onAction="#handleOneHertz" prefHeight="66.0" prefWidth="266.0" text="1 hertz" VBox.vgrow="ALWAYS" />
                         <Button fx:id="twoHertz" maxHeight="Infinity" mnemonicParsing="false" onAction="#handleTwoHertz" prefHeight="67.0" prefWidth="266.0" text="2 hertz" VBox.vgrow="ALWAYS" />
-                        <Button fx:id="squaredButton" maxHeight="Infinity" mnemonicParsing="false" onAction="#handleSquared" prefHeight="67.0" prefWidth="266.0" text="y=x^2" VBox.vgrow="ALWAYS" />
-                        <Button fx:id="squaredButton2" maxHeight="Infinity" mnemonicParsing="false" onAction="#handleSquaredPlus2" prefHeight="67.0" prefWidth="266.0" text="y=x^2+2" VBox.vgrow="ALWAYS" />
-                        <Button fx:id="cubedButton" maxHeight="Infinity" mnemonicParsing="false" onAction="#handleCubed" prefHeight="67.0" prefWidth="266.0" text="y=x^3" VBox.vgrow="ALWAYS" />
+                        <Button fx:id="threeHertz" maxHeight="Infinity" mnemonicParsing="false" onAction="#handleThreeHertz" prefHeight="67.0" prefWidth="266.0" text="3 Hertz" VBox.vgrow="ALWAYS" />
+                        <Button fx:id="fourHertz" maxHeight="Infinity" mnemonicParsing="false" onAction="#handleFourHertz" prefHeight="67.0" prefWidth="266.0" text="4 Hertz" VBox.vgrow="ALWAYS" />
+                        <Button fx:id="fiveHertz" maxHeight="Infinity" mnemonicParsing="false" onAction="#handleFiveHertz" prefHeight="67.0" prefWidth="266.0" text="5 Hertz" VBox.vgrow="ALWAYS" />
                         <Button fx:id="combine" maxHeight="Infinity" mnemonicParsing="false" onAction="#handleCombineButton" prefHeight="66.0" prefWidth="266.0" text="combine" VBox.vgrow="ALWAYS" />
                         <Button fx:id="clearButton" maxHeight="Infinity" mnemonicParsing="false" onAction="#handleClear" prefHeight="67.0" prefWidth="266.0" text="clear" VBox.vgrow="ALWAYS" />
                   <Slider fx:id="frequencySlider" blockIncrement="1.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />

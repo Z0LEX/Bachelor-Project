@@ -16,7 +16,7 @@ public class EulerViewer {
     private void createEulerViewer() {
         try {
             root = FXMLLoader.load(getClass().getClassLoader()
-                    .getResource("euler.fxml"));
+                    .getResource("euler-viewer.fxml"));
             scene = new Scene(root);
         } catch (Exception e) {
             System.out.print(e);

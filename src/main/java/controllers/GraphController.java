@@ -14,7 +14,7 @@ import javafx.scene.control.Slider;
 
 
 public class GraphController implements Initializable {
-    private final static int AMPLITUDE = 1;
+    private final static double AMPLITUDE = 1;
     private final static int OFFSET = 1;
     public static final double PHASE_SHIFT = Math.PI / 2;
 
@@ -27,17 +27,15 @@ public class GraphController implements Initializable {
     private Button twoHertz;
 
     @FXML
+    private Button threeHertz;
+
+    @FXML
+    private Button fourHertz;
+
+    @FXML
+    private Button fiveHertz;
+    @FXML
     private Button combine;
-
-    @FXML
-    private Button squaredButton;
-
-    @FXML
-    private Button squaredButton2;
-
-    @FXML
-    private Button cubedButton;
-
     @FXML
     private Button clearButton;
 
@@ -49,11 +47,11 @@ public class GraphController implements Initializable {
     public void initialize(final URL url, final ResourceBundle rb) {
         assert clearButton != null : "fx:id=\"clearButton\" was not injected: check your FXML file 'graph-viewer.fxml'.";
         assert combine != null : "fx:id=\"combine\" was not injected: check your FXML file 'graph-viewer.fxml'.";
-        assert cubedButton != null : "fx:id=\"cubedButton\" was not injected: check your FXML file 'graph-viewer.fxml'.";
+        assert threeHertz != null : "fx:id=\"threeHertz\" was not injected: check your FXML file 'graph-viewer.fxml'.";
         assert lineGraph != null : "fx:id=\"lineGraph\" was not injected: check your FXML file 'graph-viewer.fxml'.";
         assert oneHertz != null : "fx:id=\"oneHertz\" was not injected: check your FXML file 'graph-viewer.fxml'.";
-        assert squaredButton != null : "fx:id=\"squaredButton\" was not injected: check your FXML file 'graph-viewer.fxml'.";
-        assert squaredButton2 != null : "fx:id=\"squaredButton2\" was not injected: check your FXML file 'graph-viewer.fxml'.";
+        assert fourHertz != null : "fx:id=\"fourHertz\" was not injected: check your FXML file 'graph-viewer.fxml'.";
+        assert fiveHertz != null : "fx:id=\"fiveHertz\" was not injected: check your FXML file 'graph-viewer.fxml'.";
         assert twoHertz != null : "fx:id=\"twoHertz\" was not injected: check your FXML file 'graph-viewer.fxml'.";
         assert frequencySlider != null : "fx:id=\"frequencySlider\" was not injected: check your FXML file 'graph-viewer.fxml'.";
         frequencySlider.valueProperty().addListener((observableValue, oldValue, newValue) -> {
@@ -72,14 +70,27 @@ public class GraphController implements Initializable {
 
     @FXML
     private void handleOneHertz(final ActionEvent event) {
-        plotFunction(x -> getFrequency(5, x, OFFSET));
-        oneHertz.setDisable(true);
+        plotFunction(x -> getFrequency(1, x, OFFSET));
     }
 
     @FXML
     private void handleTwoHertz(final ActionEvent event) {
         plotFunction(x -> getFrequency(2, x, OFFSET));
-        twoHertz.setDisable(true);
+    }
+
+    @FXML
+    private void handleThreeHertz(final ActionEvent event) {
+        plotFunction(x -> getFrequency(3, x, OFFSET));
+    }
+
+    @FXML
+    private void handleFourHertz(final ActionEvent event) {
+        plotFunction(x -> getFrequency(4, x, OFFSET));
+    }
+
+    @FXML
+    private void handleFiveHertz(final ActionEvent event) {
+        plotFunction(x -> getFrequency(5, x, OFFSET));
     }
 
     @FXML
@@ -87,22 +98,6 @@ public class GraphController implements Initializable {
         combinePlots();
         combine.setDisable(true);
     }
-
-    @FXML
-    private void handleSquared(final ActionEvent event) {
-        plotFunction(x -> getFrequency(3, x, OFFSET));
-    }
-
-    @FXML
-    private void handleSquaredPlus2(final ActionEvent event) {
-        plotFunction(x -> Math.pow(x, 2) + 2);
-    }
-
-    @FXML
-    private void handleCubed(final ActionEvent event) {
-        plotFunction(x -> Math.pow(x, 3));
-    }
-
 
     @FXML
     private void handleClear(final ActionEvent event) {

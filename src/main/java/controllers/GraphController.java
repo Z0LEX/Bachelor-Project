@@ -121,10 +121,6 @@ public class GraphController implements Initializable {
         combine.setDisable(false);
     }
 
-    private static double getFrequency(int f, double x, int offset) {
-        return AMPLITUDE * Math.sin(2 * Math.PI * f * x + PHASE_SHIFT) + offset;
-    }
-
     private static double getFrequency(double f, double x, int offset) {
         return AMPLITUDE * Math.sin(2 * Math.PI * f * x + PHASE_SHIFT) + offset;
     }

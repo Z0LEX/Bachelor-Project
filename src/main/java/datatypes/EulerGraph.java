@@ -12,13 +12,19 @@ public class EulerGraph implements Graph {
 
     public static final double DETAIL = 0.001;
     private XYChart<Double, Double> graph;
-    public static Function<Double, Double> function;
+    private static Function<Double, Double> function;
+    private static ArrayList<FunctionObserver> observers = new ArrayList<>();
+
     private double range = 1;
 
     private double frequency = 1;
 
     public EulerGraph(XYChart<Double, Double> graph) {
         this.graph = graph;
+        registerObserver(newFunction -> {
+            clear();
+            plot(function);
+        });
     }
 
     public void plot(Function<Double, Double> function) {
@@ -30,7 +36,7 @@ public class EulerGraph implements Graph {
             weight = weight.add(z);
             plotPoint(z.re(), z.im(), series);
         }
-        weight = weight.multiply(1/(range/DETAIL));
+        weight = weight.multiply(1 / (range / DETAIL));
         plotWeight(weight.re(), weight.im(), series);
         graph.getData().add(series);
     }
@@ -60,10 +66,23 @@ public class EulerGraph implements Graph {
         this.frequency = frequency;
     }
 
-    public void setFunction(Function<Double, Double> function) {
-        this.function = function;
+    public static void setFunction(Function<Double, Double> newFunction) {
+        function = newFunction;
+        for (FunctionObserver observer : observers) {
+            observer.onFunctionChanged(newFunction);
+        }
     }
+
     public Function<Double, Double> getFunction() {
         return function;
     }
+
+    public static void registerObserver(FunctionObserver observer) {
+        observers.add(observer);
+    }
+
+}
+
+interface FunctionObserver {
+    void onFunctionChanged(Function<Double, Double> newFunction);
 }

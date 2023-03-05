@@ -29,9 +29,10 @@ public class FrequencyGraph implements Graph {
 
     public void combinePlots() {
         XYChart.Series<Double, Double> series = new XYChart.Series<Double, Double>();
-        EulerGraph.function = sumFunction;
+        Function<Double, Double> sum = sumFunction;
+        EulerGraph.setFunction(sum);
         for (double x = 0; x <= range; x = x + 0.01) {
-            plotPoint(x, EulerGraph.function.apply(x), series);
+            plotPoint(x, sum.apply(x), series);
         }
         graph.getData().add(series);
     }

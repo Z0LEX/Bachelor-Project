@@ -4,23 +4,24 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.shape.Line?>
 <AnchorPane styleClass="root" stylesheets="graph-style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EulerController">
     <children>
       <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
                 <AnchorPane prefHeight="400.0" prefWidth="420.0">
                     <children>
-                  <ScatterChart fx:id="scatterChart" animated="false" legendVisible="false">
+                  <LineChart fx:id="lineChart" animated="false" legendVisible="false" createSymbols="false" axisSortingPolicy="NONE">
                     <xAxis>
-                        <NumberAxis autoRanging="false" lowerBound="-2.5" side="BOTTOM" tickUnit="1" upperBound="2.5" />
+                        <NumberAxis autoRanging="false" lowerBound="-5.0" side="BOTTOM" tickUnit="1" upperBound="5.0" />
                     </xAxis>
                     <yAxis>
-                        <NumberAxis autoRanging="false" lowerBound="-2.5" side="BOTTOM" tickUnit="1" upperBound="2.5" />
+                        <NumberAxis autoRanging="false" lowerBound="-5.0" side="BOTTOM" tickUnit="1" upperBound="5.0" />
                     </yAxis>
-                  </ScatterChart>
+                  </LineChart>
                     </children>
                 </AnchorPane>
-            <Slider fx:id="frequencySlider" blockIncrement="0.5" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="5" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+            <Slider fx:id="frequencySlider" blockIncrement="0.5" majorTickUnit="1.0" max="6.0" minorTickCount="5" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
          </children>
       </VBox>
     </children>

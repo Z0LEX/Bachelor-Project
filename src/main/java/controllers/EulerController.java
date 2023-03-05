@@ -3,7 +3,7 @@ package controllers;
 import datatypes.EulerGraph;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.chart.ScatterChart;
+import javafx.scene.chart.LineChart;
 import javafx.scene.control.Slider;
 
 import java.net.URL;
@@ -13,7 +13,7 @@ import java.util.function.Function;
 public class EulerController implements Initializable {
 
     @FXML
-    private ScatterChart<Double, Double> scatterChart;
+    private LineChart<Double, Double> lineChart;
     @FXML
     private Slider frequencySlider;
 
@@ -21,11 +21,12 @@ public class EulerController implements Initializable {
 
     @Override
     public void initialize(final URL url, final ResourceBundle rb) {
+        assert lineChart != null : "fx:id=\"lineChart\" was not injected: check your FXML file 'graph-viewer.fxml'.";
         assert frequencySlider != null : "fx:id=\"frequencySlider\" was not injected: check your FXML file 'graph-viewer.fxml'.";
         frequencySlider.valueProperty().addListener((observableValue, oldValue, newValue) -> {
             handleSlider(newValue.doubleValue());
         });
-        eulerGraph = new EulerGraph(scatterChart);
+        eulerGraph = new EulerGraph(lineChart);
     }
 
     private void plotFunction(Function<Double, Double> function) {

@@ -4,14 +4,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.Function;
 
-import datatypes.Graph;
+import datatypes.FrequencyGraph;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
-import javafx.scene.input.MouseEvent;
 
 
 public class GraphController implements Initializable {
@@ -42,7 +41,7 @@ public class GraphController implements Initializable {
 
     @FXML
     private Slider frequencySlider;
-    private Graph graph;
+    private FrequencyGraph frequencyGraph;
 
     @Override
     public void initialize(final URL url, final ResourceBundle rb) {
@@ -58,15 +57,15 @@ public class GraphController implements Initializable {
         frequencySlider.valueProperty().addListener((observableValue, oldValue, newValue) -> {
             handleSlider(newValue.doubleValue());
         });
-        graph = new Graph(lineGraph, 5);
+        frequencyGraph = new FrequencyGraph(lineGraph, 5);
     }
 
     private void plotFunction(Function<Double, Double> function) {
-        graph.plot(function);
+        frequencyGraph.plot(function);
     }
 
     private void combinePlots() {
-        graph.combinePlots();
+        frequencyGraph.combinePlots();
     }
 
     @FXML
@@ -89,7 +88,7 @@ public class GraphController implements Initializable {
 
     @FXML
     private void handleSquared(final ActionEvent event) {
-        plotFunction(x -> Math.pow(x, 2));
+        plotFunction(x -> getFrequency(3, x, 0));
     }
 
     @FXML
@@ -110,11 +109,11 @@ public class GraphController implements Initializable {
 
     private void handleSlider(double value) {
         clear();
-        plotFunction(x -> getFrequency(value, x, 0));
+        plotFunction(x -> getFrequency(value, x, 1));
     }
 
     private void clear() {
-        graph.clear();
+        frequencyGraph.clear();
         oneHertz.setDisable(false);
         twoHertz.setDisable(false);
         combine.setDisable(false);

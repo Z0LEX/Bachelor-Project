@@ -10,14 +10,14 @@ import java.util.function.Function;
 
 public class EulerGraph implements Graph {
 
-    public static final double DETAIL = 0.001;
+    public static final double DETAIL = 0.004;
     private XYChart<Double, Double> graph;
     private static Function<Double, Double> function;
     private static ArrayList<FunctionObserver> observers = new ArrayList<>();
 
     private double range = 1;
 
-    private double frequency = 1;
+    private double frequency = 0;
 
     public EulerGraph(XYChart<Double, Double> graph) {
         this.graph = graph;
@@ -36,9 +36,12 @@ public class EulerGraph implements Graph {
             weight = weight.add(z);
             plotPoint(z.re(), z.im(), series);
         }
+
+        XYChart.Series<Double, Double> weightSeries = new XYChart.Series<Double, Double>();
         weight = weight.multiply(1 / (range / DETAIL));
-        plotWeight(weight.re(), weight.im(), series);
-        graph.getData().add(series);
+        plotWeight(weight.re(), weight.im(), weightSeries);
+
+        graph.getData().addAll(series, weightSeries);
     }
 
     private void plotWeight(double re, double im, XYChart.Series<Double, Double> series) {
@@ -52,9 +55,9 @@ public class EulerGraph implements Graph {
     public void plotPoint(double x, double y,
                           XYChart.Series<Double, Double> series) {
         XYChart.Data<Double, Double> data = new XYChart.Data<>(x, y);
-        Circle point = new Circle(1);
-        point.setFill(Color.ORANGE);
-        data.setNode(point);
+//        Circle point = new Circle(1);
+//        point.setFill(Color.ORANGE);
+//        data.setNode(point);
         series.getData().add(data);
     }
 

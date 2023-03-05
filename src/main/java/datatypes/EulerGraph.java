@@ -10,6 +10,7 @@ import java.util.function.Function;
 
 public class EulerGraph implements Graph {
 
+    public static final double DETAIL = 0.001;
     private XYChart<Double, Double> graph;
     public static Function<Double, Double> function;
     private double range = 1;
@@ -22,13 +23,24 @@ public class EulerGraph implements Graph {
 
     public void plot(Function<Double, Double> function) {
         XYChart.Series<Double, Double> series = new XYChart.Series<Double, Double>();
-        for (double x = 0; x < range; x = x + 0.001) {
-            Double gt = function.apply(x);
-            ComplexNumber z = new ComplexNumber(gt, 0).multiply(ComplexNumber.exp(-2 * Math.PI * frequency * x));
-            System.out.println(z.toString() + " Frequency: " + frequency);
+        ComplexNumber weight = new ComplexNumber(0, 0);
+        for (double t = 0; t < range; t = t + DETAIL) {
+            Double gt = function.apply(t);
+            ComplexNumber z = new ComplexNumber(gt, 0).multiply(ComplexNumber.exp(-2 * Math.PI * frequency * t));
+            weight = weight.add(z);
             plotPoint(z.re(), z.im(), series);
         }
+        weight = weight.multiply(1/(range/DETAIL));
+        plotWeight(weight.re(), weight.im(), series);
         graph.getData().add(series);
+    }
+
+    private void plotWeight(double re, double im, XYChart.Series<Double, Double> series) {
+        XYChart.Data<Double, Double> weightData = new XYChart.Data<>(re, im);
+        Circle weight = new Circle(5);
+        weight.setFill(Color.DARKRED);
+        weightData.setNode(weight);
+        series.getData().add(weightData);
     }
 
     public void plotPoint(double x, double y,

@@ -20,6 +20,7 @@ public class Main extends Application {
         EulerViewer eulerViewer = new EulerViewer();
         Parent graphRoot = graphViewer.getRoot();
         Parent eulerRoot = eulerViewer.getRoot();
+
         BorderPane pane = new BorderPane();
         pane.setLeft(graphRoot);
         pane.setRight(eulerRoot);

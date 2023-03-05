@@ -47,7 +47,7 @@ public class FrequencyGraph implements Graph {
         functions.clear();
     }
 
-    Function<Double, Double> sumFunction = x -> {
+    private Function<Double, Double> sumFunction = x -> {
         double sum = 0;
         for (Function<Double, Double> function : functions) {
             sum += function.apply(x);

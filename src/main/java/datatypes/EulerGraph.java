@@ -15,7 +15,7 @@ public class EulerGraph implements Graph {
     private static Function<Double, Double> function;
     private static ArrayList<FunctionObserver> observers = new ArrayList<>();
 
-    private double range = 5;
+    private double range = 1;
 
     private double cyclesPrSec = 0;
 
@@ -34,7 +34,6 @@ public class EulerGraph implements Graph {
             Double gt = function.apply(t);
             ComplexNumber z = new ComplexNumber(gt, 0).multiply(ComplexNumber.exp(-2 * Math.PI * cyclesPrSec * t));
             weight = weight.add(z);
-            System.out.println(z.re());
             plotPoint(z.re(), z.im(), series);
         }
         XYChart.Series<Double, Double> weightSeries = new XYChart.Series<Double, Double>();

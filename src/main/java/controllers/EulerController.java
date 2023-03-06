@@ -35,7 +35,7 @@ public class EulerController implements Initializable {
 
     private void handleSlider(double value) {
         clear();
-        eulerGraph.setFrequency(value);
+        eulerGraph.setCyclesPrSec(value);
         plotFunction(eulerGraph.getFunction());
     }
 

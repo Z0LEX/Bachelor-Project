@@ -15,9 +15,9 @@ public class EulerGraph implements Graph {
     private static Function<Double, Double> function;
     private static ArrayList<FunctionObserver> observers = new ArrayList<>();
 
-    private double range = 1;
+    private double range = 5;
 
-    private double frequency = 0;
+    private double cyclesPrSec = 0;
 
     public EulerGraph(XYChart<Double, Double> graph) {
         this.graph = graph;
@@ -32,15 +32,14 @@ public class EulerGraph implements Graph {
         ComplexNumber weight = new ComplexNumber(0, 0);
         for (double t = 0; t < range; t = t + DETAIL) {
             Double gt = function.apply(t);
-            ComplexNumber z = new ComplexNumber(gt, 0).multiply(ComplexNumber.exp(-2 * Math.PI * frequency * t));
+            ComplexNumber z = new ComplexNumber(gt, 0).multiply(ComplexNumber.exp(-2 * Math.PI * cyclesPrSec * t));
             weight = weight.add(z);
+            System.out.println(z.re());
             plotPoint(z.re(), z.im(), series);
         }
-
         XYChart.Series<Double, Double> weightSeries = new XYChart.Series<Double, Double>();
         weight = weight.multiply(1 / (range / DETAIL));
         plotWeight(weight.re(), weight.im(), weightSeries);
-
         graph.getData().addAll(series, weightSeries);
     }
 
@@ -65,8 +64,8 @@ public class EulerGraph implements Graph {
         graph.getData().clear();
     }
 
-    public void setFrequency(double frequency) {
-        this.frequency = frequency;
+    public void setCyclesPrSec(double cyclesPrSec) {
+        this.cyclesPrSec = cyclesPrSec;
     }
 
     public static void setFunction(Function<Double, Double> newFunction) {

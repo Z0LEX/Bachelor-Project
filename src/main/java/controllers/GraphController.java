@@ -96,6 +96,7 @@ public class GraphController implements Initializable {
     @FXML
     private void handleCombineButton(final ActionEvent event) {
         combinePlots();
+//        frequencyGraph.clear();
         combine.setDisable(true);
     }
 

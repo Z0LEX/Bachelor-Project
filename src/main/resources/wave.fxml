@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0" styleClass="root" stylesheets="graph-style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.WaveController">
+   <children>
+      <LineChart fx:id="lineGraph" createSymbols="false" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0">
+         <xAxis>
+            <NumberAxis autoRanging="false" minorTickVisible="false" opacity="0.0" side="BOTTOM" tickLabelsVisible="false" tickMarkVisible="false" tickUnit="1" upperBound="5.0" visible="false" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis autoRanging="false" forceZeroInRange="false" lowerBound="-5.0" minorTickVisible="false" opacity="0.0" side="LEFT" tickLabelsVisible="false" tickMarkVisible="false" tickUnit="1" upperBound="5.0" visible="false" />
+         </yAxis>
+      </LineChart>
+   </children>
+</AnchorPane>

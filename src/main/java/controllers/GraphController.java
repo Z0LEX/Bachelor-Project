@@ -112,9 +112,9 @@ public class GraphController implements Initializable {
 
     private void clear() {
         frequencyGraph.clear();
-        oneHertz.setDisable(false);
-        twoHertz.setDisable(false);
-        combine.setDisable(false);
+//        oneHertz.setDisable(false);
+//        twoHertz.setDisable(false);
+//        combine.setDisable(false);
     }
 
     private static double getFrequency(double f, double x, int offset) {

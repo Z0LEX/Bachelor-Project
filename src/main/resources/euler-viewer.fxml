@@ -12,10 +12,10 @@
                     <children>
                   <LineChart fx:id="lineChart" animated="false" legendVisible="false" createSymbols="false" axisSortingPolicy="NONE">
                     <xAxis>
-                        <NumberAxis autoRanging="false" lowerBound="-2.5" side="BOTTOM" tickUnit="1" upperBound="2.5" />
+                        <NumberAxis autoRanging="false" lowerBound="-5" side="BOTTOM" tickUnit="1" upperBound="5" />
                     </xAxis>
                     <yAxis>
-                        <NumberAxis autoRanging="false" lowerBound="-2.5" side="BOTTOM" tickUnit="1" upperBound="2.5" />
+                        <NumberAxis autoRanging="false" lowerBound="-5" side="BOTTOM" tickUnit="1" upperBound="5" />
                     </yAxis>
                   </LineChart>
                     </children>

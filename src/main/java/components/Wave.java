@@ -16,10 +16,11 @@ public class Wave {
     private double offset = 0;
     private double phaseShift = Math.PI / 2;
     private double amplitude = 1;
-    private double range = 5;
+    private double range = 1;
     private Function<Double, Double> function;
     private FrequencyGraph graph;
     private AnchorPane root;
+    private LineChart<Double, Double> lineChart;
     private WaveController waveController;
 
     public Wave(double frequency) {
@@ -28,8 +29,8 @@ public class Wave {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/wave.fxml"));
             root = fxmlLoader.load();
             waveController = fxmlLoader.getController();
-
-            graph = new FrequencyGraph(waveController.getLineGraph(), range);
+            lineChart = waveController.getLineGraph();
+            graph = new FrequencyGraph(lineChart, range);
             function = x -> getWave(x, frequency);
             plotFunction(function);
         } catch (IOException e) {
@@ -44,8 +45,8 @@ public class Wave {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/wave.fxml"));
             root = fxmlLoader.load();
             waveController = fxmlLoader.getController();
-
-            graph = new FrequencyGraph(waveController.getLineGraph(), range);
+            lineChart = waveController.getLineGraph();
+            graph = new FrequencyGraph(lineChart, range);
             plotFunction(function);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -57,15 +58,14 @@ public class Wave {
     }
 
     private double getWave(double x, double f) {
+        if (f == 0) {
+            return 0;
+        }
         return amplitude * Math.sin(2 * Math.PI * f * x + phaseShift) + offset;
     }
 
     public AnchorPane getRoot() {
         return root;
-    }
-
-    public WaveController getWaveController() {
-        return waveController;
     }
 
     public Function<Double, Double> getFunction() {

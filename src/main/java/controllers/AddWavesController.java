@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -34,24 +33,6 @@ public class AddWavesController implements Initializable {
     @FXML
     private SplitPane splitPane;
 
-    @FXML
-    private AnchorPane graph1;
-
-    @FXML
-    private AnchorPane graph2;
-
-    @FXML
-    private AnchorPane graph3;
-
-    @FXML
-    private AnchorPane graph4;
-
-    @FXML
-    private AnchorPane resultGraphBottom;
-
-    @FXML
-    private AnchorPane resultGraphTop;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Populate the wavecontainer with waves of frequency 0
@@ -60,6 +41,9 @@ public class AddWavesController implements Initializable {
             waves.add(wave);
             updateWaveContainer(wave, i);
         }
+        // Initialize the top splitpane with sumWave
+        sumWave = new Wave(sumWaves(waves));
+        updateSplitPane(sumWave, 0);
 
         // Initialize the bottom splitpane with a complicated wave
         Wave wave1 = new Wave(1);

@@ -84,3 +84,8 @@
 .text-area .content {
     -fx-background-color: #575758;
 }
+
+.split-pane *.split-pane-divider {
+    -fx-padding: 0 2.5 0 2.5;
+    -fx-background-color: white;
+}

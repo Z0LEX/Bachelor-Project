@@ -78,9 +78,9 @@ public class AddWavesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Initialize the bottom splitpane with a complicated wave
-        Wave wave1 = new Wave(2.3);
+        Wave wave1 = new Wave(1);
         Wave wave2 = new Wave(3);
-        Wave wave3 = new Wave(4.5);
+        Wave wave3 = new Wave(5);
         ArrayList<Wave> waveResult = new ArrayList<>(Arrays.asList(wave1, wave2 ,wave3));
         Wave result = new Wave(sumWaves(waveResult));
         splitPane.getItems().remove(1);

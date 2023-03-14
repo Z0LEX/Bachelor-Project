@@ -54,6 +54,7 @@ public class AddWavesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Populate the wavecontainer with waves of frequency 0
         for (int i = 0; i < 4; i++) {
             Wave wave = new Wave(0);
             waves.add(wave);
@@ -68,7 +69,10 @@ public class AddWavesController implements Initializable {
         Wave result = new Wave(sumWaves(waveResult));
         updateSplitPane(result, 1);
 
+        // Add the combinationlock to the lockcontainer
         lockContainer.getChildren().add(lock.getRoot());
+
+        // For each lock number label add new listener that updates the graph with the value of the label
         lockNumber1 = lock.getController().getWheel1Number();
         lockNumber2 = lock.getController().getWheel2Number();
         lockNumber3 = lock.getController().getWheel3Number();

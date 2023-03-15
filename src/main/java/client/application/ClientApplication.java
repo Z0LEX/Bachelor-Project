@@ -28,6 +28,8 @@ public class ClientApplication extends Application {
 
     @Override
     public void start(Stage stage) {
+        stage.setTitle("Client title");
+        stage.setResizable(false);
         Rectangle2D bounds = Screen.getScreens().get(1).getVisualBounds();
         stage.setX(bounds.getMinX());
         stage.setY(bounds.getMinY());

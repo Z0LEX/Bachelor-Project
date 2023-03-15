@@ -7,6 +7,7 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.function.Function;
 
 // Wave component using the design in wave.fxml
@@ -73,5 +74,15 @@ public class Wave {
 
     public void clear() {
         graph.clear();
+    }
+
+    public static Function<Double, Double> sumWaves(ArrayList<Wave> waves) {
+        return x -> {
+            double sum = 0;
+            for (Wave wave : waves) {
+                sum += wave.getFunction().apply(x);
+            }
+            return sum;
+        };
     }
 }

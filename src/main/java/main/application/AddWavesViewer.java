@@ -1,5 +1,6 @@
 package main.application;
 
+import main.components.Wave;
 import main.controllers.AddWavesController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.function.Function;
 
 public class AddWavesViewer {
     private Scene scene;
@@ -36,5 +39,4 @@ public class AddWavesViewer {
     public Parent getRoot() {
         return root;
     }
-
 }

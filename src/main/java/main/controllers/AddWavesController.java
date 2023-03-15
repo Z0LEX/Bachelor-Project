@@ -41,7 +41,7 @@ public class AddWavesController implements Initializable {
             updateVBox(wave, i, waveContainer);
         }
         // Initialize the top splitpane with sumWave
-        sumWave = new Wave(sumWaves(waves));
+        sumWave = new Wave(Wave.sumWaves(waves));
         updateVBox(sumWave, 0, resultContainer);
 
         // Initialize the bottom splitpane with a complicated wave
@@ -50,7 +50,7 @@ public class AddWavesController implements Initializable {
         Wave wave3 = new Wave(5);
         Wave wave4 = new Wave(8);
         ArrayList<Wave> waveResult = new ArrayList<>(Arrays.asList(wave1, wave2, wave3, wave4));
-        Wave result = new Wave(sumWaves(waveResult));
+        Wave result = new Wave(Wave.sumWaves(waveResult));
         updateVBox(result, 1, resultContainer);
 
         // Add the combinationlock to the lockcontainer
@@ -96,19 +96,8 @@ public class AddWavesController implements Initializable {
     }
 
     private void getSumWave() {
-        Function<Double, Double> sum = sumWaves(waves);
+        Function<Double, Double> sum = Wave.sumWaves(waves);
         sumWave = new Wave(sum);
         updateVBox(sumWave, 0, resultContainer);
-    }
-
-
-    private Function<Double, Double> sumWaves(ArrayList<Wave> waves) {
-        return x -> {
-            double sum = 0;
-            for (Wave wave : waves) {
-                sum += wave.getFunction().apply(x);
-            }
-            return sum;
-        };
     }
 }

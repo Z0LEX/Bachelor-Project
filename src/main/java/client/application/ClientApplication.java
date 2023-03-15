@@ -3,6 +3,7 @@ package client.application;
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Screen;
@@ -25,6 +26,7 @@ public class ClientApplication extends Application {
         launch(args);
     }
 
+    private RemoteSpace clientSpace;
 
     @Override
     public void start(Stage stage) {
@@ -41,7 +43,7 @@ public class ClientApplication extends Application {
         System.out.println(clientURI);
         String test = "NOT SET";
         try {
-            RemoteSpace clientSpace = new RemoteSpace(clientURI);
+            clientSpace = new RemoteSpace(clientURI);
             System.out.println(clientSpace.getUri());
             Object[] objects = clientSpace.getp(new FormalField(String.class));
             System.out.println(objects);
@@ -55,8 +57,20 @@ public class ClientApplication extends Application {
 
         // Temp - add label to pane & create scene
         Label label = new Label(test);
+        Button button = new Button("eat from space");
+        button.setOnAction(actionEvent -> {
+            try {
+                Object[] getp = clientSpace.getp(new FormalField(String.class));
+                if (getp != null) {
+                    label.setText((String) getp[0]);
+                }
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
         BorderPane root = new BorderPane();
         root.setCenter(label);
+        root.setBottom(button);
         Scene scene = new Scene(root, 400, 300);
         stage.setScene(scene);
         stage.show();

@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import client.application.ClientApplication;
+import main.controllers.WaveWithFrequencyController;
 
 import java.util.ArrayList;
 
@@ -38,10 +39,14 @@ public class Main extends Application {
         Parent graphRoot = graphViewer.getRoot();
         AddWavesViewer addWavesViewer = new AddWavesViewer();
         Parent addWavesRoot = addWavesViewer.getRoot();
+        WaveWithFrequency waveWithFrequency = new WaveWithFrequency();
+        Parent waveWithFrequencyRoot = waveWithFrequency.getRoot();
 
         ArrayList<Parent> screens = new ArrayList<>();
         screens.add(addWavesRoot);
+        screens.add(waveWithFrequencyRoot);
         screens.add(graphRoot);
+
 
         // Temp scene
         BorderPane pane = new BorderPane();

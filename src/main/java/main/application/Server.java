@@ -12,10 +12,10 @@ public class Server {
     private static final String PORT = ":9001";
     private static final String PROTOCOL = "tcp://";
     private String ip = "127.0.0.1";
+    public static SequentialSpace space = new SequentialSpace();
     public Server() {
 //        ip = getIp();
         SpaceRepository repository = new SpaceRepository();
-        SequentialSpace space = new SequentialSpace();
 
         repository.add("space", space);
 

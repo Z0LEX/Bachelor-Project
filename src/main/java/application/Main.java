@@ -16,15 +16,27 @@ public class Main extends Application {
     public void start(Stage stage) {
         stage.setTitle("Title");
         stage.setResizable(false);
-        GraphViewer graphViewer = new GraphViewer();
-        EulerViewer eulerViewer = new EulerViewer();
-        Parent graphRoot = graphViewer.getRoot();
-        Parent eulerRoot = eulerViewer.getRoot();
+        stage.centerOnScreen();
 
+
+        Server server = new Server();
+        // TODO: Remove GraphViewer, most functionality has been moved to AddWaves
+        GraphViewer graphViewer = new GraphViewer();
+        Parent graphRoot = graphViewer.getRoot();
+
+
+        AddWavesViewer addWavesViewer = new AddWavesViewer();
+        Parent addWavesRoot = addWavesViewer.getRoot();
+
+        // Temp scene
         BorderPane pane = new BorderPane();
-        pane.setLeft(graphRoot);
-        pane.setRight(eulerRoot);
+        pane.setCenter(addWavesRoot);
         stage.setScene(new Scene(pane));
         stage.show();
+    }
+
+    @Override
+    public void stop() {
+        System.exit(0);
     }
 }

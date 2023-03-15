@@ -19,7 +19,7 @@
                                 <NumberAxis autoRanging="false" side="BOTTOM" tickUnit="1" upperBound="5.0" />
                             </xAxis>
                             <yAxis>
-                                <NumberAxis autoRanging="false" lowerBound="-2.5" side="LEFT" tickUnit="1" upperBound="7.5" />
+                                <NumberAxis autoRanging="false" lowerBound="-2.5" side="LEFT" tickUnit="1" upperBound="5" />
                             </yAxis>
                         </LineChart>
                     </children>

@@ -12,6 +12,9 @@ import client.application.ClientApplication;
 import java.util.ArrayList;
 
 public class Main extends Application {
+    // Screen resolution of touchscreen
+    private static final int WINDOW_WIDTH = 1024;
+    private static final int WINDOW_HEIGHT = 768;
 
     private int screenIndex = 0;
 
@@ -23,6 +26,9 @@ public class Main extends Application {
     public void start(Stage stage) {
         stage.setTitle("Title");
         stage.setResizable(false);
+        // Set stage dimensions to a fixed size if necessary
+//        stage.setWidth(WINDOW_WIDTH);
+//        stage.setHeight(WINDOW_HEIGHT);
         stage.centerOnScreen();
 
         Server server = new Server();
@@ -39,7 +45,7 @@ public class Main extends Application {
 
         // Temp scene
         BorderPane pane = new BorderPane();
-        pane.setCenter(addWavesRoot);
+        pane.setCenter(screens.get(screenIndex));
         Button nextScreenButton = new Button("Next");
         nextScreenButton.alignmentProperty().set(Pos.CENTER);
         nextScreenButton.setOnAction(actionEvent -> {

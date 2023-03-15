@@ -18,6 +18,8 @@ public class Main extends Application {
         stage.setResizable(false);
         stage.centerOnScreen();
 
+
+        Server server = new Server();
         // TODO: Remove GraphViewer, most functionality has been moved to AddWaves
         GraphViewer graphViewer = new GraphViewer();
         Parent graphRoot = graphViewer.getRoot();
@@ -31,5 +33,10 @@ public class Main extends Application {
         pane.setCenter(addWavesRoot);
         stage.setScene(new Scene(pane));
         stage.show();
+    }
+
+    @Override
+    public void stop() {
+        System.exit(0);
     }
 }

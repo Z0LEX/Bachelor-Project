@@ -1,7 +1,7 @@
-package controllers;
+package main.controllers;
 
-import components.CombinationLock;
-import components.Wave;
+import main.components.CombinationLock;
+import main.components.Wave;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;

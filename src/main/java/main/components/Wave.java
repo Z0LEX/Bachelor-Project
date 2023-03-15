@@ -1,8 +1,7 @@
-package components;
+package main.components;
 
-import controllers.WaveController;
-import datatypes.FrequencyGraph;
-import javafx.fxml.FXML;
+import main.controllers.WaveController;
+import main.datatypes.FrequencyGraph;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.chart.LineChart;
 import javafx.scene.layout.AnchorPane;

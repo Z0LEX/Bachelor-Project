@@ -1,6 +1,6 @@
-package components;
+package main.components;
 
-import controllers.CombinationLockController;
+import main.controllers.CombinationLockController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.HBox;
 

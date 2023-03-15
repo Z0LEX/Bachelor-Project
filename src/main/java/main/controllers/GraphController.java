@@ -1,10 +1,10 @@
-package controllers;
+package main.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.Function;
 
-import datatypes.FrequencyGraph;
+import main.datatypes.FrequencyGraph;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

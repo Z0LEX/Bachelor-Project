@@ -1,4 +1,4 @@
-package datatypes;
+package main.datatypes;
 
 import javafx.scene.chart.XYChart;
 import javafx.scene.paint.Color;

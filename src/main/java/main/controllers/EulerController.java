@@ -1,6 +1,6 @@
-package controllers;
+package main.controllers;
 
-import datatypes.EulerGraph;
+import main.datatypes.EulerGraph;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;

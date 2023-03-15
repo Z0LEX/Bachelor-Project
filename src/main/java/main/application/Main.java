@@ -1,11 +1,11 @@
-package application;
+package main.application;
 
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-
+import client.application.ClientApplication;
 public class Main extends Application {
 
     public static void main(String[] args) {
@@ -33,6 +33,10 @@ public class Main extends Application {
         pane.setCenter(addWavesRoot);
         stage.setScene(new Scene(pane));
         stage.show();
+
+
+        ClientApplication clientApplication = new ClientApplication();
+        clientApplication.start(new Stage());
     }
 
     @Override

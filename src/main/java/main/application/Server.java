@@ -1,4 +1,4 @@
-package application;
+package main.application;
 
 import org.jspace.SequentialSpace;
 import org.jspace.SpaceRepository;
@@ -25,7 +25,7 @@ public class Server {
 
         try {
             System.out.println("Host server put 'test' in space");
-            space.put("Test");
+            space.put("Hej thorbjørn :)");
             System.out.println(space.size());
         } catch (InterruptedException e) {
             throw new RuntimeException(e);

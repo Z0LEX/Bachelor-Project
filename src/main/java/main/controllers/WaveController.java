@@ -1,4 +1,4 @@
-package controllers;
+package main.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;

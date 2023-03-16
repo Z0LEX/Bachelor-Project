@@ -1,6 +1,7 @@
 package client.application;
 
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -32,9 +33,12 @@ public class ClientApplication extends Application {
     public void start(Stage stage) {
         stage.setTitle("Client title");
         stage.setResizable(false);
-        Rectangle2D bounds = Screen.getScreens().get(1).getVisualBounds();
-        stage.setX(bounds.getMinX());
-        stage.setY(bounds.getMinY());
+        ObservableList<Screen> screens = Screen.getScreens();
+        if (screens.size() > 1) {
+            Rectangle2D bounds = Screen.getScreens().get(1).getVisualBounds();
+            stage.setX(bounds.getMinX());
+            stage.setY(bounds.getMinY());
+        }
 //        stage.setFullScreen(true);
         stage.centerOnScreen();
 

@@ -1,6 +1,7 @@
 package client.application;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
@@ -11,6 +12,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.jspace.FormalField;
 import org.jspace.RemoteSpace;
+import org.jspace.Space;
 
 import java.io.IOException;
 import java.net.DatagramSocket;
@@ -35,7 +37,7 @@ public class ClientApplication extends Application {
         stage.setResizable(false);
         ObservableList<Screen> screens = Screen.getScreens();
         if (screens.size() > 1) {
-            Rectangle2D bounds = Screen.getScreens().get(1).getVisualBounds();
+            Rectangle2D bounds = screens.get(1).getVisualBounds();
             stage.setX(bounds.getMinX());
             stage.setY(bounds.getMinY());
         }
@@ -59,25 +61,19 @@ public class ClientApplication extends Application {
             throw new RuntimeException(e);
         }
 
+
         // Temp - add label to pane & create scene
         Label label = new Label(test);
-        Button button = new Button("eat from space");
-        button.setOnAction(actionEvent -> {
-            try {
-                Object[] getp = clientSpace.getp(new FormalField(String.class));
-                if (getp != null) {
-                    label.setText((String) getp[0]);
-                }
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        });
         BorderPane root = new BorderPane();
         root.setCenter(label);
-        root.setBottom(button);
         Scene scene = new Scene(root, 400, 300);
         stage.setScene(scene);
         stage.show();
+
+        Thread frequencyListenerThread = new Thread(new FrequencyListener(label, clientSpace));
+        frequencyListenerThread.setDaemon(true);
+        frequencyListenerThread.start();
+
     }
 
     // Get the outgoing IP address
@@ -93,5 +89,30 @@ public class ClientApplication extends Application {
     @Override
     public void stop() {
         System.exit(0);
+    }
+}
+
+class FrequencyListener implements Runnable {
+
+    private Label label;
+    private Space space;
+
+    public FrequencyListener(Label label, Space space) {
+        this.label = label;
+        this.space = space;
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            try {
+                Object[] objects = space.get(new FormalField(String.class));
+                Platform.runLater(() -> {
+                    label.setText((String) objects[0]);
+                });
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }

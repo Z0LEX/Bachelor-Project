@@ -15,7 +15,7 @@ import javafx.scene.control.Slider;
 
 public class GraphController implements Initializable {
     private final static double AMPLITUDE = 1;
-    private final static int OFFSET = 1;
+    private final static int OFFSET = 0;
     public static final double PHASE_SHIFT = Math.PI / 2;
 
     @FXML

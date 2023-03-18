@@ -7,35 +7,19 @@ import javafx.scene.chart.XYChart;
 
 public class FrequencyGraph implements Graph {
 
-    public static final double DETAIL = 0.01;
+    public static final double DETAIL = 0.005;
     private XYChart<Double, Double> graph;
-    // TODO: Remove arraylist, not used
-    private ArrayList<Function> functions;
     private double range;
 
     public FrequencyGraph(XYChart<Double, Double> graph, final double range) {
         this.graph = graph;
         this.range = range;
-        functions = new ArrayList<>();
     }
 
     public void plot(Function<Double, Double> function) {
-        functions.add(function);
         XYChart.Series<Double, Double> series = new XYChart.Series<Double, Double>();
         for (double x = 0; x <= range; x += DETAIL) {
             plotPoint(x, function.apply(x), series);
-        }
-        graph.getData().add(series);
-    }
-
-    // TODO: Remove combinePlots since we're not using EulerGraph.
-    public void combinePlots() {
-        XYChart.Series<Double, Double> series = new XYChart.Series<Double, Double>();
-        Function<Double, Double> sum = sumFunction;
-        EulerGraph.setFunction(sum);
-//        clear();
-        for (double x = 0; x <= range; x += DETAIL) {
-            plotPoint(x, sum.apply(x), series);
         }
         graph.getData().add(series);
     }
@@ -48,15 +32,6 @@ public class FrequencyGraph implements Graph {
 
     public void clear() {
         graph.getData().clear();
-        functions.clear();
     }
 
-    // TODO: Remove this function, moved to components.Wave
-    private Function<Double, Double> sumFunction = x -> {
-        double sum = 0;
-        for (Function<Double, Double> function : functions) {
-            sum += function.apply(x);
-        }
-        return sum;
-    };
 }

@@ -64,10 +64,6 @@ public class GraphController implements Initializable {
         frequencyGraph.plot(function);
     }
 
-    private void combinePlots() {
-        frequencyGraph.combinePlots();
-    }
-
     @FXML
     private void handleOneHertz(final ActionEvent event) {
         plotFunction(x -> getFrequency(1, x, OFFSET));
@@ -95,7 +91,6 @@ public class GraphController implements Initializable {
 
     @FXML
     private void handleCombineButton(final ActionEvent event) {
-        combinePlots();
 //        frequencyGraph.clear();
         combine.setDisable(true);
     }

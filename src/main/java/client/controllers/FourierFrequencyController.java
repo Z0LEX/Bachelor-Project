@@ -1,11 +1,12 @@
 package client.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.chart.LineChart;
 import javafx.scene.shape.Circle;
 
 public class FourierFrequencyController {
 
     @FXML
-    private Circle center_of_mass;
+    public LineChart<Double, Double> lineChart;
 
 }

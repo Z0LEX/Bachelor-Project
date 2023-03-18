@@ -35,8 +35,6 @@ public class Main extends Application {
         Server server = new Server();
 
         // TODO: Remove GraphViewer, most functionality has been moved to AddWaves
-        EulerViewer eulerViewer = new EulerViewer();
-        Parent eulerRoot = eulerViewer.getRoot();
         GraphViewer graphViewer = new GraphViewer();
         Parent graphRoot = graphViewer.getRoot();
         AddWavesViewer addWavesViewer = new AddWavesViewer();
@@ -47,7 +45,6 @@ public class Main extends Application {
         ArrayList<Parent> screens = new ArrayList<>();
         screens.add(addWavesRoot);
         screens.add(waveWithFrequencyRoot);
-        screens.add(graphRoot);
 
 
         // Temp scene

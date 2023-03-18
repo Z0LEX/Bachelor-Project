@@ -85,4 +85,8 @@ public class Wave {
             return sum;
         };
     }
+
+    public double getFrequency() {
+        return frequency;
+    }
 }

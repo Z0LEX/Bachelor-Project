@@ -1,10 +1,10 @@
-package controllers;
+package main.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.Function;
 
-import datatypes.FrequencyGraph;
+import main.datatypes.FrequencyGraph;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,7 +15,7 @@ import javafx.scene.control.Slider;
 
 public class GraphController implements Initializable {
     private final static double AMPLITUDE = 1;
-    private final static int OFFSET = 1;
+    private final static int OFFSET = 0;
     public static final double PHASE_SHIFT = Math.PI / 2;
 
     @FXML
@@ -64,10 +64,6 @@ public class GraphController implements Initializable {
         frequencyGraph.plot(function);
     }
 
-    private void combinePlots() {
-        frequencyGraph.combinePlots();
-    }
-
     @FXML
     private void handleOneHertz(final ActionEvent event) {
         plotFunction(x -> getFrequency(1, x, OFFSET));
@@ -95,7 +91,6 @@ public class GraphController implements Initializable {
 
     @FXML
     private void handleCombineButton(final ActionEvent event) {
-        combinePlots();
 //        frequencyGraph.clear();
         combine.setDisable(true);
     }

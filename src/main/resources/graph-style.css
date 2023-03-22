@@ -30,7 +30,7 @@
     -fx-stroke-width: 0;
 }
 
-.axis {
+.chart .axis {
     -fx-stroke: white;
     -fx-fill: white;
     -fx-font-size: 1.4em;

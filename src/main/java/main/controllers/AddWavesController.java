@@ -1,11 +1,10 @@
-package controllers;
+package main.controllers;
 
-import components.CombinationLock;
-import components.Wave;
+import main.components.CombinationLock;
+import main.components.Wave;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.SplitPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -31,7 +30,7 @@ public class AddWavesController implements Initializable {
     @FXML
     private VBox waveContainer;
     @FXML
-    private SplitPane splitPane;
+    private VBox resultContainer;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -39,19 +38,20 @@ public class AddWavesController implements Initializable {
         for (int i = 0; i < 4; i++) {
             Wave wave = new Wave(0);
             waves.add(wave);
-            updateWaveContainer(wave, i);
+            updateVBox(wave, i, waveContainer);
         }
         // Initialize the top splitpane with sumWave
-        sumWave = new Wave(sumWaves(waves));
-        updateSplitPane(sumWave, 0);
+        sumWave = new Wave(Wave.sumWaves(waves));
+        updateVBox(sumWave, 0, resultContainer);
 
         // Initialize the bottom splitpane with a complicated wave
         Wave wave1 = new Wave(1);
         Wave wave2 = new Wave(3);
         Wave wave3 = new Wave(5);
-        ArrayList<Wave> waveResult = new ArrayList<>(Arrays.asList(wave1, wave2, wave3));
-        Wave result = new Wave(sumWaves(waveResult));
-        updateSplitPane(result, 1);
+        Wave wave4 = new Wave(8);
+        ArrayList<Wave> waveResult = new ArrayList<>(Arrays.asList(wave1, wave2, wave3, wave4));
+        Wave result = new Wave(Wave.sumWaves(waveResult));
+        updateVBox(result, 1, resultContainer);
 
         // Add the combinationlock to the lockcontainer
         lockContainer.getChildren().add(lock.getRoot());
@@ -64,22 +64,22 @@ public class AddWavesController implements Initializable {
         lockNumber1.textProperty().addListener((observable, oldValue, newValue) -> {
             int index = 0;
             Wave wave = addWave(Double.parseDouble(newValue), index);
-            updateWaveContainer(wave, index);
+            updateVBox(wave, index, waveContainer);
         });
         lockNumber2.textProperty().addListener((observable, oldValue, newValue) -> {
             int index = 1;
             Wave wave = addWave(Double.parseDouble(newValue), index);
-            updateWaveContainer(wave, index);
+            updateVBox(wave, index, waveContainer);
         });
         lockNumber3.textProperty().addListener((observable, oldValue, newValue) -> {
             int index = 2;
             Wave wave = addWave(Double.parseDouble(newValue), index);
-            updateWaveContainer(wave, index);
+            updateVBox(wave, index, waveContainer);
         });
         lockNumber4.textProperty().addListener((observable, oldValue, newValue) -> {
             int index = 3;
             Wave wave = addWave(Double.parseDouble(newValue), index);
-            updateWaveContainer(wave, index);
+            updateVBox(wave, index, waveContainer);
         });
     }
 
@@ -91,28 +91,13 @@ public class AddWavesController implements Initializable {
         return newWave;
     }
 
-    private void updateWaveContainer(Wave wave, int index) {
-        waveContainer.getChildren().set(index, wave.getRoot());
-    }
-
-    private void updateSplitPane(Wave wave, int index) {
-        splitPane.getItems().set(index, wave.getRoot());
+    private void updateVBox(Wave wave, int index, VBox container) {
+        container.getChildren().set(index, wave.getRoot());
     }
 
     private void getSumWave() {
-        Function<Double, Double> sum = sumWaves(waves);
+        Function<Double, Double> sum = Wave.sumWaves(waves);
         sumWave = new Wave(sum);
-        updateSplitPane(sumWave, 0);
-    }
-
-
-    private Function<Double, Double> sumWaves(ArrayList<Wave> waves) {
-        return x -> {
-            double sum = 0;
-            for (Wave wave : waves) {
-                sum += wave.getFunction().apply(x);
-            }
-            return sum;
-        };
+        updateVBox(sumWave, 0, resultContainer);
     }
 }

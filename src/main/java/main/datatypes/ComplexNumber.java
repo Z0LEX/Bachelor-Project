@@ -1,4 +1,4 @@
-package datatypes;
+package main.datatypes;
 public class ComplexNumber {
 
     private final double re;

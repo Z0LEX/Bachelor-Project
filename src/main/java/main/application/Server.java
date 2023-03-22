@@ -1,4 +1,4 @@
-package application;
+package main.application;
 
 import org.jspace.SequentialSpace;
 import org.jspace.SpaceRepository;
@@ -12,10 +12,10 @@ public class Server {
     private static final String PORT = ":9001";
     private static final String PROTOCOL = "tcp://";
     private String ip = "127.0.0.1";
+    public static SequentialSpace space = new SequentialSpace();
     public Server() {
 //        ip = getIp();
         SpaceRepository repository = new SpaceRepository();
-        SequentialSpace space = new SequentialSpace();
 
         repository.add("space", space);
 
@@ -25,7 +25,7 @@ public class Server {
 
         try {
             System.out.println("Host server put 'test' in space");
-            space.put("Test");
+            space.put("Hej thorbjørn :)");
             System.out.println(space.size());
         } catch (InterruptedException e) {
             throw new RuntimeException(e);

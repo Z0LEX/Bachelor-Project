@@ -1,0 +1,16 @@
+.slider .track {
+    -fx-background-color: dimgray;
+}
+.slider .thumb {
+    -fx-pref-height: 20px;
+    -fx-pref-width: 10px;
+}
+
+.slider .axis {
+    -fx-tick-label-fill: black;
+    -fx-stroke: black;
+    -fx-fill: black;
+    -fx-font-size: 1.4em;
+    -fx-font-family: Tahoma;
+    -fx-tick-length: 10;
+}

@@ -19,7 +19,7 @@ public class FourierFrequencyViewer {
     public FourierFrequencyViewer(RemoteSpace clientSpace) {
         this.clientSpace = clientSpace;
         try {
-            FXMLLoader fourierFrequencyLoader = new FXMLLoader(FourierFrequencyController.class.getResource("/fourier-frequency.fxml"));
+            FXMLLoader fourierFrequencyLoader = new FXMLLoader(FourierFrequencyController.class.getResource("/client-fourier-frequency.fxml"));
             root = fourierFrequencyLoader.load();
             FourierFrequencyController fourierFrequencyController = fourierFrequencyLoader.getController();
             scene = new Scene(root);

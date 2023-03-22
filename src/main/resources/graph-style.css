@@ -1,13 +1,16 @@
-#pane, .root, .split-pane{
+#pane, .root, .split-pane {
     -fx-background-color: #353434;
     -fx-foreground-color: #353434;
 }
 
-.default-color0.chart-series-line { -fx-stroke: #2c2e4e; }
+.chart-series-line {
+    -fx-stroke: #2c2e4e;
+}
 
 .chart-vertical-zero-line {
     -fx-stroke: white;
 }
+
 .chart-horizontal-zero-line {
     -fx-stroke: white;
 }
@@ -21,9 +24,11 @@
 .chart-vertical-grid-lines {
     -fx-stroke: #898887;
 }
+
 .chart-horizontal-grid-lines {
     -fx-stroke: #898887;
 }
+
 .chart-alternative-row-fill {
     -fx-fill: transparent;
     -fx-stroke: transparent;
@@ -50,7 +55,7 @@
     -fx-border-color: #353434;
     -fx-border-width: 0;
     -fx-background-radius: 0;
-    -fx-background-color: derive(#353434,20%);
+    -fx-background-color: derive(#353434, 20%);
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
@@ -67,9 +72,9 @@
 }
 
 /*.button:disabled, .button:default:disabled {*/
-    /*-fx-opacity: 0.4;*/
-    /*-fx-background-color: #353434;*/
-    /*-fx-text-fill: white;*/
+/*-fx-opacity: 0.4;*/
+/*-fx-background-color: #353434;*/
+/*-fx-text-fill: white;*/
 /*}*/
 
 .button:default {
@@ -78,7 +83,7 @@
 }
 
 .button:default:hover {
-    -fx-background-color: derive(-fx-focus-color,30%);
+    -fx-background-color: derive(-fx-focus-color, 30%);
 }
 
 .text-area .content {

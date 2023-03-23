@@ -16,7 +16,7 @@
             <VBox alignment="CENTER" prefHeight="150.0" prefWidth="591.0" spacing="10.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Phase shift" />
-                  <Slider fx:id="slider1" blockIncrement="1.0" majorTickUnit="1.0" max="5.0" min="-5.0" minorTickCount="5" prefHeight="49.0" prefWidth="591.0" showTickLabels="true" showTickMarks="true" stylesheets="@slider-style.css" />
+                  <Slider fx:id="slider1" blockIncrement="0.5" majorTickUnit="1.0" max="3.14159265" min="-3.14159265" minorTickCount="5" prefHeight="49.0" prefWidth="591.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" stylesheets="@slider-style.css" />
                </children>
             </VBox>
                 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="root" stylesheets="graph-style.css">
@@ -38,7 +38,7 @@
             <VBox alignment="CENTER" prefHeight="150.0" prefWidth="591.0" spacing="10.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Phase shift" />
-                  <Slider fx:id="slider2" blockIncrement="1.0" majorTickUnit="1.0" max="5.0" min="-5.0" minorTickCount="5" prefHeight="49.0" prefWidth="591.0" showTickLabels="true" showTickMarks="true" stylesheets="@slider-style.css" />
+                  <Slider fx:id="slider2" blockIncrement="1.0" majorTickUnit="1.0" max="3.14159265" min="-3.14159265" minorTickCount="5" prefHeight="49.0" prefWidth="591.0" showTickLabels="true" showTickMarks="true" stylesheets="@slider-style.css" />
                </children>
             </VBox>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="root" stylesheets="graph-style.css">
@@ -60,7 +60,7 @@
             <VBox alignment="CENTER" prefHeight="150.0" prefWidth="591.0" spacing="10.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Phase shift" />
-                  <Slider fx:id="slider3" blockIncrement="1.0" majorTickUnit="1.0" max="5.0" min="-5.0" minorTickCount="5" prefHeight="49.0" prefWidth="591.0" showTickLabels="true" showTickMarks="true" stylesheets="@slider-style.css" />
+                  <Slider fx:id="slider3" blockIncrement="1.0" majorTickUnit="1.0" max="3.14159265" min="-3.14159265" minorTickCount="5" prefHeight="49.0" prefWidth="591.0" showTickLabels="true" showTickMarks="true" stylesheets="@slider-style.css" />
                </children>
             </VBox>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="root" stylesheets="graph-style.css">
@@ -82,7 +82,7 @@
             <VBox alignment="CENTER" prefHeight="150.0" prefWidth="591.0" spacing="10.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Phase shift" />
-                  <Slider fx:id="slider4" blockIncrement="1.0" majorTickUnit="1.0" max="5.0" min="-5.0" minorTickCount="5" prefHeight="49.0" prefWidth="591.0" showTickLabels="true" showTickMarks="true" stylesheets="@slider-style.css" />
+                  <Slider fx:id="slider4" blockIncrement="1.0" majorTickUnit="1.0" max="3.14159265" min="-3.14159265" minorTickCount="5" prefHeight="49.0" prefWidth="591.0" showTickLabels="true" showTickMarks="true" stylesheets="@slider-style.css" />
                </children>
             </VBox>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="root" stylesheets="graph-style.css">

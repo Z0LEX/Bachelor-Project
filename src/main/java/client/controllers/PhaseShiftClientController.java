@@ -18,24 +18,25 @@ public class PhaseShiftClientController implements Initializable {
 
     @FXML
     public LineChart<Double, Double> lineGraphTop;
+    public ArrayList<Wave> waveSum;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        // Top wave to
-//        Wave wave1 = new Wave(1);
-//        wave1.setPhaseShift(0);
-//        Wave wave2 = new Wave(3);
-//        wave2.setPhaseShift(0);
-//        Wave wave3 = new Wave(5);
-//        wave3.setPhaseShift(0);
-//        Wave wave4 = new Wave(8);
-//        wave4.setPhaseShift(0);
-//
-//        ArrayList<Wave> waveSum = new ArrayList<>(Arrays.asList(wave1, wave2, wave3, wave4));
-//        Function<Double, Double> sumFunction = Wave.sumWaves(waveSum);
-//
-//        Wave sumWave = new Wave(sumFunction, lineGraphTop);
+        // Top wave to
+        Wave wave1 = new Wave(1);
+        wave1.setPhaseShift(0);
+        Wave wave2 = new Wave(3);
+        wave2.setPhaseShift(0);
+        Wave wave3 = new Wave(5);
+        wave3.setPhaseShift(0);
+        Wave wave4 = new Wave(8);
+        wave4.setPhaseShift(0);
+
+        waveSum = new ArrayList<>(Arrays.asList(wave1, wave2, wave3, wave4));
+        Function<Double, Double> sumFunction = Wave.sumWaves(waveSum);
+
+        Wave sumWave = new Wave(sumFunction, lineGraphTop);
 
 
         Wave waveResult1 = new Wave(1);

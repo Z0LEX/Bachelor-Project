@@ -6,6 +6,7 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.control.Slider;
 import main.application.Server;
 import main.components.Wave;
+import main.datatypes.PiStringConverter;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -75,6 +76,10 @@ public class PhaseShiftController implements Initializable {
             handleSlider(newPhase, wave4, 3);
         });
 
+        slider1.setLabelFormatter(new PiStringConverter());
+        slider2.setLabelFormatter(new PiStringConverter());
+        slider3.setLabelFormatter(new PiStringConverter());
+        slider4.setLabelFormatter(new PiStringConverter());
     }
 
     private void handleSlider(double newPhase, Wave wave, int i) {

@@ -44,9 +44,9 @@ public class PhaseShiftClientController implements Initializable {
         Wave waveResult2 = new Wave(3);
         waveResult2.setPhaseShift(2);
         Wave waveResult3 = new Wave(5);
-        waveResult3.setPhaseShift(-3);
+        waveResult3.setPhaseShift(-2.5);
         Wave waveResult4 = new Wave(8);
-        waveResult4.setPhaseShift(-4);
+        waveResult4.setPhaseShift(-3);
 
         ArrayList<Wave> waveResult = new ArrayList<>(Arrays.asList(waveResult1, waveResult2, waveResult3, waveResult4));
 

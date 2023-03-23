@@ -1,6 +1,5 @@
 package main.datatypes;
 
-import java.util.ArrayList;
 import java.util.function.Function;
 
 import javafx.scene.chart.XYChart;

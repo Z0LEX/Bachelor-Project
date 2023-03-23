@@ -10,7 +10,6 @@ import main.components.Wave;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.function.Function;
 
 public class PhaseShiftController implements Initializable {
     private double range = 1;
@@ -58,34 +57,36 @@ public class PhaseShiftController implements Initializable {
         waves.add(wave3);
         waves.add(wave4);
 
+
         slider1.valueProperty().addListener((observableValue, oldValue, newValue) -> {
             double newPhase = newValue.doubleValue();
-            handleSlider(newPhase, wave1);
+            handleSlider(newPhase, wave1, 0);
         });
         slider2.valueProperty().addListener((observableValue, oldValue, newValue) -> {
             double newPhase = newValue.doubleValue();
-            handleSlider(newPhase, wave2);
+            handleSlider(newPhase, wave2, 1);
         });
         slider3.valueProperty().addListener((observableValue, oldValue, newValue) -> {
             double newPhase = newValue.doubleValue();
-            handleSlider(newPhase, wave3);
+            handleSlider(newPhase, wave3, 2);
         });
         slider4.valueProperty().addListener((observableValue, oldValue, newValue) -> {
             double newPhase = newValue.doubleValue();
-            handleSlider(newPhase, wave4);
+            handleSlider(newPhase, wave4, 3);
         });
+
     }
 
-    private void handleSlider(double newPhase, Wave wave) {
+    private void handleSlider(double newPhase, Wave wave, int i) {
         wave.clear();
         wave.setFunction(x -> Wave.getWave(x, wave.getFrequency(), newPhase));
-        Function<Double, Double> sumFunction = Wave.sumWaves(waves);
-        sendToClient();
+        sendToClient(newPhase, i);
     }
 
-    private void sendToClient() {
+    private void sendToClient(double newPhase, int i) {
         try {
-            Server.space.put();
+            System.out.println("put in space: " + newPhase);
+            Server.space.put("Phase shift", i, newPhase);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

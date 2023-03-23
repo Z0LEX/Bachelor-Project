@@ -1,12 +1,10 @@
 package client.application;
 
 import client.controllers.PhaseShiftClientController;
-import client.listeners.FrequencyListener;
 import client.listeners.PhaseShiftListener;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.jspace.RemoteSpace;
@@ -27,7 +25,7 @@ public class PhaseShiftViewer {
             PhaseShiftClientController phaseShiftClientController = phaseShiftClientLoader.getController();
             scene = new Scene(root);
 
-            Thread phaseShfitListenerThread = new Thread(new PhaseShiftListener(phaseShiftClientController.lineGraphTop, this.clientSpace));
+            Thread phaseShfitListenerThread = new Thread(new PhaseShiftListener(phaseShiftClientController.lineGraphTop, this.clientSpace, phaseShiftClientController.waveSum));
             phaseShfitListenerThread.setDaemon(true);
             phaseShfitListenerThread.start();
         } catch (IOException e) {

@@ -2,6 +2,7 @@ package main.datatypes;
 
 import java.util.function.Function;
 
+import javafx.collections.ObservableList;
 import javafx.scene.chart.XYChart;
 
 public class FrequencyGraph implements Graph {
@@ -20,7 +21,7 @@ public class FrequencyGraph implements Graph {
         for (double x = 0; x <= range; x += DETAIL) {
             plotPoint(x, function.apply(x), series);
         }
-        graph.getData().add(series);
+        graph.getData().add(0, series);
     }
 
     public void plotPoint(double x, double y,
@@ -33,4 +34,15 @@ public class FrequencyGraph implements Graph {
         graph.getData().clear();
     }
 
+    public double[][] getDataAsArray() {
+        ObservableList<XYChart.Data<Double, Double>> data = graph.getData().get(0).getData();
+        int size = data.size();
+        double[][] coordinates = new double[size][2];
+        for (int i = 0; i < size; i++) {
+            System.out.println(data.get(i).getYValue());
+            coordinates[i][0] = data.get(i).getXValue();
+            coordinates[i][1] = data.get(i).getYValue();
+        }
+        return coordinates;
+    }
 }

@@ -11,6 +11,7 @@ import main.datatypes.PiStringConverter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.function.Function;
 
 public class PhaseShiftController implements Initializable {
     private double range = 1;
@@ -45,6 +46,7 @@ public class PhaseShiftController implements Initializable {
     private Wave wave4;
 
     private ArrayList<Wave> waves = new ArrayList<>();
+    private ArrayList<Wave> resultWaves = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -58,40 +60,70 @@ public class PhaseShiftController implements Initializable {
         waves.add(wave3);
         waves.add(wave4);
 
+        Wave waveResult1 = new Wave(1);
+        waveResult1.setPhaseShift(Math.PI);
+        Wave waveResult2 = new Wave(3);
+        waveResult2.setPhaseShift((3*Math.PI) / 4);
+        Wave waveResult3 = new Wave(5);
+        waveResult3.setPhaseShift(Math.PI / 2);
+        Wave waveResult4 = new Wave(8);
+        waveResult4.setPhaseShift(-Math.PI / 2);
+
+        resultWaves.add(waveResult1);
+        resultWaves.add(waveResult2);
+        resultWaves.add(waveResult3);
+        resultWaves.add(waveResult4);
+        sendResultToClient();
 
         slider1.valueProperty().addListener((observableValue, oldValue, newValue) -> {
             double newPhase = newValue.doubleValue();
-            handleSlider(newPhase, wave1, 0);
+            handleSlider(newPhase, wave1);
         });
         slider2.valueProperty().addListener((observableValue, oldValue, newValue) -> {
             double newPhase = newValue.doubleValue();
-            handleSlider(newPhase, wave2, 1);
+            handleSlider(newPhase, wave2);
         });
         slider3.valueProperty().addListener((observableValue, oldValue, newValue) -> {
             double newPhase = newValue.doubleValue();
-            handleSlider(newPhase, wave3, 2);
+            handleSlider(newPhase, wave3);
         });
         slider4.valueProperty().addListener((observableValue, oldValue, newValue) -> {
             double newPhase = newValue.doubleValue();
-            handleSlider(newPhase, wave4, 3);
+            handleSlider(newPhase, wave4);
         });
 
         slider1.setLabelFormatter(new PiStringConverter());
         slider2.setLabelFormatter(new PiStringConverter());
         slider3.setLabelFormatter(new PiStringConverter());
         slider4.setLabelFormatter(new PiStringConverter());
+
+        sendToClient();
     }
 
-    private void handleSlider(double newPhase, Wave wave, int i) {
+
+    private void handleSlider(double newPhase, Wave wave) {
         wave.clear();
         wave.setFunction(x -> Wave.getWave(x, wave.getFrequency(), newPhase));
-        sendToClient(newPhase, i);
+        sendToClient();
     }
 
-    private void sendToClient(double newPhase, int i) {
+    private void sendToClient() {
+        Function<Double, Double> sumFunction = Wave.sumWaves(waves);
+
+        Wave wave = new Wave(sumFunction);
+        double[][] data = wave.getGraph().getDataAsArray();
         try {
-            System.out.println("put in space: " + newPhase);
-            Server.space.put("Phase shift", i, newPhase);
+            Server.space.put("Phase shift", data);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void sendResultToClient() {
+        Function<Double, Double> sumFunction = Wave.sumWaves(resultWaves);
+        Wave wave = new Wave(sumFunction);
+        double[][] data = wave.getGraph().getDataAsArray();
+        try {
+            Server.space.put("Phase shift result", data);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

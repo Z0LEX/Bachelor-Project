@@ -2,44 +2,60 @@ package client.listeners;
 
 import javafx.application.Platform;
 import javafx.scene.chart.LineChart;
-import main.components.Wave;
+import javafx.scene.chart.XYChart;
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 import org.jspace.Space;
 
-import java.util.ArrayList;
-import java.util.function.Function;
-
 public class PhaseShiftListener implements Runnable {
 
-    private LineChart<Double, Double> lineChart;
+    private LineChart<Double, Double> lineChartSum;
+    private LineChart<Double, Double> lineChartResult;
     private Space space;
-    private ArrayList<Wave> waveSum;
 
-    public PhaseShiftListener(LineChart<Double, Double> lineChart, Space space, ArrayList<Wave> waveSum) {
-        this.lineChart = lineChart;
+    public PhaseShiftListener(LineChart<Double, Double> lineChartSum, LineChart<Double, Double> lineChartResult, Space space) {
+        this.lineChartSum = lineChartSum;
+        this.lineChartResult = lineChartResult;
         this.space = space;
-        this.waveSum = waveSum;
+
+        // Initialize the result chart given from host
+        try {
+            Object[] phaseData = space.get(new ActualField("Phase shift result"), new FormalField(double[][].class));
+            double[][] data = (double[][]) phaseData[1];
+            XYChart.Series<Double, Double> series = arrayToSeries(data);
+            Platform.runLater(() -> {
+                lineChartResult.getData().clear();
+                lineChartResult.getData().add(0, series);
+            });
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
+    // Update the sum graph (top) with new values given from host
     @Override
     public void run() {
         while (true) {
             try {
-                Object[] phaseShifts = space.get(new ActualField("Phase shift"), new FormalField(Integer.class), new FormalField(Double.class));
-                int index = (int) phaseShifts[1];
-                Double newPhase = (Double) phaseShifts[2];
-                Wave wave = waveSum.get(index);
-                wave.setPhaseShift(newPhase);
-
-                Function<Double, Double> sumFunction = Wave.sumWaves(waveSum);
+                Object[] phaseData = space.get(new ActualField("Phase shift"), new FormalField(double[][].class));
+                double[][] data = (double[][]) phaseData[1];
+                XYChart.Series<Double, Double> series = arrayToSeries(data);
                 Platform.runLater(() -> {
-                    lineChart.getData().clear();
-                    new Wave(sumFunction, lineChart);
+                    lineChartSum.getData().clear();
+                    lineChartSum.getData().add(0, series);
                 });
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
     }
+
+    private XYChart.Series<Double, Double> arrayToSeries(double[][] data) {
+        XYChart.Series<Double, Double> series = new XYChart.Series<>();
+        for (double[] point : data) {
+            series.getData().add(new XYChart.Data<>(point[0], point[1]));
+        }
+        return series;
+    }
 }
+

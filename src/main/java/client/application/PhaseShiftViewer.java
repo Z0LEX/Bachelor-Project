@@ -25,7 +25,7 @@ public class PhaseShiftViewer {
             PhaseShiftClientController phaseShiftClientController = phaseShiftClientLoader.getController();
             scene = new Scene(root);
 
-            Thread phaseShfitListenerThread = new Thread(new PhaseShiftListener(phaseShiftClientController.lineGraphTop, this.clientSpace, phaseShiftClientController.waveSum));
+            Thread phaseShfitListenerThread = new Thread(new PhaseShiftListener(phaseShiftClientController.lineGraphTop, phaseShiftClientController.lineGraphBottom, this.clientSpace));
             phaseShfitListenerThread.setDaemon(true);
             phaseShfitListenerThread.start();
         } catch (IOException e) {

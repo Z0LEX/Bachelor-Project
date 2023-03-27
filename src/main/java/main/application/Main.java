@@ -8,7 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import client.application.ClientApplication;
-import main.controllers.WaveWithFrequencyController;
 
 import java.util.ArrayList;
 

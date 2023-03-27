@@ -13,9 +13,9 @@ import java.util.function.Function;
 // Wave component using the design in wave.fxml
 public class Wave {
     private double frequency;
-    private static double offset = 0;
-    private static double phaseShift = Math.PI / 2;
-    private static double amplitude = 1;
+    private double offset = 0;
+    private double phaseShift = Math.PI / 2;
+    private double amplitude = 1;
     private double range = 1;
     private Function<Double, Double> function;
     private FrequencyGraph graph;
@@ -37,6 +37,7 @@ public class Wave {
             throw new RuntimeException(e);
         }
     }
+
     public Wave(double frequency, LineChart<Double, Double> lineChart) {
         this.frequency = frequency;
         try {
@@ -83,13 +84,14 @@ public class Wave {
         graph.plot(function);
     }
 
-    public static double getWave(double x, double f) {
+    public double getWave(double x, double f) {
         if (f == 0) {
             return 0;
         }
         return amplitude * Math.sin(2 * Math.PI * f * x + phaseShift) + offset;
     }
-    public static double getWave(double x, double f, double phaseShift) {
+
+    public double getWave(double x, double f, double phaseShift) {
         if (f == 0) {
             return 0;
         }
@@ -133,7 +135,7 @@ public class Wave {
     }
 
     public void setPhaseShift(double phaseShift) {
-        Wave.phaseShift = phaseShift;
+        this.phaseShift = phaseShift;
         setFunction(x -> getWave(x, frequency, phaseShift));
     }
 

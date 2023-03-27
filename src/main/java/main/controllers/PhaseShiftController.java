@@ -103,7 +103,7 @@ public class PhaseShiftController implements Initializable {
 
     private void handleSlider(double newPhase, Wave wave) {
         wave.clear();
-        wave.setFunction(x -> Wave.getWave(x, wave.getFrequency(), newPhase));
+        wave.setFunction(x -> wave.getWave(x, wave.getFrequency(), newPhase));
         sendToClient();
     }
 

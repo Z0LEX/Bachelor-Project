@@ -30,7 +30,6 @@ public class WaveWithFrequencyController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         graph = new FrequencyGraph(lineGraph, range);
-        // Initialize the bottom splitpane with a complicated wave
         // Each wave should have a unique frequency (if two have the same the range on the y-axis on client is too low)
         Wave wave1 = new Wave(1);
         Wave wave2 = new Wave(3);

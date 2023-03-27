@@ -65,6 +65,20 @@ public class Wave {
         }
     }
 
+    public Wave(Function<Double, Double> function) {
+        this.function = function;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/wave.fxml"));
+            root = fxmlLoader.load();
+            waveController = fxmlLoader.getController();
+            lineChart = waveController.getLineGraph();
+            graph = new FrequencyGraph(lineChart, range);
+            plotFunction(function);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void plotFunction(Function<Double, Double> function) {
         graph.plot(function);
     }
@@ -126,5 +140,14 @@ public class Wave {
     public void setFrequency(Double frequency) {
         this.frequency = frequency;
         setFunction(x -> getWave(x, frequency, phaseShift));
+    }
+
+    public FrequencyGraph getGraph() {
+        return graph;
+    }
+
+    public void setOffset(double offset) {
+        this.offset = offset;
+        setFunction(x -> getWave(x, frequency));
     }
 }

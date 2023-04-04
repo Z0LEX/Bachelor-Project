@@ -75,7 +75,6 @@ public class FourierMachineController implements Initializable {
         double belowSum = getSeriesSum(belowZeroSeries);
         redText.setText(String.format("(%.2f)", belowSum));
         double result = aboveSum + belowSum;
-        System.out.println(result);
         if (Math.abs(result) < 0.001) {
             result = 0;
         }

@@ -1,5 +1,6 @@
 package main.components;
 
+import javafx.scene.chart.XYChart;
 import main.controllers.WaveController;
 import main.datatypes.FrequencyGraph;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +15,7 @@ import java.util.function.Function;
 public class Wave {
     private double frequency;
     private double offset = 0;
-    private double phaseShift = Math.PI / 2;
+    private double phaseShift = 0;
     private double amplitude = 1;
     private double range = 1;
     private Function<Double, Double> function;
@@ -88,14 +89,14 @@ public class Wave {
         if (f == 0) {
             return 0;
         }
-        return amplitude * Math.sin(2 * Math.PI * f * x + phaseShift) + offset;
+        return amplitude * Math.cos(2 * Math.PI * f * x + phaseShift) + offset;
     }
 
     public double getWave(double x, double f, double phaseShift) {
         if (f == 0) {
             return 0;
         }
-        return amplitude * Math.sin(2 * Math.PI * f * x + phaseShift) + offset;
+        return amplitude * Math.cos(2 * Math.PI * f * x + phaseShift) + offset;
     }
 
     public AnchorPane getRoot() {
@@ -131,7 +132,6 @@ public class Wave {
 
     public void setFunction(Function<Double, Double> function) {
         this.function = function;
-        graph.plot(function);
     }
 
     public void setPhaseShift(double phaseShift) {
@@ -151,5 +151,9 @@ public class Wave {
     public void setOffset(double offset) {
         this.offset = offset;
         setFunction(x -> getWave(x, frequency));
+    }
+
+    public XYChart.Series<Double, Double> getSeries() {
+        return graph.getSeries();
     }
 }

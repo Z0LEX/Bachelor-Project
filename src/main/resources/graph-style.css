@@ -7,6 +7,10 @@
     -fx-stroke: #2c2e4e;
 }
 
+.result-series {
+    -fx-stroke: #CC5500
+}
+
 .chart-vertical-zero-line {
     -fx-stroke: white;
 }

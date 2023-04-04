@@ -5,9 +5,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public class CenterOfMass {
-    public static final double DETAIL = 0.01;
-    public static final double RANGE = 1;
-
     private XYChart<Double, Double> graph;
 
     public CenterOfMass(XYChart<Double, Double> graph) {
@@ -15,7 +12,7 @@ public class CenterOfMass {
     }
 
     public void plot(double weightRe) {
-        XYChart.Series<Double, Double> series = new XYChart.Series<Double, Double>();
+        XYChart.Series<Double, Double> series = new XYChart.Series<>();
         plotWeight(0, weightRe, series);
         graph.getData().add(series);
     }

@@ -30,13 +30,12 @@ public class WaveWithFrequencyController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         graph = new FrequencyGraph(lineGraph, range);
-
-        // Initialize the bottom splitpane with a complicated wave
         // Each wave should have a unique frequency (if two have the same the range on the y-axis on client is too low)
         Wave wave1 = new Wave(1);
         Wave wave2 = new Wave(3);
         Wave wave3 = new Wave(5);
         Wave wave4 = new Wave(8);
+
         ArrayList<Wave> waveResult = new ArrayList<>(Arrays.asList(wave1, wave2, wave3, wave4));
 
         // Sum the waves and plot the function
@@ -44,7 +43,6 @@ public class WaveWithFrequencyController implements Initializable {
         graph.plot(sumFunction);
         frequencySlider.valueProperty().addListener((observableValue, oldValue, newValue) -> {
             double newFrequency = newValue.doubleValue();
-
             // Compute the weight of the graph in the complex plane
             EulerGraph eulerGraph = new EulerGraph(sumFunction, newFrequency);
             ComplexNumber weight = eulerGraph.computeWeight();

@@ -1,25 +1,26 @@
 package main.application;
 
-import main.controllers.AddWavesController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import main.controllers.PhaseShiftController;
+
 import java.io.IOException;
 
-public class AddWavesViewer {
+public class PhaseShiftViewer {
     private Scene scene;
     private Parent root;
 
-    public AddWavesViewer() {
-        createAddWavesViewer();
+    public PhaseShiftViewer() {
+        createPhaseShiftViewer();
     }
 
-    private void createAddWavesViewer() {
+    private void createPhaseShiftViewer() {
         try {
-            FXMLLoader addWavesLoader = new FXMLLoader(AddWavesController.class.getResource("/add-waves.fxml"));
-            root = addWavesLoader.load();
-            AddWavesController addWavesController = addWavesLoader.getController();
+            FXMLLoader phaseShiftLoader = new FXMLLoader(PhaseShiftController.class.getResource("/phase-shift.fxml"));
+            root = phaseShiftLoader.load();
+            PhaseShiftController phaseShiftController = phaseShiftLoader.getController();
             scene = new Scene(root);
         } catch (IOException e) {
             throw new RuntimeException(e);

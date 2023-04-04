@@ -22,14 +22,6 @@ public class Server {
         String serverURI = PROTOCOL + ip + PORT + "/?keep";
         System.out.println("Server uri: " + serverURI);
         repository.addGate(serverURI);
-
-        try {
-            System.out.println("Host server put 'test' in space");
-            space.put("Hej thorbjørn :)");
-            System.out.println(space.size());
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     private static String getIp() {

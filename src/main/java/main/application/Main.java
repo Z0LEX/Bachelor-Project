@@ -8,7 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import client.application.ClientApplication;
-import main.controllers.WaveWithFrequencyController;
 
 import java.util.ArrayList;
 
@@ -37,16 +36,37 @@ public class Main extends Application {
         // TODO: Remove GraphViewer, most functionality has been moved to AddWaves
         GraphViewer graphViewer = new GraphViewer();
         Parent graphRoot = graphViewer.getRoot();
+
         AddWavesViewer addWavesViewer = new AddWavesViewer();
         Parent addWavesRoot = addWavesViewer.getRoot();
+
         WaveWithFrequency waveWithFrequency = new WaveWithFrequency();
         Parent waveWithFrequencyRoot = waveWithFrequency.getRoot();
+
+        PhaseShiftViewer phaseShiftViewer = new PhaseShiftViewer();
+        Parent phaseShiftRoot = phaseShiftViewer.getRoot();
 
         ArrayList<Parent> screens = new ArrayList<>();
         screens.add(addWavesRoot);
         screens.add(waveWithFrequencyRoot);
+        screens.add(phaseShiftRoot);
 
+        BorderPane tempScene = setupTempScene(screens);
 
+        stage.setScene(new Scene(tempScene));
+        stage.show();
+
+        ArrayList<Stage> stages = new ArrayList<>();
+        stages.add(stage);
+        Stage clientStage = new Stage();
+        stages.add(clientStage);
+
+        setCloseAllStagesOnExit(stages);
+        new ClientApplication().start(clientStage);
+
+    }
+
+    private BorderPane setupTempScene(ArrayList<Parent> screens) {
         // Temp scene
         BorderPane pane = new BorderPane();
         pane.setCenter(screens.get(screenIndex));
@@ -67,18 +87,7 @@ public class Main extends Application {
         });
         pane.setLeft(prevScreenButton);
         pane.setRight(nextScreenButton);
-
-        stage.setScene(new Scene(pane));
-        stage.show();
-
-        ArrayList<Stage> stages = new ArrayList<>();
-        stages.add(stage);
-        Stage clientStage = new Stage();
-        stages.add(clientStage);
-
-        setCloseAllStagesOnExit(stages);
-        new ClientApplication().start(clientStage);
-
+        return pane;
     }
 
     // Loop through all stages and add listener to each that closes all stages

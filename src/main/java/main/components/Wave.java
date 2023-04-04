@@ -15,7 +15,7 @@ import java.util.function.Function;
 public class Wave {
     private double frequency;
     private double offset = 0;
-    private double phaseShift = Math.PI / 2;
+    private double phaseShift = 0;
     private double amplitude = 1;
     private double range = 1;
     private Function<Double, Double> function;
@@ -89,14 +89,14 @@ public class Wave {
         if (f == 0) {
             return 0;
         }
-        return amplitude * Math.sin(2 * Math.PI * f * x + phaseShift) + offset;
+        return amplitude * Math.cos(2 * Math.PI * f * x + phaseShift) + offset;
     }
 
     public double getWave(double x, double f, double phaseShift) {
         if (f == 0) {
             return 0;
         }
-        return amplitude * Math.sin(2 * Math.PI * f * x + phaseShift) + offset;
+        return amplitude * Math.cos(2 * Math.PI * f * x + phaseShift) + offset;
     }
 
     public AnchorPane getRoot() {

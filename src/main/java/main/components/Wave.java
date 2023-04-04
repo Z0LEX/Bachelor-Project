@@ -1,5 +1,6 @@
 package main.components;
 
+import javafx.scene.chart.XYChart;
 import main.controllers.WaveController;
 import main.datatypes.FrequencyGraph;
 import javafx.fxml.FXMLLoader;
@@ -131,7 +132,6 @@ public class Wave {
 
     public void setFunction(Function<Double, Double> function) {
         this.function = function;
-        graph.plot(function);
     }
 
     public void setPhaseShift(double phaseShift) {
@@ -151,5 +151,9 @@ public class Wave {
     public void setOffset(double offset) {
         this.offset = offset;
         setFunction(x -> getWave(x, frequency));
+    }
+
+    public XYChart.Series<Double, Double> getSeries() {
+        return graph.getSeries();
     }
 }

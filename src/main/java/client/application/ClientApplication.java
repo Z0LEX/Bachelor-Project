@@ -7,6 +7,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -70,7 +71,6 @@ public class ClientApplication extends Application {
         parents.add(phaseShiftRoot);
 
         BorderPane tempScene = setupTempScene(parents);
-
         stage.setScene(new Scene(tempScene));
         stage.show();
     }

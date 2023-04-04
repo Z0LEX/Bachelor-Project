@@ -47,7 +47,7 @@ public class FourierMachineController implements Initializable {
         Wave wave4 = new Wave(8);
         ArrayList<Wave> inputWaves = new ArrayList<>(Arrays.asList(wave1, wave2, wave3, wave4));
         Wave inputWave = new Wave(Wave.sumWaves(inputWaves), inputGraph);
-
+        
         // Initial testwave
         Wave testWave = new Wave(1, testGraph);
 
@@ -71,14 +71,14 @@ public class FourierMachineController implements Initializable {
 
     private void updateTextFields() {
         double aboveSum = getSeriesSum(aboveZeroSeries);
-        blueText.setText(String.format("%.2f", aboveSum));
+        blueText.setText(String.format("%.1f", aboveSum));
         double belowSum = getSeriesSum(belowZeroSeries);
-        redText.setText(String.format("(%.2f)", belowSum));
+        redText.setText(String.format("(%.1f)", belowSum));
         double result = aboveSum + belowSum;
         if (Math.abs(result) < 0.001) {
             result = 0;
         }
-        purpleText.setText(String.format("%.2f", result));
+        purpleText.setText(String.format("%.1f", result));
     }
 
     private void updateOutputWave(Wave inputWave, Wave testWave) {

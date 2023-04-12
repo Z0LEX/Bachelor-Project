@@ -120,6 +120,13 @@ public class Wave {
             return sum;
         };
     }
+    public static Function<Double, Double> multiplyWaves(Wave wave1, Wave wave2) {
+        return x -> {
+            double sum = 0;
+                sum = wave1.getFunction().apply(x) * wave2.getFunction().apply(x);
+            return sum;
+        };
+    }
 
     public double getFrequency() {
         return frequency;

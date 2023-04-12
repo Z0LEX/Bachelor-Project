@@ -33,6 +33,11 @@
     -fx-stroke: #898887;
 }
 
+.chart-series-area-line {
+    -fx-stroke: #2c2e4e;
+    -fx-stroke-width: 3;
+}
+
 .chart-alternative-row-fill {
     -fx-fill: transparent;
     -fx-stroke: transparent;

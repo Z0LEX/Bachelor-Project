@@ -46,8 +46,12 @@ public class Main extends Application {
         PhaseShiftViewer phaseShiftViewer = new PhaseShiftViewer();
         Parent phaseShiftRoot = phaseShiftViewer.getRoot();
 
+        FourierMachineViewer fourierMachineViewer = new FourierMachineViewer();
+        Parent fourierMachineRoot = fourierMachineViewer.getRoot();
+
         ArrayList<Parent> screens = new ArrayList<>();
         screens.add(addWavesRoot);
+        screens.add(fourierMachineRoot);
         screens.add(waveWithFrequencyRoot);
         screens.add(phaseShiftRoot);
 

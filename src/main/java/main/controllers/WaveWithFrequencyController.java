@@ -1,11 +1,9 @@
 package main.controllers;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.Slider;
-import javafx.scene.input.ScrollEvent;
 import main.application.Server;
 import main.components.Wave;
 import main.datatypes.ComplexNumber;
@@ -49,15 +47,6 @@ public class WaveWithFrequencyController implements Initializable {
             EulerGraph eulerGraph = new EulerGraph(sumFunction, newFrequency);
             ComplexNumber weight = eulerGraph.computeWeight();
             handleSlider(weight);
-        });
-        frequencySlider.setOnScroll(event -> {
-            double newFrequency = frequencySlider.getValue();
-            System.out.println(newFrequency);
-            // Compute the weight of the graph in the complex plane
-            EulerGraph eulerGraph = new EulerGraph(sumFunction, newFrequency);
-            ComplexNumber weight = eulerGraph.computeWeight();
-            handleSlider(weight);
-            event.consume();
         });
         // Initialize client with point in (0,0)
         sendToClient(0);

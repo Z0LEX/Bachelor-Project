@@ -2,6 +2,9 @@ package main.controllers;
 
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import main.components.CombinationLock;
 import main.components.Wave;
 import javafx.fxml.FXML;
@@ -28,6 +31,8 @@ public class AddWavesController implements Initializable {
     private Label lockNumber3;
     private Label lockNumber4;
     @FXML
+    private Button lockButton;
+    @FXML
     private HBox lockContainer;
     @FXML
     private LineChart<Double, Double> lineChartResult;
@@ -42,6 +47,9 @@ public class AddWavesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        Image image = new Image(getClass().getResourceAsStream("/assets/lockImage.png"));
+        lockButton.setGraphic(new ImageView(image));
         // Initialize the with a complicated wave to find
         Wave wave1 = new Wave(1);
         Wave wave2 = new Wave(3);
@@ -49,7 +57,6 @@ public class AddWavesController implements Initializable {
         Wave wave4 = new Wave(8);
         ArrayList<Wave> waveResult = new ArrayList<>(Arrays.asList(wave1, wave2, wave3, wave4));
         resultWave = new Wave(Wave.sumWaves(waveResult), lineChartResult);
-
         waves.add(new Wave(0, lineChart1));
         waves.add(new Wave(0, lineChart2));
         waves.add(new Wave(0, lineChart3));

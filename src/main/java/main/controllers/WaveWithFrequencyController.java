@@ -31,10 +31,10 @@ public class WaveWithFrequencyController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         graph = new FrequencyGraph(lineGraph, range);
         // Each wave should have a unique frequency (if two have the same the range on the y-axis on client is too low)
-        Wave wave1 = new Wave(1);
-        Wave wave2 = new Wave(3);
-        Wave wave3 = new Wave(5);
-        Wave wave4 = new Wave(8);
+        Wave wave1 = new Wave(1, 1);
+        Wave wave2 = new Wave(3, 1);
+        Wave wave3 = new Wave(5, 1);
+        Wave wave4 = new Wave(8, 1);
 
         ArrayList<Wave> waveResult = new ArrayList<>(Arrays.asList(wave1, wave2, wave3, wave4));
 

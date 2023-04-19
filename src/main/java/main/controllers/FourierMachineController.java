@@ -41,15 +41,15 @@ public class FourierMachineController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Create input wave
-        Wave wave1 = new Wave(1);
-        Wave wave2 = new Wave(3);
-        Wave wave3 = new Wave(5);
-        Wave wave4 = new Wave(8);
+        Wave wave1 = new Wave(1, 1);
+        Wave wave2 = new Wave(3, 1);
+        Wave wave3 = new Wave(5, 1);
+        Wave wave4 = new Wave(8, 1);
         ArrayList<Wave> inputWaves = new ArrayList<>(Arrays.asList(wave1, wave2, wave3, wave4));
         Wave inputWave = new Wave(Wave.sumWaves(inputWaves), inputGraph);
         
         // Initial testwave
-        Wave testWave = new Wave(1, testGraph);
+        Wave testWave = new Wave(1, 1, testGraph);
 
         // Resulting output wave
         Wave outputWave = new Wave(Wave.multiplyWaves(inputWave, testWave));
@@ -114,7 +114,7 @@ public class FourierMachineController implements Initializable {
 
     private void updateTestWave(double newFrequency, Wave wave) {
         wave.clear();
-        wave.setFunction(x -> wave.getWave(x, newFrequency));
+        wave.setFunction(x -> wave.getWave(x, newFrequency, wave.getAmplitude(), wave.getPhaseShift()));
         wave.plotFunction(wave.getFunction());
     }
 }

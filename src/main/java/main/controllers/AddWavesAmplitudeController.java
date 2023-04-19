@@ -45,10 +45,10 @@ public class AddWavesAmplitudeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Initialize the with a complicated wave to find
-        Wave wave1 = new Wave(0, 1);
-        Wave wave2 = new Wave(1, 2);
-        Wave wave3 = new Wave(2, 1);
-        Wave wave4 = new Wave(3, 3);
+        Wave wave1 = new Wave(0, 5);
+        Wave wave2 = new Wave(1, 6);
+        Wave wave3 = new Wave(2, 8);
+        Wave wave4 = new Wave(3, 5);
         ArrayList<Wave> waveResult = new ArrayList<>(Arrays.asList(wave1, wave2, wave3, wave4));
         resultWave = new Wave(Wave.sumWaves(waveResult), lineChartResult);
 

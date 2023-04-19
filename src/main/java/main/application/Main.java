@@ -40,6 +40,9 @@ public class Main extends Application {
         AddWavesViewer addWavesViewer = new AddWavesViewer();
         Parent addWavesRoot = addWavesViewer.getRoot();
 
+        AddWavesAmplitudeViewer addWavesAmplitudeViewer = new AddWavesAmplitudeViewer();
+        Parent addWavesAmplitudeRoot = addWavesAmplitudeViewer.getRoot();
+
         WaveWithFrequency waveWithFrequency = new WaveWithFrequency();
         Parent waveWithFrequencyRoot = waveWithFrequency.getRoot();
 
@@ -51,6 +54,7 @@ public class Main extends Application {
 
         ArrayList<Parent> screens = new ArrayList<>();
         screens.add(addWavesRoot);
+        screens.add(addWavesAmplitudeRoot);
         screens.add(fourierMachineRoot);
         screens.add(waveWithFrequencyRoot);
         screens.add(phaseShiftRoot);

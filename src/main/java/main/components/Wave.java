@@ -13,7 +13,7 @@ import java.util.function.Function;
 
 // Wave component using the design in wave.fxml
 public class Wave {
-    private double frequency;
+    private double frequency = 0;
     private double offset = 0;
     private double phaseShift = 0;
     private double amplitude = 1;
@@ -24,29 +24,31 @@ public class Wave {
     private LineChart<Double, Double> lineChart;
     private WaveController waveController;
 
-    public Wave(double frequency) {
+    public Wave(double frequency, double amplitude) {
         this.frequency = frequency;
+        this.amplitude = amplitude;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/wave.fxml"));
             root = fxmlLoader.load();
             waveController = fxmlLoader.getController();
             lineChart = waveController.getLineGraph();
             graph = new FrequencyGraph(lineChart, range);
-            function = x -> getWave(x, frequency);
+            function = x -> getWave(x, frequency, amplitude, phaseShift);
             plotFunction(function);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public Wave(double frequency, LineChart<Double, Double> lineChart) {
+    public Wave(double frequency, double amplitude, LineChart<Double, Double> lineChart) {
         this.frequency = frequency;
+        this.amplitude = amplitude;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/wave.fxml"));
             root = fxmlLoader.load();
             waveController = fxmlLoader.getController();
             graph = new FrequencyGraph(lineChart, range);
-            function = x -> getWave(x, frequency, 0);
+            function = x -> getWave(x, frequency, amplitude, 0);
             plotFunction(function);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -85,18 +87,11 @@ public class Wave {
         graph.plot(function);
     }
 
-    public double getWave(double x, double f) {
-        if (f == 0) {
-            return 0;
-        }
-        return amplitude * Math.cos(2 * Math.PI * f * x + phaseShift) + offset;
-    }
-
-    public double getWave(double x, double f, double phaseShift) {
-        if (f == 0) {
-            return 0;
-        }
-        return amplitude * Math.cos(2 * Math.PI * f * x + phaseShift) + offset;
+    public double getWave(double x, double f, double a, double phaseShift) {
+//        if (f == 0) {
+//            return 0;
+//        }
+        return a * Math.cos(2 * Math.PI * f * x + phaseShift) + offset;
     }
 
     public AnchorPane getRoot() {
@@ -120,10 +115,11 @@ public class Wave {
             return sum;
         };
     }
+
     public static Function<Double, Double> multiplyWaves(Wave wave1, Wave wave2) {
         return x -> {
             double sum = 0;
-                sum = wave1.getFunction().apply(x) * wave2.getFunction().apply(x);
+            sum = wave1.getFunction().apply(x) * wave2.getFunction().apply(x);
             return sum;
         };
     }
@@ -143,12 +139,12 @@ public class Wave {
 
     public void setPhaseShift(double phaseShift) {
         this.phaseShift = phaseShift;
-        setFunction(x -> getWave(x, frequency, phaseShift));
+        setFunction(x -> getWave(x, frequency, amplitude, phaseShift));
     }
 
     public void setFrequency(Double frequency) {
         this.frequency = frequency;
-        setFunction(x -> getWave(x, frequency, phaseShift));
+        setFunction(x -> getWave(x, frequency, amplitude, phaseShift));
     }
 
     public FrequencyGraph getGraph() {
@@ -157,7 +153,20 @@ public class Wave {
 
     public void setOffset(double offset) {
         this.offset = offset;
-        setFunction(x -> getWave(x, frequency));
+        setFunction(x -> getWave(x, frequency, amplitude, phaseShift));
+    }
+
+    public void setAmplitude(double amplitude) {
+        this.amplitude = amplitude;
+        setFunction(x -> getWave(x, frequency, amplitude, phaseShift));
+    }
+
+    public double getAmplitude() {
+        return amplitude;
+    }
+
+    public double getPhaseShift() {
+        return phaseShift;
     }
 
     public XYChart.Series<Double, Double> getSeries() {

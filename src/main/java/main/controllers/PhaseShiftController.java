@@ -50,23 +50,23 @@ public class PhaseShiftController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        wave1 = new Wave(1, lineChart1);
-        wave2 = new Wave(3, lineChart2);
-        wave3 = new Wave(5, lineChart3);
-        wave4 = new Wave(8, lineChart4);
+        wave1 = new Wave(1, 1, lineChart1);
+        wave2 = new Wave(3, 1, lineChart2);
+        wave3 = new Wave(5, 1, lineChart3);
+        wave4 = new Wave(8, 1, lineChart4);
 
         waves.add(wave1);
         waves.add(wave2);
         waves.add(wave3);
         waves.add(wave4);
 
-        Wave waveResult1 = new Wave(1);
+        Wave waveResult1 = new Wave(1, 1);
         waveResult1.setPhaseShift(Math.PI);
-        Wave waveResult2 = new Wave(3);
+        Wave waveResult2 = new Wave(3, 1);
         waveResult2.setPhaseShift((3*Math.PI) / 4);
-        Wave waveResult3 = new Wave(5);
+        Wave waveResult3 = new Wave(5, 1);
         waveResult3.setPhaseShift(Math.PI / 2);
-        Wave waveResult4 = new Wave(8);
+        Wave waveResult4 = new Wave(8, 1);
         waveResult4.setPhaseShift(-Math.PI / 2);
 
         resultWaves.add(waveResult1);
@@ -103,7 +103,7 @@ public class PhaseShiftController implements Initializable {
 
     private void handleSlider(double newPhase, Wave wave) {
         wave.clear();
-        wave.setFunction(x -> wave.getWave(x, wave.getFrequency(), newPhase));
+        wave.setFunction(x -> wave.getWave(x, wave.getFrequency(), wave.getAmplitude(), newPhase));
         wave.plotFunction(wave.getFunction());
         sendToClient();
     }

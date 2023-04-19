@@ -1,7 +1,9 @@
 package main.controllers;
 
+import javafx.scene.ImageCursor;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.image.Image;
 import main.components.CombinationLock;
 import main.components.Wave;
 import javafx.fxml.FXML;
@@ -15,7 +17,7 @@ import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.function.Function;
 
-public class AddWavesController implements Initializable {
+public class AddWavesAmplitudeController implements Initializable {
     private ArrayList<Wave> waves = new ArrayList<>(4);
 
     private Wave sumWave;
@@ -43,17 +45,17 @@ public class AddWavesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Initialize the with a complicated wave to find
-        Wave wave1 = new Wave(1, 1);
-        Wave wave2 = new Wave(3, 1);
-        Wave wave3 = new Wave(5, 1);
-        Wave wave4 = new Wave(8, 1);
+        Wave wave1 = new Wave(0, 1);
+        Wave wave2 = new Wave(1, 2);
+        Wave wave3 = new Wave(2, 1);
+        Wave wave4 = new Wave(3, 3);
         ArrayList<Wave> waveResult = new ArrayList<>(Arrays.asList(wave1, wave2, wave3, wave4));
         resultWave = new Wave(Wave.sumWaves(waveResult), lineChartResult);
 
-        waves.add(new Wave(0, 1, lineChart1));
-        waves.add(new Wave(0, 1, lineChart2));
-        waves.add(new Wave(0, 1, lineChart3));
-        waves.add(new Wave(0, 1, lineChart4));
+        waves.add(new Wave(0, 0, lineChart1));
+        waves.add(new Wave(1, 0, lineChart2));
+        waves.add(new Wave(2, 0, lineChart3));
+        waves.add(new Wave(3, 0, lineChart4));
 
         // Initialize the with sumWave
         sumWave = new Wave(Wave.sumWaves(waves), lineChartResult);
@@ -74,11 +76,10 @@ public class AddWavesController implements Initializable {
         lockNumber3.textProperty().addListener((observable, oldValue, newValue) -> updateWave(Double.parseDouble(newValue), 2));
         lockNumber4.textProperty().addListener((observable, oldValue, newValue) -> updateWave(Double.parseDouble(newValue), 3));
     }
-
-    public void updateWave(double frequency, int index) {
+    public void updateWave(double amplitude, int index) {
         Wave wave = waves.get(index);
         wave.clear();
-        wave.setFrequency(frequency);
+        wave.setAmplitude(amplitude);
         wave.plotFunction(wave.getFunction());
         getSumWave();
     }

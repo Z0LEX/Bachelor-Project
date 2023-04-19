@@ -1,6 +1,9 @@
 package main.controllers;
 
 import javafx.scene.chart.LineChart;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
+import main.application.FourierMachineViewer;
 import main.components.CombinationLock;
 import main.components.Wave;
 import javafx.fxml.FXML;
@@ -17,15 +20,20 @@ import java.util.function.Function;
 public class AddWavesAmplitudeController implements Initializable {
     private ArrayList<Wave> waves = new ArrayList<>(4);
 
+    private Stage stage;
+
     private Wave sumWave;
     private Wave resultWave;
 
-    private CombinationLock lock = new CombinationLock(5,6,8,5);
+    private CombinationLock lock = new CombinationLock(4,6,8,5);
 
     private Label lockNumber1;
     private Label lockNumber2;
     private Label lockNumber3;
     private Label lockNumber4;
+    @FXML
+    private Button lockButton;
+
     @FXML
     private HBox lockContainer;
     @FXML
@@ -39,14 +47,22 @@ public class AddWavesAmplitudeController implements Initializable {
     @FXML
     private LineChart<Double, Double> lineChart4;
 
-
+    private boolean gameWonnered;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println(lock.getFirst());
-        System.out.println(lock.getSecond());
-        System.out.println(lock.getThird());
-        System.out.println(lock.getForth());
+        //Image image = new Image(getClass().getResourceAsStream("/assets/images/lockImage.png"));
+        //ImageView imageView = new ImageView(image);
+        //imageView.fitWidthProperty().bind(lockButton.widthProperty());
+        //imageView.fitHeightProperty().bind(lockButton.heightProperty());
+        //lockButton.setGraphic(imageView);
+
+        lockButton.setOnAction(actionEvent -> {
+            FourierMachineViewer fourierMachineViewer = new FourierMachineViewer(stage);
+            fourierMachineViewer.startAddWavesViewer(stage);
+        });
+
+        lockButton.setStyle("-fx-background-color: lightgrey");
 
         // Initialize with a complicated wave to find
         Wave wave1 = new Wave(0, lock.getFirst());
@@ -86,7 +102,27 @@ public class AddWavesAmplitudeController implements Initializable {
         wave.setAmplitude(amplitude);
         wave.plotFunction(wave.getFunction());
         getSumWave();
+        if (
+                lock.getFirst() == Integer.parseInt(lock.getController().getWheel1Number().getText()) &&
+                lock.getSecond() == Integer.parseInt(lock.getController().getWheel2Number().getText()) &&
+                lock.getThird() == Integer.parseInt(lock.getController().getWheel3Number().getText()) &&
+                lock.getForth() == Integer.parseInt(lock.getController().getWheel4Number().getText())
+        ) {
+            gameWonnered = true;
+        } else gameWonnered = false;
+        if (gameWonnered == true) {
+            lockButton.setStyle("-fx-background-color: #353434");
+            lockButton.setDisable(false);
+            lockButton.setText("Continue!");
+        } else {
+            lockButton.setStyle("-fx-background-color: lightgrey");
+            lockButton.setDisable(true);
+            lockButton.setText("");
+        }
+
     }
+
+
 
     private void getSumWave() {
         Function<Double, Double> sum = Wave.sumWaves(waves);
@@ -94,5 +130,9 @@ public class AddWavesAmplitudeController implements Initializable {
         sumWave.getGraph().overwritePlot(sumWave.getFunction(), 0);
 
         resultWave.getSeries().getNode().getStyleClass().add("result-series");
+    }
+
+    public void setStage(Stage stage) {
+        this.stage=stage;
     }
 }

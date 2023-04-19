@@ -1,7 +1,9 @@
 package main.controllers;
 
+import javafx.scene.Parent;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
+import main.application.FourierMachineViewer;
 import main.components.CombinationLock;
 import main.components.Wave;
 import javafx.fxml.FXML;
@@ -18,10 +20,12 @@ import java.util.function.Function;
 public class AddWavesController implements Initializable {
     private ArrayList<Wave> waves = new ArrayList<>(4);
 
+
+
     private Wave sumWave;
     private Wave resultWave;
 
-    private CombinationLock lock = new CombinationLock(1,2,3,4);
+    private CombinationLock lock = new CombinationLock(1,3,5,8);
 
     private Label lockNumber1;
     private Label lockNumber2;
@@ -43,10 +47,10 @@ public class AddWavesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Initialize the with a complicated wave to find
-        Wave wave1 = new Wave(1, 1);
-        Wave wave2 = new Wave(3, 1);
-        Wave wave3 = new Wave(5, 1);
-        Wave wave4 = new Wave(8, 1);
+        Wave wave1 = new Wave(lock.getFirst(), 1);
+        Wave wave2 = new Wave(lock.getSecond(), 1);
+        Wave wave3 = new Wave(lock.getThird(), 1);
+        Wave wave4 = new Wave(lock.getForth(), 1);
         ArrayList<Wave> waveResult = new ArrayList<>(Arrays.asList(wave1, wave2, wave3, wave4));
         resultWave = new Wave(Wave.sumWaves(waveResult), lineChartResult);
 

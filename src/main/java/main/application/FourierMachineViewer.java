@@ -5,7 +5,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import main.controllers.FourierMachineController;
-import main.controllers.PhaseShiftController;
 
 import java.io.IOException;
 
@@ -13,7 +12,7 @@ public class FourierMachineViewer {
     private Scene scene;
     private Parent root;
 
-    public FourierMachineViewer() {
+    public FourierMachineViewer(Stage stage) {
         createFourierMachineViewer();
     }
 

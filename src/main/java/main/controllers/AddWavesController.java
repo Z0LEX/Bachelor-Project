@@ -21,7 +21,7 @@ public class AddWavesController implements Initializable {
     private Wave sumWave;
     private Wave resultWave;
 
-    private CombinationLock lock = new CombinationLock();
+    private CombinationLock lock = new CombinationLock(1,2,3,4);
 
     private Label lockNumber1;
     private Label lockNumber2;

@@ -9,8 +9,20 @@ import java.io.IOException;
 public class CombinationLock {
     private HBox root;
     private CombinationLockController controller;
+    private int first;
+    private int second;
+    private int third;
+    private int forth;
 
-    public CombinationLock() {
+
+    public CombinationLock(int first, int second, int third, int fourth) {
+        this.first = first;
+        this.second = second;
+        this.third = third;
+        this.forth = fourth;
+
+
+
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/combination-lock.fxml"));
             root = fxmlLoader.load();
@@ -27,4 +39,23 @@ public class CombinationLock {
     public HBox getRoot() {
         return root;
     }
+
+    public int getFirst() {
+        return first;
+    }
+
+    public int getSecond() {
+        return second;
+    }
+
+    public int getThird() {
+        return third;
+    }
+
+    public int getForth() {
+        return forth;
+    }
+
+
+
 }

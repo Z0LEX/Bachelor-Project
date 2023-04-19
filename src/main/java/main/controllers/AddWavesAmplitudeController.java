@@ -20,7 +20,7 @@ public class AddWavesAmplitudeController implements Initializable {
     private Wave sumWave;
     private Wave resultWave;
 
-    private CombinationLock lock = new CombinationLock();
+    private CombinationLock lock = new CombinationLock(5,6,8,5);
 
     private Label lockNumber1;
     private Label lockNumber2;
@@ -39,13 +39,20 @@ public class AddWavesAmplitudeController implements Initializable {
     @FXML
     private LineChart<Double, Double> lineChart4;
 
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Initialize the with a complicated wave to find
-        Wave wave1 = new Wave(0, 5);
-        Wave wave2 = new Wave(1, 6);
-        Wave wave3 = new Wave(2, 8);
-        Wave wave4 = new Wave(3, 5);
+        System.out.println(lock.getFirst());
+        System.out.println(lock.getSecond());
+        System.out.println(lock.getThird());
+        System.out.println(lock.getForth());
+
+        // Initialize with a complicated wave to find
+        Wave wave1 = new Wave(0, lock.getFirst());
+        Wave wave2 = new Wave(1, lock.getSecond());
+        Wave wave3 = new Wave(2, lock.getThird());
+        Wave wave4 = new Wave(3, lock.getForth());
         ArrayList<Wave> waveResult = new ArrayList<>(Arrays.asList(wave1, wave2, wave3, wave4));
         resultWave = new Wave(Wave.sumWaves(waveResult), lineChartResult);
 

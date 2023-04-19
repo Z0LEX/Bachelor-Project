@@ -3,6 +3,9 @@
     -fx-foreground-color: #353434;
 }
 
+.chart-plot-background {
+    -fx-grid-lines-visible: false;
+}
 .chart-series-line {
     -fx-stroke: #2c2e4e;
 }
@@ -13,6 +16,10 @@
 
 .chart-vertical-zero-line {
     -fx-stroke: white;
+}
+
+.chart-title {
+    -fx-text-fill: white;
 }
 
 .chart-horizontal-zero-line {

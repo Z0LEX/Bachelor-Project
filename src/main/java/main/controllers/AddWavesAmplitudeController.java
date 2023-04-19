@@ -1,9 +1,6 @@
 package main.controllers;
 
-import javafx.scene.ImageCursor;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.XYChart;
-import javafx.scene.image.Image;
 import main.components.CombinationLock;
 import main.components.Wave;
 import javafx.fxml.FXML;

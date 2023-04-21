@@ -20,7 +20,6 @@ public class Server {
         repository.add("space", space);
 
         String serverURI = PROTOCOL + ip + PORT + "/?keep";
-        System.out.println("Server uri: " + serverURI);
         repository.addGate(serverURI);
     }
 

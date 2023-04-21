@@ -61,6 +61,11 @@
             </Text>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0" styleClass="root" stylesheets="@graph-style.css">
                <children>
+                  <Text layoutX="-75.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="∫">
+                     <font>
+                        <Font name="Times New Roman Italic" size="140.0" />
+                     </font>
+                  </Text>
                   <AreaChart fx:id="outputArea" animated="false" createSymbols="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0" style="-fx-background-color: transparent;" styleClass="chart-series-area-fill">
                       <xAxis>
                           <NumberAxis autoRanging="false" minorTickCount="10" minorTickLength="1.0" minorTickVisible="false" side="BOTTOM" tickLabelGap="1.0" tickLength="1.0" tickUnit="0.1" upperBound="1.0" visible="false" />

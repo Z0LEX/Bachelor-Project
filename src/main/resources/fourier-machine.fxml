@@ -11,95 +11,105 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" spacing="30.0" style="-fx-background-color: lightgray;" styleClass="root" stylesheets="@graph-style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.FourierMachineController">
-    <padding>
-        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-    </padding>
+
+<HBox alignment="TOP_CENTER" style="-fx-background-color: lightgray;" styleClass="root" stylesheets="@graph-style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.FourierMachineController">
    <children>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0" styleClass="root" stylesheets="@graph-style.css">
+      <VBox alignment="CENTER" spacing="30.0">
+          <padding>
+              <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+          </padding>
          <children>
-            <LineChart fx:id="inputGraph" createSymbols="false" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0">
-               <xAxis>
-                  <NumberAxis autoRanging="false" minorTickCount="10" minorTickLength="1.0" minorTickVisible="false" side="BOTTOM" tickLabelGap="1.0" tickLength="1.0" tickUnit="0.1" upperBound="1.0" visible="false" />
-               </xAxis>
-               <yAxis>
-                  <NumberAxis autoRanging="false" forceZeroInRange="false" lowerBound="-5.0" minorTickVisible="false" opacity="0.0" side="LEFT" tickLabelsVisible="false" tickMarkVisible="false" tickUnit="1" upperBound="5.0" visible="false" />
-               </yAxis>
-            </LineChart>
-         </children>
-      </AnchorPane>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*">
-         <VBox.margin>
-            <Insets bottom="-40.0" top="-30.0" />
-         </VBox.margin>
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Text>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0" styleClass="root" stylesheets="@graph-style.css">
-         <children>
-            <LineChart fx:id="testGraph" animated="false" createSymbols="false" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0">
-               <xAxis>
-                  <NumberAxis autoRanging="false" minorTickCount="10" minorTickLength="1.0" minorTickVisible="false" side="BOTTOM" tickLabelGap="1.0" tickLength="1.0" tickUnit="0.1" upperBound="1.0" visible="false" />
-               </xAxis>
-               <yAxis>
-                  <NumberAxis autoRanging="false" forceZeroInRange="false" lowerBound="-5.0" minorTickVisible="false" opacity="0.0" side="LEFT" tickLabelsVisible="false" tickMarkVisible="false" tickUnit="1" upperBound="5.0" visible="false" />
-               </yAxis>
-            </LineChart>
-         </children>
-      </AnchorPane>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="=">
-         <font>
-            <Font size="30.0" />
-         </font>
-         <VBox.margin>
-            <Insets bottom="-30.0" top="-30.0" />
-         </VBox.margin>
-      </Text>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0" styleClass="root" stylesheets="@graph-style.css">
-         <children>
-            <AreaChart fx:id="outputArea" animated="false" createSymbols="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0" style="-fx-background-color: transparent;" styleClass="chart-series-area-fill">
-                <xAxis>
-                    <NumberAxis autoRanging="false" minorTickCount="10" minorTickLength="1.0" minorTickVisible="false" side="BOTTOM" tickLabelGap="1.0" tickLength="1.0" tickUnit="0.1" upperBound="1.0" visible="false" />
-                </xAxis>
-                <yAxis>
-                    <NumberAxis autoRanging="false" forceZeroInRange="false" lowerBound="-5.0" minorTickVisible="false" opacity="0.0" side="LEFT" tickLabelsVisible="false" tickMarkVisible="false" tickUnit="1" upperBound="5.0" visible="false" />
-                </yAxis>
-            </AreaChart>
-         </children>
-      </AnchorPane>
-      <HBox alignment="CENTER" spacing="10.0">
-         <children>
-            <Text fx:id="blueText" fill="#005a92" strokeType="OUTSIDE" strokeWidth="0.0" text="000.00">
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0" styleClass="root" stylesheets="@graph-style.css">
+               <children>
+                  <LineChart fx:id="inputGraph" createSymbols="false" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0">
+                     <xAxis>
+                        <NumberAxis autoRanging="false" minorTickCount="10" minorTickLength="1.0" minorTickVisible="false" side="BOTTOM" tickLabelGap="1.0" tickLength="1.0" tickUnit="0.1" upperBound="1.0" visible="false" />
+                     </xAxis>
+                     <yAxis>
+                        <NumberAxis autoRanging="false" forceZeroInRange="false" lowerBound="-5.0" minorTickVisible="false" opacity="0.0" side="LEFT" tickLabelsVisible="false" tickMarkVisible="false" tickUnit="1" upperBound="5.0" visible="false" />
+                     </yAxis>
+                  </LineChart>
+               </children>
+            </AnchorPane>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+               <VBox.margin>
+                  <Insets bottom="-40.0" top="-30.0" />
+               </VBox.margin>
                <font>
-                  <Font name="System Bold" size="24.0" />
+                  <Font size="30.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="+" textAlignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Text>
-            <Text fx:id="redText" fill="FIREBRICK" strokeType="OUTSIDE" strokeWidth="0.0" text="(-00.00)">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Text>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0" styleClass="root" stylesheets="@graph-style.css">
+               <children>
+                  <LineChart fx:id="testGraph" animated="false" createSymbols="false" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0">
+                     <xAxis>
+                        <NumberAxis autoRanging="false" minorTickCount="10" minorTickLength="1.0" minorTickVisible="false" side="BOTTOM" tickLabelGap="1.0" tickLength="1.0" tickUnit="0.1" upperBound="1.0" visible="false" />
+                     </xAxis>
+                     <yAxis>
+                        <NumberAxis autoRanging="false" forceZeroInRange="false" lowerBound="-5.0" minorTickVisible="false" opacity="0.0" side="LEFT" tickLabelsVisible="false" tickMarkVisible="false" tickUnit="1" upperBound="5.0" visible="false" />
+                     </yAxis>
+                  </LineChart>
+               </children>
+            </AnchorPane>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="=">
                <font>
-                  <Font name="System Bold" size="24.0" />
+                  <Font size="30.0" />
                </font>
+               <VBox.margin>
+                  <Insets bottom="-30.0" top="-30.0" />
+               </VBox.margin>
             </Text>
-            <Text fx:id="purpleText" fill="#b2226a" strokeType="OUTSIDE" strokeWidth="0.0" text="000.00">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Text>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0" styleClass="root" stylesheets="@graph-style.css">
+               <children>
+                  <AreaChart fx:id="outputArea" animated="false" createSymbols="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0" style="-fx-background-color: transparent;" styleClass="chart-series-area-fill">
+                      <xAxis>
+                          <NumberAxis autoRanging="false" minorTickCount="10" minorTickLength="1.0" minorTickVisible="false" side="BOTTOM" tickLabelGap="1.0" tickLength="1.0" tickUnit="0.1" upperBound="1.0" visible="false" />
+                      </xAxis>
+                      <yAxis>
+                          <NumberAxis autoRanging="false" forceZeroInRange="false" lowerBound="-5.0" minorTickVisible="false" opacity="0.0" side="LEFT" tickLabelsVisible="false" tickMarkVisible="false" tickUnit="1" upperBound="5.0" visible="false" />
+                      </yAxis>
+                  </AreaChart>
+               </children>
+            </AnchorPane>
+            <HBox alignment="CENTER" spacing="10.0">
+               <children>
+                  <Text fx:id="blueText" fill="#005a92" strokeType="OUTSIDE" strokeWidth="0.0" text="000.00">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="+" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="redText" fill="FIREBRICK" strokeType="OUTSIDE" strokeWidth="0.0" text="(-00.00)">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="=">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="purpleText" fill="#b2226a" strokeType="OUTSIDE" strokeWidth="0.0" text="000.00">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+               <VBox.margin>
+                  <Insets top="-30.0" />
+               </VBox.margin>
+            </HBox>
+            <Slider fx:id="frequencySlider" blockIncrement="1.0" majorTickUnit="1.0" max="9.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" stylesheets="@slider-style.css" value="1.0" />
          </children>
-         <VBox.margin>
-            <Insets top="-30.0" />
-         </VBox.margin>
+      </VBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <HBox fx:id="lockContainer" prefHeight="100.0" prefWidth="200.0" />
+         </children>
       </HBox>
-      <Slider fx:id="frequencySlider" blockIncrement="1.0" majorTickUnit="1.0" max="9.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" stylesheets="@slider-style.css" value="1.0" />
    </children>
-</VBox>
+</HBox>

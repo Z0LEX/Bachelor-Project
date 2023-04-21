@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.*;
 import javafx.scene.control.Slider;
+import javafx.scene.layout.HBox;
+import main.components.CombinationLock;
 import main.components.Wave;
 import javafx.scene.text.Text;
 
@@ -35,11 +37,18 @@ public class FourierMachineController implements Initializable {
     @FXML
     private Slider frequencySlider;
 
+    @FXML
+    private HBox lockContainer;
+
+    private CombinationLock lock = new CombinationLock(1, 3, 5 ,8);
+
     private XYChart.Series<Double, Double> aboveZeroSeries;
     private XYChart.Series<Double, Double> belowZeroSeries;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        lockContainer.getChildren().add(lock.getRoot());
+
         // Create input wave
         Wave wave1 = new Wave(1, 1);
         Wave wave2 = new Wave(3, 1);

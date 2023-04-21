@@ -43,9 +43,6 @@ public class Main extends Application {
         AddWavesAmplitudeViewer addWavesAmplitudeViewer = new AddWavesAmplitudeViewer(stage);
         Parent addWavesAmplitudeRoot = addWavesAmplitudeViewer.getRoot();
 
-        WaveWithFrequency waveWithFrequency = new WaveWithFrequency();
-        Parent waveWithFrequencyRoot = waveWithFrequency.getRoot();
-
         PhaseShiftViewer phaseShiftViewer = new PhaseShiftViewer();
         Parent phaseShiftRoot = phaseShiftViewer.getRoot();
 
@@ -56,7 +53,6 @@ public class Main extends Application {
         screens.add(addWavesRoot);
         screens.add(addWavesAmplitudeRoot);
         screens.add(fourierMachineRoot);
-        screens.add(waveWithFrequencyRoot);
         screens.add(phaseShiftRoot);
 
         BorderPane tempScene = setupTempScene(screens);

@@ -60,14 +60,10 @@ public class ClientApplication extends Application {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        FourierFrequencyViewer fourierFrequencyViewer = new FourierFrequencyViewer(clientSpace);
-        Parent fourierFrequencyRoot = fourierFrequencyViewer.getRoot();
-
         PhaseShiftViewer phaseShiftViewer = new PhaseShiftViewer(clientSpace);
         Parent phaseShiftRoot = phaseShiftViewer.getRoot();
 
         ArrayList<Parent> parents = new ArrayList<>();
-        parents.add(fourierFrequencyRoot);
         parents.add(phaseShiftRoot);
 
         BorderPane tempScene = setupTempScene(parents);

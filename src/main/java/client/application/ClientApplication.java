@@ -54,7 +54,6 @@ public class ClientApplication extends Application {
 
 
         String clientURI = PROTOCOL + ip + PORT + "/space?keep";
-        System.out.println(clientURI);
         try {
             clientSpace = new RemoteSpace(clientURI);
         } catch (IOException e) {

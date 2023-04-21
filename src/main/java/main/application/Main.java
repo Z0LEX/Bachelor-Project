@@ -33,18 +33,11 @@ public class Main extends Application {
 
         Server server = new Server();
 
-        // TODO: Remove GraphViewer, most functionality has been moved to AddWaves
-        GraphViewer graphViewer = new GraphViewer();
-        Parent graphRoot = graphViewer.getRoot();
-
         AddWavesViewer addWavesViewer = new AddWavesViewer(stage);
         Parent addWavesRoot = addWavesViewer.getRoot();
 
         AddWavesAmplitudeViewer addWavesAmplitudeViewer = new AddWavesAmplitudeViewer(stage);
         Parent addWavesAmplitudeRoot = addWavesAmplitudeViewer.getRoot();
-
-        WaveWithFrequency waveWithFrequency = new WaveWithFrequency();
-        Parent waveWithFrequencyRoot = waveWithFrequency.getRoot();
 
         PhaseShiftViewer phaseShiftViewer = new PhaseShiftViewer(stage);
         Parent phaseShiftRoot = phaseShiftViewer.getRoot();
@@ -60,7 +53,6 @@ public class Main extends Application {
         screens.add(addWavesAmplitudeRoot);
         screens.add(drawGraphRoot);
         screens.add(fourierMachineRoot);
-        screens.add(waveWithFrequencyRoot);
         screens.add(phaseShiftRoot);
 
         BorderPane tempScene = setupTempScene(screens);

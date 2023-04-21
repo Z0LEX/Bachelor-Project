@@ -5,6 +5,7 @@ import client.listeners.PhaseShiftListener;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.XYChart;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.jspace.RemoteSpace;
@@ -25,7 +26,7 @@ public class PhaseShiftViewer {
             PhaseShiftClientController phaseShiftClientController = phaseShiftClientLoader.getController();
             scene = new Scene(root);
 
-            Thread phaseShfitListenerThread = new Thread(new PhaseShiftListener(phaseShiftClientController.lineGraphTop, phaseShiftClientController.lineGraphBottom, this.clientSpace));
+            Thread phaseShfitListenerThread = new Thread(new PhaseShiftListener(phaseShiftClientController.lineGraphs, this.clientSpace));
             phaseShfitListenerThread.setDaemon(true);
             phaseShfitListenerThread.start();
         } catch (IOException e) {

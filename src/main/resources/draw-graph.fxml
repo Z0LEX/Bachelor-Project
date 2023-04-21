@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.ScatterChart?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" spacing="50.0" style="-fx-background-color: lightgray;" styleClass="root" stylesheets="@graph-style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.DrawGraphController">
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="root" stylesheets="graph-style.css">
+         <children>
+            <ScatterChart fx:id="scatterChart" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" title="Click me" AnchorPane.topAnchor="0.0">
+               <xAxis>
+                  <NumberAxis autoRanging="false" minorTickCount="10" minorTickLength="1.0" minorTickVisible="false" side="BOTTOM" tickLabelGap="1.0" tickLength="1.0" tickUnit="0.1" upperBound="1.0" visible="false" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis autoRanging="false" forceZeroInRange="false" lowerBound="-7.0" minorTickVisible="false" side="LEFT" tickMarkVisible="false" tickUnit="1" upperBound="7.0" visible="false" />
+               </yAxis>
+            </ScatterChart>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </AnchorPane>
+   </children>
+   <padding>
+      <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+   </padding>
+</VBox>

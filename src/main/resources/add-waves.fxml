@@ -132,7 +132,7 @@
                         </LineChart>
                     </children>
                 </AnchorPane>
-            <Button fx:id="lockButton" disable="true" layoutX="191.0" layoutY="622.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="84.0" prefWidth="133.0" />
+            <Button fx:id="lockButton" disable="true" layoutX="191.0" layoutY="622.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="84.0" prefWidth="133.0" style="-fx-background-color: #353434;" text="Continue" />
          </children>
       </AnchorPane>
     </children>

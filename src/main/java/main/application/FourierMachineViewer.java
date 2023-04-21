@@ -9,10 +9,12 @@ import main.controllers.FourierMachineController;
 import java.io.IOException;
 
 public class FourierMachineViewer {
+    private Stage stage;
     private Scene scene;
     private Parent root;
 
     public FourierMachineViewer(Stage stage) {
+        this.stage = stage;
         createFourierMachineViewer();
     }
 
@@ -27,7 +29,7 @@ public class FourierMachineViewer {
         }
     }
 
-    public void startAddWavesViewer(Stage stage) {
+    public void startFourierMachineViewer(Stage stage) {
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();

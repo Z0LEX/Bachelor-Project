@@ -25,7 +25,7 @@ public class AddWavesAmplitudeController implements Initializable {
     private Wave sumWave;
     private Wave resultWave;
 
-    private CombinationLock lock = new CombinationLock(4,6,8,5);
+    private CombinationLock lock = new CombinationLock(4, 6, 8, 5);
 
     private Label lockNumber1;
     private Label lockNumber2;
@@ -47,7 +47,7 @@ public class AddWavesAmplitudeController implements Initializable {
     @FXML
     private LineChart<Double, Double> lineChart4;
 
-    private boolean gameWonnered;
+    private boolean gameWon;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -59,10 +59,11 @@ public class AddWavesAmplitudeController implements Initializable {
 
         lockButton.setOnAction(actionEvent -> {
             FourierMachineViewer fourierMachineViewer = new FourierMachineViewer(stage);
-            fourierMachineViewer.startAddWavesViewer(stage);
+            fourierMachineViewer.startFourierMachineViewer(stage);
         });
 
-        lockButton.setStyle("-fx-background-color: lightgrey");
+        // Make button with continue invisible
+        lockButton.setOpacity(0);
 
         // Initialize with a complicated wave to find
         Wave wave1 = new Wave(0, lock.getFirst());
@@ -96,33 +97,31 @@ public class AddWavesAmplitudeController implements Initializable {
         lockNumber3.textProperty().addListener((observable, oldValue, newValue) -> updateWave(Double.parseDouble(newValue), 2));
         lockNumber4.textProperty().addListener((observable, oldValue, newValue) -> updateWave(Double.parseDouble(newValue), 3));
     }
+
     public void updateWave(double amplitude, int index) {
         Wave wave = waves.get(index);
         wave.clear();
         wave.setAmplitude(amplitude);
         wave.plotFunction(wave.getFunction());
         getSumWave();
+
         if (
                 lock.getFirst() == Integer.parseInt(lock.getController().getWheel1Number().getText()) &&
-                lock.getSecond() == Integer.parseInt(lock.getController().getWheel2Number().getText()) &&
-                lock.getThird() == Integer.parseInt(lock.getController().getWheel3Number().getText()) &&
-                lock.getForth() == Integer.parseInt(lock.getController().getWheel4Number().getText())
+                        lock.getSecond() == Integer.parseInt(lock.getController().getWheel2Number().getText()) &&
+                        lock.getThird() == Integer.parseInt(lock.getController().getWheel3Number().getText()) &&
+                        lock.getForth() == Integer.parseInt(lock.getController().getWheel4Number().getText())
         ) {
-            gameWonnered = true;
-        } else gameWonnered = false;
-        if (gameWonnered == true) {
-            lockButton.setStyle("-fx-background-color: #353434");
+            gameWon = true;
+        } else gameWon = false;
+        if (gameWon == true) {
             lockButton.setDisable(false);
-            lockButton.setText("Continue!");
+            lockButton.setOpacity(1);
         } else {
-            lockButton.setStyle("-fx-background-color: lightgrey");
             lockButton.setDisable(true);
-            lockButton.setText("");
+            lockButton.setOpacity(0);
         }
 
     }
-
-
 
     private void getSumWave() {
         Function<Double, Double> sum = Wave.sumWaves(waves);
@@ -133,6 +132,6 @@ public class AddWavesAmplitudeController implements Initializable {
     }
 
     public void setStage(Stage stage) {
-        this.stage=stage;
+        this.stage = stage;
     }
 }

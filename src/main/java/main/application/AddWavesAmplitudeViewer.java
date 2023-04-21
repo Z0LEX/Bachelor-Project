@@ -31,7 +31,7 @@ public class AddWavesAmplitudeViewer {
         }
     }
 
-    public void startAddWavesViewer(Stage stage) {
+    public void startAddWavesAmplitudeViewer(Stage stage) {
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();

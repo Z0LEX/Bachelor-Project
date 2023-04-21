@@ -1,35 +1,30 @@
 package main.controllers;
 
-import javafx.scene.Parent;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import main.application.AddWavesAmplitudeViewer;
-import main.application.FourierMachineViewer;
 import main.components.CombinationLock;
 import main.components.Wave;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+
 import java.util.Arrays;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.function.Function;
 
 public class AddWavesController implements Initializable {
     private ArrayList<Wave> waves = new ArrayList<>(4);
 
-
-
     private Wave sumWave;
     private Wave resultWave;
 
-    private CombinationLock lock = new CombinationLock(1,3,5,8);
+    private CombinationLock lock = new CombinationLock(1, 3, 5, 8);
 
     private Label lockNumber1;
     private Label lockNumber2;
@@ -56,16 +51,16 @@ public class AddWavesController implements Initializable {
     private LineChart<Double, Double> lineChart3;
     @FXML
     private LineChart<Double, Double> lineChart4;
-    private boolean gameWonnered;
+    private boolean gameWon;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        lockButton.setStyle("-fx-background-color: lightgrey");
+        lockButton.setOpacity(0);
 
         lockButton.setOnAction(actionEvent -> {
             AddWavesAmplitudeViewer addWavesAmplitudeViewer = new AddWavesAmplitudeViewer(stage);
-            addWavesAmplitudeViewer.startAddWavesViewer(stage);
+            addWavesAmplitudeViewer.startAddWavesAmplitudeViewer(stage);
         });
 
         solutionArray[0] = lock.getFirst();
@@ -106,8 +101,6 @@ public class AddWavesController implements Initializable {
         lockNumber2.textProperty().addListener((observable, oldValue, newValue) -> updateWave(Double.parseDouble(newValue), 1));
         lockNumber3.textProperty().addListener((observable, oldValue, newValue) -> updateWave(Double.parseDouble(newValue), 2));
         lockNumber4.textProperty().addListener((observable, oldValue, newValue) -> updateWave(Double.parseDouble(newValue), 3));
-
-
     }
 
     public void updateWave(double frequency, int index) {
@@ -123,25 +116,17 @@ public class AddWavesController implements Initializable {
         suggestionArray[3] = Integer.parseInt(lock.getController().getWheel4Number().getText());
         Arrays.sort(suggestionArray);
 
-        System.out.println(Arrays.toString(suggestionArray));
-        System.out.println(Arrays.toString(solutionArray));
+        if (Arrays.equals(suggestionArray, solutionArray)) {
+            gameWon = true;
+        } else gameWon = false;
 
-        if (Arrays.equals(suggestionArray,solutionArray)) {gameWonnered = true;}
-        else gameWonnered = false;
-
-        if (gameWonnered == true) {
-            lockButton.setStyle("-fx-background-color: #353434");
+        if (gameWon == true) {
             lockButton.setDisable(false);
-            lockButton.setText("Continue!");
+            lockButton.setOpacity(1);
         } else {
-            lockButton.setStyle("-fx-background-color: lightgrey");
             lockButton.setDisable(true);
-            lockButton.setText("");
+            lockButton.setOpacity(0);
         }
-
-
-
-
     }
 
     private void getSumWave() {

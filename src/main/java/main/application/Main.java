@@ -27,8 +27,8 @@ public class Main extends Application {
         stage.setTitle("Title");
         stage.setResizable(false);
         // Set stage dimensions to a fixed size if necessary
-//        stage.setWidth(WINDOW_WIDTH);
-//        stage.setHeight(WINDOW_HEIGHT);
+        stage.setWidth(WINDOW_WIDTH);
+        stage.setHeight(WINDOW_HEIGHT);
         stage.centerOnScreen();
 
         Server server = new Server();
@@ -37,10 +37,10 @@ public class Main extends Application {
         GraphViewer graphViewer = new GraphViewer();
         Parent graphRoot = graphViewer.getRoot();
 
-        AddWavesViewer addWavesViewer = new AddWavesViewer();
+        AddWavesViewer addWavesViewer = new AddWavesViewer(stage);
         Parent addWavesRoot = addWavesViewer.getRoot();
 
-        AddWavesAmplitudeViewer addWavesAmplitudeViewer = new AddWavesAmplitudeViewer();
+        AddWavesAmplitudeViewer addWavesAmplitudeViewer = new AddWavesAmplitudeViewer(stage);
         Parent addWavesAmplitudeRoot = addWavesAmplitudeViewer.getRoot();
 
         WaveWithFrequency waveWithFrequency = new WaveWithFrequency();
@@ -49,7 +49,7 @@ public class Main extends Application {
         PhaseShiftViewer phaseShiftViewer = new PhaseShiftViewer();
         Parent phaseShiftRoot = phaseShiftViewer.getRoot();
 
-        FourierMachineViewer fourierMachineViewer = new FourierMachineViewer();
+        FourierMachineViewer fourierMachineViewer = new FourierMachineViewer(stage);
         Parent fourierMachineRoot = fourierMachineViewer.getRoot();
 
         ArrayList<Parent> screens = new ArrayList<>();
@@ -74,7 +74,7 @@ public class Main extends Application {
 
     }
 
-    private BorderPane setupTempScene(ArrayList<Parent> screens) {
+    public BorderPane setupTempScene(ArrayList<Parent> screens) {
         // Temp scene
         BorderPane pane = new BorderPane();
         pane.setCenter(screens.get(screenIndex));

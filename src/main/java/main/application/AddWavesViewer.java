@@ -8,10 +8,12 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class AddWavesViewer {
+    private Stage stage;
     private Scene scene;
     private Parent root;
 
-    public AddWavesViewer() {
+    public AddWavesViewer(Stage stage) {
+        this.stage=stage;
         createAddWavesViewer();
     }
 
@@ -20,6 +22,7 @@ public class AddWavesViewer {
             FXMLLoader addWavesLoader = new FXMLLoader(AddWavesController.class.getResource("/add-waves.fxml"));
             root = addWavesLoader.load();
             AddWavesController addWavesController = addWavesLoader.getController();
+            addWavesController.setStage(stage);
             scene = new Scene(root);
         } catch (IOException e) {
             throw new RuntimeException(e);

@@ -1,7 +1,9 @@
 package main.controllers;
 
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
+import main.application.AddWavesAmplitudeViewer;
 import main.components.CombinationLock;
 import main.components.Wave;
 import javafx.fxml.FXML;
@@ -9,9 +11,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
+import java.util.Arrays;
+
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.function.Function;
 
@@ -21,12 +24,21 @@ public class AddWavesController implements Initializable {
     private Wave sumWave;
     private Wave resultWave;
 
-    private CombinationLock lock = new CombinationLock();
+    private CombinationLock lock = new CombinationLock(1, 3, 5, 8);
 
     private Label lockNumber1;
     private Label lockNumber2;
     private Label lockNumber3;
     private Label lockNumber4;
+
+    private int[] solutionArray = new int[4];
+    private int[] suggestionArray = new int[4];
+
+    private Stage stage;
+
+    @FXML
+    private Button lockButton;
+
     @FXML
     private HBox lockContainer;
     @FXML
@@ -39,14 +51,30 @@ public class AddWavesController implements Initializable {
     private LineChart<Double, Double> lineChart3;
     @FXML
     private LineChart<Double, Double> lineChart4;
+    private boolean gameWon;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        lockButton.setOpacity(0);
+
+        lockButton.setOnAction(actionEvent -> {
+            AddWavesAmplitudeViewer addWavesAmplitudeViewer = new AddWavesAmplitudeViewer(stage);
+            addWavesAmplitudeViewer.startAddWavesAmplitudeViewer(stage);
+        });
+
+        solutionArray[0] = lock.getFirst();
+        solutionArray[1] = lock.getSecond();
+        solutionArray[2] = lock.getThird();
+        solutionArray[3] = lock.getForth();
+        Arrays.sort(solutionArray);
+
+
         // Initialize the with a complicated wave to find
-        Wave wave1 = new Wave(1, 1);
-        Wave wave2 = new Wave(3, 1);
-        Wave wave3 = new Wave(5, 1);
-        Wave wave4 = new Wave(8, 1);
+        Wave wave1 = new Wave(lock.getFirst(), 1);
+        Wave wave2 = new Wave(lock.getSecond(), 1);
+        Wave wave3 = new Wave(lock.getThird(), 1);
+        Wave wave4 = new Wave(lock.getForth(), 1);
         ArrayList<Wave> waveResult = new ArrayList<>(Arrays.asList(wave1, wave2, wave3, wave4));
         resultWave = new Wave(Wave.sumWaves(waveResult), lineChartResult);
 
@@ -81,6 +109,24 @@ public class AddWavesController implements Initializable {
         wave.setFrequency(frequency);
         wave.plotFunction(wave.getFunction());
         getSumWave();
+
+        suggestionArray[0] = Integer.parseInt(lock.getController().getWheel1Number().getText());
+        suggestionArray[1] = Integer.parseInt(lock.getController().getWheel2Number().getText());
+        suggestionArray[2] = Integer.parseInt(lock.getController().getWheel3Number().getText());
+        suggestionArray[3] = Integer.parseInt(lock.getController().getWheel4Number().getText());
+        Arrays.sort(suggestionArray);
+
+        if (Arrays.equals(suggestionArray, solutionArray)) {
+            gameWon = true;
+        } else gameWon = false;
+
+        if (gameWon == true) {
+            lockButton.setDisable(false);
+            lockButton.setOpacity(1);
+        } else {
+            lockButton.setDisable(true);
+            lockButton.setOpacity(0);
+        }
     }
 
     private void getSumWave() {
@@ -89,5 +135,10 @@ public class AddWavesController implements Initializable {
         sumWave.getGraph().overwritePlot(sumWave.getFunction(), 0);
 
         resultWave.getSeries().getNode().getStyleClass().add("result-series");
+    }
+
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 }

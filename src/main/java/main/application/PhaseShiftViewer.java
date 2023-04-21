@@ -27,7 +27,7 @@ public class PhaseShiftViewer {
         }
     }
 
-    public void startAddWavesViewer(Stage stage) {
+    public void startPhaseShiftViewer(Stage stage) {
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();

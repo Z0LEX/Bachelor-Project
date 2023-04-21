@@ -1,6 +1,9 @@
 package main.controllers;
 
 import javafx.scene.chart.LineChart;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
+import main.application.FourierMachineViewer;
 import main.components.CombinationLock;
 import main.components.Wave;
 import javafx.fxml.FXML;
@@ -17,15 +20,20 @@ import java.util.function.Function;
 public class AddWavesAmplitudeController implements Initializable {
     private ArrayList<Wave> waves = new ArrayList<>(4);
 
+    private Stage stage;
+
     private Wave sumWave;
     private Wave resultWave;
 
-    private CombinationLock lock = new CombinationLock();
+    private CombinationLock lock = new CombinationLock(4, 6, 8, 5);
 
     private Label lockNumber1;
     private Label lockNumber2;
     private Label lockNumber3;
     private Label lockNumber4;
+    @FXML
+    private Button lockButton;
+
     @FXML
     private HBox lockContainer;
     @FXML
@@ -39,13 +47,29 @@ public class AddWavesAmplitudeController implements Initializable {
     @FXML
     private LineChart<Double, Double> lineChart4;
 
+    private boolean gameWon;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Initialize the with a complicated wave to find
-        Wave wave1 = new Wave(0, 5);
-        Wave wave2 = new Wave(1, 6);
-        Wave wave3 = new Wave(2, 8);
-        Wave wave4 = new Wave(3, 5);
+        //Image image = new Image(getClass().getResourceAsStream("/assets/images/lockImage.png"));
+        //ImageView imageView = new ImageView(image);
+        //imageView.fitWidthProperty().bind(lockButton.widthProperty());
+        //imageView.fitHeightProperty().bind(lockButton.heightProperty());
+        //lockButton.setGraphic(imageView);
+
+        lockButton.setOnAction(actionEvent -> {
+            FourierMachineViewer fourierMachineViewer = new FourierMachineViewer(stage);
+            fourierMachineViewer.startFourierMachineViewer(stage);
+        });
+
+        // Make button with continue invisible
+        lockButton.setOpacity(0);
+
+        // Initialize with a complicated wave to find
+        Wave wave1 = new Wave(0, lock.getFirst());
+        Wave wave2 = new Wave(1, lock.getSecond());
+        Wave wave3 = new Wave(2, lock.getThird());
+        Wave wave4 = new Wave(3, lock.getForth());
         ArrayList<Wave> waveResult = new ArrayList<>(Arrays.asList(wave1, wave2, wave3, wave4));
         resultWave = new Wave(Wave.sumWaves(waveResult), lineChartResult);
 
@@ -73,12 +97,30 @@ public class AddWavesAmplitudeController implements Initializable {
         lockNumber3.textProperty().addListener((observable, oldValue, newValue) -> updateWave(Double.parseDouble(newValue), 2));
         lockNumber4.textProperty().addListener((observable, oldValue, newValue) -> updateWave(Double.parseDouble(newValue), 3));
     }
+
     public void updateWave(double amplitude, int index) {
         Wave wave = waves.get(index);
         wave.clear();
         wave.setAmplitude(amplitude);
         wave.plotFunction(wave.getFunction());
         getSumWave();
+
+        if (
+                lock.getFirst() == Integer.parseInt(lock.getController().getWheel1Number().getText()) &&
+                        lock.getSecond() == Integer.parseInt(lock.getController().getWheel2Number().getText()) &&
+                        lock.getThird() == Integer.parseInt(lock.getController().getWheel3Number().getText()) &&
+                        lock.getForth() == Integer.parseInt(lock.getController().getWheel4Number().getText())
+        ) {
+            gameWon = true;
+        } else gameWon = false;
+        if (gameWon == true) {
+            lockButton.setDisable(false);
+            lockButton.setOpacity(1);
+        } else {
+            lockButton.setDisable(true);
+            lockButton.setOpacity(0);
+        }
+
     }
 
     private void getSumWave() {
@@ -87,5 +129,9 @@ public class AddWavesAmplitudeController implements Initializable {
         sumWave.getGraph().overwritePlot(sumWave.getFunction(), 0);
 
         resultWave.getSeries().getNode().getStyleClass().add("result-series");
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 }

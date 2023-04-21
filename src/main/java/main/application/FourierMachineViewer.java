@@ -5,15 +5,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import main.controllers.FourierMachineController;
-import main.controllers.PhaseShiftController;
 
 import java.io.IOException;
 
 public class FourierMachineViewer {
+    private Stage stage;
     private Scene scene;
     private Parent root;
 
-    public FourierMachineViewer() {
+    public FourierMachineViewer(Stage stage) {
+        this.stage = stage;
         createFourierMachineViewer();
     }
 
@@ -28,7 +29,7 @@ public class FourierMachineViewer {
         }
     }
 
-    public void startAddWavesViewer(Stage stage) {
+    public void startFourierMachineViewer(Stage stage) {
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();

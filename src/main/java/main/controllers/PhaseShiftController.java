@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.Slider;
+import javafx.stage.Stage;
 import main.application.Server;
 import main.components.Wave;
 import main.datatypes.PiStringConverter;
@@ -47,6 +48,7 @@ public class PhaseShiftController implements Initializable {
 
     private ArrayList<Wave> waves = new ArrayList<>();
     private ArrayList<Wave> resultWaves = new ArrayList<>();
+    private Stage stage;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -128,5 +130,9 @@ public class PhaseShiftController implements Initializable {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 }

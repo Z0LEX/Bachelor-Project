@@ -1,5 +1,6 @@
 package main.datatypes;
 
+import java.util.ArrayList;
 import java.util.function.Function;
 
 import javafx.collections.ObservableList;
@@ -31,6 +32,18 @@ public class FrequencyGraph {
             plotPoint(x, function.apply(x), series);
         }
         graph.getData().set(index, series);
+    }
+
+    public void plotIncomplete(Function<Double, Double> function, double detail, ArrayList<Integer> missingPoints) {
+        series = new XYChart.Series<Double, Double>();
+        int i = 0;
+        for (double x = 0; x <= range; x += detail) {
+            if (!missingPoints.contains(i)) {
+                plotPoint(x, function.apply(x), series);
+            }
+            i++;
+        }
+        graph.getData().add(0, series);
     }
 
     public void plotPoint(double x, double y,

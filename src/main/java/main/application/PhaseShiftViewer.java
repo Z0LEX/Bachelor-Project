@@ -12,7 +12,10 @@ public class PhaseShiftViewer {
     private Scene scene;
     private Parent root;
 
-    public PhaseShiftViewer() {
+    private Stage stage;
+
+    public PhaseShiftViewer(Stage stage) {
+        this.stage = stage;
         createPhaseShiftViewer();
     }
 
@@ -21,6 +24,7 @@ public class PhaseShiftViewer {
             FXMLLoader phaseShiftLoader = new FXMLLoader(PhaseShiftController.class.getResource("/phase-shift.fxml"));
             root = phaseShiftLoader.load();
             PhaseShiftController phaseShiftController = phaseShiftLoader.getController();
+            phaseShiftController.setStage(stage);
             scene = new Scene(root);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -36,4 +40,6 @@ public class PhaseShiftViewer {
     public Parent getRoot() {
         return root;
     }
+
+
 }

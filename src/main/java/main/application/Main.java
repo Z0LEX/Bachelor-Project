@@ -46,7 +46,7 @@ public class Main extends Application {
         WaveWithFrequency waveWithFrequency = new WaveWithFrequency();
         Parent waveWithFrequencyRoot = waveWithFrequency.getRoot();
 
-        PhaseShiftViewer phaseShiftViewer = new PhaseShiftViewer();
+        PhaseShiftViewer phaseShiftViewer = new PhaseShiftViewer(stage);
         Parent phaseShiftRoot = phaseShiftViewer.getRoot();
 
         FourierMachineViewer fourierMachineViewer = new FourierMachineViewer(stage);

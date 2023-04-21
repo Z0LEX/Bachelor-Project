@@ -1,9 +1,17 @@
 package main.controllers;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
+import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+import main.application.AddWavesAmplitudeViewer;
+import main.application.PhaseShiftViewer;
+import main.components.CombinationLock;
 import main.components.Wave;
 import javafx.scene.text.Text;
 
@@ -35,16 +43,68 @@ public class FourierMachineController implements Initializable {
     @FXML
     private Slider frequencySlider;
 
+    @FXML
+    private HBox lockContainer;
+
+    @FXML
+    private Button lockButton;
+
+    private Stage stage;
+    private CombinationLock lock = new CombinationLock(1, 3, 5 ,8);
+
     private XYChart.Series<Double, Double> aboveZeroSeries;
     private XYChart.Series<Double, Double> belowZeroSeries;
 
+    private int[] solutionArray = new int[4];
+
+    private int[] suggestionArray = new int[4];
+    private boolean gameWon;
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        lockContainer.getChildren().add(lock.getRoot());
+
+        lockButton.setOpacity(0);
+
+        lockButton.setOnAction(actionEvent -> {
+            PhaseShiftViewer phaseShiftViewer = new PhaseShiftViewer(stage);
+            phaseShiftViewer.startPhaseShiftViewer(stage);
+        });
+
+
+        // Update solution array
+        solutionArray[0] = lock.getFirst();
+        solutionArray[1] = lock.getSecond();
+        solutionArray[2] = lock.getThird();
+        solutionArray[3] = lock.getForth();
+        
+
+        lock.getController().getWheel1Number().textProperty().addListener((observableValue, s, newValue) -> {
+            suggestionArray[0] = Integer.parseInt(newValue);
+            checkSolution();
+        });
+
+        lock.getController().getWheel2Number().textProperty().addListener((observableValue, s, newValue) -> {
+            suggestionArray[1] = Integer.parseInt(newValue);
+            checkSolution();
+        });
+
+        lock.getController().getWheel3Number().textProperty().addListener((observableValue, s, newValue) -> {
+            suggestionArray[2] = Integer.parseInt(newValue);
+            checkSolution();
+        });
+
+        lock.getController().getWheel4Number().textProperty().addListener((observableValue, s, newValue) -> {
+            suggestionArray[3] = Integer.parseInt(newValue);
+            checkSolution();
+        });
+
         // Create input wave
-        Wave wave1 = new Wave(1, 1);
-        Wave wave2 = new Wave(3, 1);
-        Wave wave3 = new Wave(5, 1);
-        Wave wave4 = new Wave(8, 1);
+        Wave wave1 = new Wave(lock.getFirst(), 1);
+        Wave wave2 = new Wave(lock.getSecond(), 1);
+        Wave wave3 = new Wave(lock.getThird(), 1);
+        Wave wave4 = new Wave(lock.getForth(), 1);
         ArrayList<Wave> inputWaves = new ArrayList<>(Arrays.asList(wave1, wave2, wave3, wave4));
         Wave inputWave = new Wave(Wave.sumWaves(inputWaves), inputGraph);
         
@@ -67,6 +127,21 @@ public class FourierMachineController implements Initializable {
             updateOutputWave(inputWave, testWave);
             updateTextFields();
         });
+    }
+
+    private void checkSolution() {
+        if (Arrays.equals(suggestionArray, solutionArray)) {
+            gameWon = true;
+        } else {
+            gameWon = false;
+        }
+        if (gameWon == true) {
+            lockButton.setDisable(false);
+            lockButton.setOpacity(1);
+        } else {
+            lockButton.setDisable(true);
+            lockButton.setOpacity(0);
+        }
     }
 
     private void updateTextFields() {
@@ -116,5 +191,9 @@ public class FourierMachineController implements Initializable {
         wave.clear();
         wave.setFunction(x -> wave.getWave(x, newFrequency, wave.getAmplitude(), wave.getPhaseShift()));
         wave.plotFunction(wave.getFunction());
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 }

@@ -23,6 +23,7 @@ public class FourierMachineViewer {
             FXMLLoader fourierMachineLoader = new FXMLLoader(FourierMachineController.class.getResource("/fourier-machine.fxml"));
             root = fourierMachineLoader.load();
             FourierMachineController fourierMachineController = fourierMachineLoader.getController();
+            fourierMachineController.setStage(stage);
             scene = new Scene(root);
         } catch (IOException e) {
             throw new RuntimeException(e);

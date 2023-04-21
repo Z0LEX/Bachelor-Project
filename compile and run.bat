@@ -1,3 +1,2 @@
-mvn package
-cd target
-java -jar bachelor_project-1.0-SNAPSHOT.jar
+call compile.bat
+call run.bat

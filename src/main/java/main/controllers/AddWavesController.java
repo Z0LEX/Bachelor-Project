@@ -3,6 +3,9 @@ package main.controllers;
 import javafx.scene.Parent;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
+import main.application.AddWavesAmplitudeViewer;
 import main.application.FourierMachineViewer;
 import main.components.CombinationLock;
 import main.components.Wave;
@@ -10,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import java.util.Arrays;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -31,6 +35,15 @@ public class AddWavesController implements Initializable {
     private Label lockNumber2;
     private Label lockNumber3;
     private Label lockNumber4;
+
+    private int[] solutionArray = new int[4];
+    private int[] suggestionArray = new int[4];
+
+    private Stage stage;
+
+    @FXML
+    private Button lockButton;
+
     @FXML
     private HBox lockContainer;
     @FXML
@@ -43,9 +56,25 @@ public class AddWavesController implements Initializable {
     private LineChart<Double, Double> lineChart3;
     @FXML
     private LineChart<Double, Double> lineChart4;
+    private boolean gameWonnered;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        lockButton.setStyle("-fx-background-color: lightgrey");
+
+        lockButton.setOnAction(actionEvent -> {
+            AddWavesAmplitudeViewer addWavesAmplitudeViewer = new AddWavesAmplitudeViewer(stage);
+            addWavesAmplitudeViewer.startAddWavesViewer(stage);
+        });
+
+        solutionArray[0] = lock.getFirst();
+        solutionArray[1] = lock.getSecond();
+        solutionArray[2] = lock.getThird();
+        solutionArray[3] = lock.getForth();
+        Arrays.sort(solutionArray);
+
+
         // Initialize the with a complicated wave to find
         Wave wave1 = new Wave(lock.getFirst(), 1);
         Wave wave2 = new Wave(lock.getSecond(), 1);
@@ -77,6 +106,8 @@ public class AddWavesController implements Initializable {
         lockNumber2.textProperty().addListener((observable, oldValue, newValue) -> updateWave(Double.parseDouble(newValue), 1));
         lockNumber3.textProperty().addListener((observable, oldValue, newValue) -> updateWave(Double.parseDouble(newValue), 2));
         lockNumber4.textProperty().addListener((observable, oldValue, newValue) -> updateWave(Double.parseDouble(newValue), 3));
+
+
     }
 
     public void updateWave(double frequency, int index) {
@@ -85,6 +116,32 @@ public class AddWavesController implements Initializable {
         wave.setFrequency(frequency);
         wave.plotFunction(wave.getFunction());
         getSumWave();
+
+        suggestionArray[0] = Integer.parseInt(lock.getController().getWheel1Number().getText());
+        suggestionArray[1] = Integer.parseInt(lock.getController().getWheel2Number().getText());
+        suggestionArray[2] = Integer.parseInt(lock.getController().getWheel3Number().getText());
+        suggestionArray[3] = Integer.parseInt(lock.getController().getWheel4Number().getText());
+        Arrays.sort(suggestionArray);
+
+        System.out.println(Arrays.toString(suggestionArray));
+        System.out.println(Arrays.toString(solutionArray));
+
+        if (Arrays.equals(suggestionArray,solutionArray)) {gameWonnered = true;}
+        else gameWonnered = false;
+
+        if (gameWonnered == true) {
+            lockButton.setStyle("-fx-background-color: #353434");
+            lockButton.setDisable(false);
+            lockButton.setText("Continue!");
+        } else {
+            lockButton.setStyle("-fx-background-color: lightgrey");
+            lockButton.setDisable(true);
+            lockButton.setText("");
+        }
+
+
+
+
     }
 
     private void getSumWave() {
@@ -93,5 +150,10 @@ public class AddWavesController implements Initializable {
         sumWave.getGraph().overwritePlot(sumWave.getFunction(), 0);
 
         resultWave.getSeries().getNode().getStyleClass().add("result-series");
+    }
+
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 }

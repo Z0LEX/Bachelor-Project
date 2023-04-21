@@ -27,8 +27,8 @@ public class Main extends Application {
         stage.setTitle("Title");
         stage.setResizable(false);
         // Set stage dimensions to a fixed size if necessary
-//        stage.setWidth(WINDOW_WIDTH);
-//        stage.setHeight(WINDOW_HEIGHT);
+        stage.setWidth(WINDOW_WIDTH);
+        stage.setHeight(WINDOW_HEIGHT);
         stage.centerOnScreen();
 
         Server server = new Server();
@@ -37,7 +37,7 @@ public class Main extends Application {
         GraphViewer graphViewer = new GraphViewer();
         Parent graphRoot = graphViewer.getRoot();
 
-        AddWavesViewer addWavesViewer = new AddWavesViewer();
+        AddWavesViewer addWavesViewer = new AddWavesViewer(stage);
         Parent addWavesRoot = addWavesViewer.getRoot();
 
         AddWavesAmplitudeViewer addWavesAmplitudeViewer = new AddWavesAmplitudeViewer(stage);

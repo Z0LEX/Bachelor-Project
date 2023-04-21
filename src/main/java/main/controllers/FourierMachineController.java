@@ -80,88 +80,24 @@ public class FourierMachineController implements Initializable {
         solutionArray[3] = lock.getForth();
         
 
-        lock.getController().getWheel1Number().textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s, String newValue) {
-                System.out.println(newValue);
-
-                suggestionArray[0] = Integer.parseInt(newValue);
-                if (Arrays.equals(suggestionArray, solutionArray)) {
-                    gameWon = true;
-                } else {
-                    gameWon = false;
-                }
-                if (gameWon == true) {
-                    lockButton.setDisable(false);
-                    lockButton.setOpacity(1);
-                } else {
-                    lockButton.setDisable(true);
-                    lockButton.setOpacity(0);
-                }
-            }
+        lock.getController().getWheel1Number().textProperty().addListener((observableValue, s, newValue) -> {
+            suggestionArray[0] = Integer.parseInt(newValue);
+            checkSolution();
         });
 
-        lock.getController().getWheel2Number().textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s, String newValue) {
-                System.out.println(newValue);
-
-                suggestionArray[1] = Integer.parseInt(newValue);
-                if (Arrays.equals(suggestionArray, solutionArray)) {
-                    gameWon = true;
-                } else {
-                    gameWon = false;
-                }
-                if (gameWon == true) {
-                    lockButton.setDisable(false);
-                    lockButton.setOpacity(1);
-                } else {
-                    lockButton.setDisable(true);
-                    lockButton.setOpacity(0);
-                }
-            }
+        lock.getController().getWheel2Number().textProperty().addListener((observableValue, s, newValue) -> {
+            suggestionArray[1] = Integer.parseInt(newValue);
+            checkSolution();
         });
 
-        lock.getController().getWheel3Number().textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s, String newValue) {
-                System.out.println(newValue);
-
-                suggestionArray[2] = Integer.parseInt(newValue);
-                if (Arrays.equals(suggestionArray, solutionArray)) {
-                    gameWon = true;
-                }   else {
-                    gameWon = false;
-                }
-                if (gameWon == true) {
-                    lockButton.setDisable(false);
-                    lockButton.setOpacity(1);
-                } else {
-                    lockButton.setDisable(true);
-                    lockButton.setOpacity(0);
-                }
-            }
+        lock.getController().getWheel3Number().textProperty().addListener((observableValue, s, newValue) -> {
+            suggestionArray[2] = Integer.parseInt(newValue);
+            checkSolution();
         });
 
-        lock.getController().getWheel4Number().textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s, String newValue) {
-                System.out.println(newValue);
-
-                suggestionArray[3] = Integer.parseInt(newValue);
-                if (Arrays.equals(suggestionArray, solutionArray)) {
-                    gameWon = true;
-                }   else {
-                    gameWon = false;
-                }
-                if (gameWon == true) {
-                    lockButton.setDisable(false);
-                    lockButton.setOpacity(1);
-                } else {
-                    lockButton.setDisable(true);
-                    lockButton.setOpacity(0);
-                }
-            }
+        lock.getController().getWheel4Number().textProperty().addListener((observableValue, s, newValue) -> {
+            suggestionArray[3] = Integer.parseInt(newValue);
+            checkSolution();
         });
 
         // Create input wave
@@ -191,12 +127,22 @@ public class FourierMachineController implements Initializable {
             updateOutputWave(inputWave, testWave);
             updateTextFields();
         });
-
-
-
     }
 
-
+    private void checkSolution() {
+        if (Arrays.equals(suggestionArray, solutionArray)) {
+            gameWon = true;
+        } else {
+            gameWon = false;
+        }
+        if (gameWon == true) {
+            lockButton.setDisable(false);
+            lockButton.setOpacity(1);
+        } else {
+            lockButton.setDisable(true);
+            lockButton.setOpacity(0);
+        }
+    }
 
     private void updateTextFields() {
         double aboveSum = getSeriesSum(aboveZeroSeries);

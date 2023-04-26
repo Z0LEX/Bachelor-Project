@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import client.application.ClientApplication;
+import main.datatypes.Print;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
+        Print print = new Print("\n\n testing testing 1 2 3eeeee \n\n\n\n\n\n\n\n\n\n\ntest\n\n\n\ntest2");
+
         stage.setTitle("Title");
         stage.setResizable(false);
         // Set stage dimensions to a fixed size if necessary

@@ -61,8 +61,6 @@ public class AddWavesAmplitudeController implements Initializable {
         lockButton.setOnAction(actionEvent -> {
             FourierMachineViewer fourierMachineViewer = new FourierMachineViewer(stage);
             fourierMachineViewer.startFourierMachineViewer(stage);
-            Print print = new Print();
-            print.performPrint();
         });
 
         // Make button with continue invisible

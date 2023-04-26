@@ -13,18 +13,20 @@ public class Print {
             // Create a new print job
             PrinterJob job = PrinterJob.getPrinterJob();
 
-            // Get the default printer
+            // Get the default printer (PDF)
             PrintService service = PrintServiceLookup.lookupDefaultPrintService();
 
+            // If the available printservices contains the Epson TM-T88V printer, change service to it
             for (PrintService printService : PrinterJob.lookupPrintServices()) {
                 if (printService.getName().contains("Epson")) {
                     service = printService;
                 }
             }
+
             // Set the print service for the job
             job.setPrintService(service);
 
-            // Create a new page format
+            // Create a new page format of 80x297 mm with 0 margin
             PageFormat format = new PageFormat();
             Paper paper = new Paper();
             double paperWidth = 3.15; // inches
@@ -43,7 +45,6 @@ public class Print {
             PrintText printable = new PrintText(printText);
             job.setPrintable(printable, format);
 
-            // Print the job
             job.print();
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,7 +78,6 @@ class PrintText implements Printable {
         // Print each line of the receipt
         int y = 10;
         for (String line : lines) {
-//            drawString(g2d, line, 10, y, (int) pageFormat.getImageableWidth());
             g2d.drawString(line, 10, y);
             y += lineHeight;
         }

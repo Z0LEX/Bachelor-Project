@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import main.datatypes.Print;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -58,6 +59,7 @@ public class AddWavesAmplitudeController implements Initializable {
         //lockButton.setGraphic(imageView);
 
         lockButton.setOnAction(actionEvent -> {
+            Print print = new Print("You've solved the problem\nThe code is: 4685");
             FourierMachineViewer fourierMachineViewer = new FourierMachineViewer(stage);
             fourierMachineViewer.startFourierMachineViewer(stage);
         });

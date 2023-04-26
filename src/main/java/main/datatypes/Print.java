@@ -81,7 +81,7 @@ class PrintText implements Printable {
             drawString(g2d, line, 10, y, (int) pageFormat.getImageableWidth());
             y += lineHeight;
         }
-
+        g2d.drawString("\n\n\n", 10, y);
         // Return that this page is part of the printed document
         return Printable.PAGE_EXISTS;
     }

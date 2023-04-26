@@ -35,13 +35,17 @@ public class Print implements Printable {
         for (PrintService printService : PrinterJob.lookupPrintServices()) {
             System.out.println("Print service available: " + printService.getName());
         }
-
-        System.out.println("Selected service: " + job.getPrintService().getName());
-
         try {
+            for (PrintService printService : PrinterJob.lookupPrintServices()) {
+                if (printService.getName().contains("Epson")) {
+                    job.setPrintService(printService);
+                }
+            }
+            System.out.println("Selected service: " + job.getPrintService().getName());
+
             job.print();
-        } catch (PrinterException ex) {
-            throw new RuntimeException(ex);
+        } catch (PrinterException e) {
+            throw new RuntimeException(e);
         }
     }
 }

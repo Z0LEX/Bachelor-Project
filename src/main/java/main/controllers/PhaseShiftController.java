@@ -3,7 +3,6 @@ package main.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
-import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.stage.Stage;
 import main.application.Server;
@@ -43,14 +42,12 @@ public class PhaseShiftController implements Initializable {
     @FXML
     private Slider slider4;
 
-
-
     private Wave wave1;
     private Wave wave2;
     private Wave wave3;
     private Wave wave4;
 
-    private boolean printOnce = true;
+    private boolean hasWon = false;
 
     private ArrayList<Wave> waves = new ArrayList<>();
     private ArrayList<Wave> resultWaves = new ArrayList<>();
@@ -58,7 +55,6 @@ public class PhaseShiftController implements Initializable {
 
     private String[] solutionArray = new String[4];
     private String[] suggestionArray = new String[4];
-    private boolean gameWon;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -161,8 +157,8 @@ public class PhaseShiftController implements Initializable {
         System.out.println(solutionArray[0]);
 
         if (Arrays.equals(suggestionArray, solutionArray)) {
-            if (printOnce == true) {
-                printOnce = false;
+            if (!hasWon) {
+                hasWon = true;
                 //Yay we wonnered
                 System.out.println("Wonnered!");
             }

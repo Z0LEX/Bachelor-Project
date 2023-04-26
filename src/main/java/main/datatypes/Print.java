@@ -32,7 +32,7 @@ public class Print {
             double leftMargin = 0; // inches
             double rightMargin = 0; // inches
             double topMargin = 0; // inches
-            double bottomMargin = 0; // inches
+            double bottomMargin = 3; // inches
             paper.setSize(paperWidth * POINTS_PER_INCH, paperHeight * POINTS_PER_INCH);
             paper.setImageableArea(leftMargin * POINTS_PER_INCH, topMargin * POINTS_PER_INCH,
                     (paperWidth - leftMargin - rightMargin) * POINTS_PER_INCH,

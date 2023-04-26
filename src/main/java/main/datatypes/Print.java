@@ -29,8 +29,8 @@ public class Print {
             Paper paper = new Paper();
             double paperWidth = 3.15; // inches
             double paperHeight = 11.69; // inches
-            double leftMargin = 0.12; // inches
-            double rightMargin = 0.12; // inches
+            double leftMargin = 0; // inches
+            double rightMargin = 0; // inches
             double topMargin = 0; // inches
             double bottomMargin = 0; // inches
             paper.setSize(paperWidth * POINTS_PER_INCH, paperHeight * POINTS_PER_INCH);
@@ -58,6 +58,7 @@ class PrintText implements Printable {
         this.printText = printText;
     }
 
+    @Override
     public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) {
         if (pageIndex > 0) {
             return Printable.NO_SUCH_PAGE;
@@ -70,18 +71,39 @@ class PrintText implements Printable {
         String[] lines = printText.split("\n");
 
         // Set the font and line spacing
-        Font font = new Font("Monospaced", Font.PLAIN, 10);
+        Font font = new Font("Monospaced", Font.PLAIN, 15);
         g2d.setFont(font);
         int lineHeight = g2d.getFontMetrics().getHeight() + 2;
 
         // Print each line of the receipt
         int y = 10;
         for (String line : lines) {
-            g2d.drawString(line, 10, y);
+            drawString(g2d, line, 10, y, (int) pageFormat.getImageableWidth());
             y += lineHeight;
         }
 
         // Return that this page is part of the printed document
         return Printable.PAGE_EXISTS;
+    }
+
+    private void drawString(Graphics2D g, String text, int x, int y, int maxWidth) {
+        FontMetrics fm = g.getFontMetrics();
+        String[] words = text.split("\\s+"); // split text into words
+
+        int curX = x;
+        int curY = y;
+        int spaceWidth = fm.stringWidth(" ");
+
+        for (String word : words) {
+            int wordWidth = fm.stringWidth(word);
+
+            if (curX + wordWidth > x + maxWidth) { // if word exceeds maxWidth, wrap to next line
+                curX = x;
+                curY += fm.getHeight();
+            }
+
+            g.drawString(word, curX, curY);
+            curX += wordWidth + spaceWidth;
+        }
     }
 }

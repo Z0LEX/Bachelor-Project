@@ -32,7 +32,7 @@ public class Print {
             double leftMargin = 0; // inches
             double rightMargin = 0; // inches
             double topMargin = 0; // inches
-            double bottomMargin = 3; // inches
+            double bottomMargin = 0; // inches
             paper.setSize(paperWidth * POINTS_PER_INCH, paperHeight * POINTS_PER_INCH);
             paper.setImageableArea(leftMargin * POINTS_PER_INCH, topMargin * POINTS_PER_INCH,
                     (paperWidth - leftMargin - rightMargin) * POINTS_PER_INCH,
@@ -69,27 +69,23 @@ class PrintText implements Printable {
 
         // Split the receipt text into lines
         String[] lines = printText.split("\n");
-
         // Set the font and line spacing
-        Font font = new Font("Monospaced", Font.PLAIN, 15);
+        Font font = new Font("Monospaced", Font.PLAIN, 13);
         g2d.setFont(font);
         int lineHeight = g2d.getFontMetrics().getHeight() + 2;
 
         // Print each line of the receipt
         int y = 10;
         for (String line : lines) {
-            drawString(g2d, line, 10, y, (int) pageFormat.getImageableWidth());
-            y += lineHeight;
-        }
-        for (int i = 0; i < 3; i++) {
-            g2d.drawString("", 10, y);
+//            drawString(g2d, line, 10, y, (int) pageFormat.getImageableWidth());
+            g2d.drawString(line, 10, y);
             y += lineHeight;
         }
         // Return that this page is part of the printed document
         return Printable.PAGE_EXISTS;
     }
 
-    private void drawString(Graphics2D g, String text, int x, int y, int maxWidth) {
+    private void drawStringWrap(Graphics2D g, String text, int x, int y, int maxWidth) {
         FontMetrics fm = g.getFontMetrics();
         String[] words = text.split("\\s+"); // split text into words
 

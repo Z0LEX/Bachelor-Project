@@ -32,7 +32,7 @@ public class Main extends Application {
         stage.setHeight(WINDOW_HEIGHT);
         stage.centerOnScreen();
 
-        Print print = new Print("\n\n You've solved the problem \n\n The code is: 4685");
+        Print print = new Print("\nYou've solved the problem \nThe code is: 4685");
 
         Server server = new Server();
 

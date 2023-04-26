@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import main.datatypes.Print;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -60,6 +61,8 @@ public class AddWavesAmplitudeController implements Initializable {
         lockButton.setOnAction(actionEvent -> {
             FourierMachineViewer fourierMachineViewer = new FourierMachineViewer(stage);
             fourierMachineViewer.startFourierMachineViewer(stage);
+            Print print = new Print();
+            print.performPrint();
         });
 
         // Make button with continue invisible

@@ -152,10 +152,6 @@ public class PhaseShiftController implements Initializable {
     }
 
     private void checkSolution() {
-
-        System.out.println(suggestionArray[0]);
-        System.out.println(solutionArray[0]);
-
         if (Arrays.equals(suggestionArray, solutionArray)) {
             if (!hasWon) {
                 hasWon = true;

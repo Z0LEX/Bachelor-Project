@@ -32,8 +32,6 @@ public class Main extends Application {
         stage.setHeight(WINDOW_HEIGHT);
         stage.centerOnScreen();
 
-        Print print = new Print("\nYou've solved the problem \nThe code is: 4685");
-
         Server server = new Server();
 
         AddWavesViewer addWavesViewer = new AddWavesViewer(stage);

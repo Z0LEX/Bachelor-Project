@@ -59,7 +59,7 @@ public class AddWavesAmplitudeController implements Initializable {
         //lockButton.setGraphic(imageView);
 
         lockButton.setOnAction(actionEvent -> {
-            //Print print = new Print("\n\n You've solved the problem \n\n The code is: 4685");
+            Print print = new Print("You've solved the problem\nThe code is: 4685");
             FourierMachineViewer fourierMachineViewer = new FourierMachineViewer(stage);
             fourierMachineViewer.startFourierMachineViewer(stage);
         });

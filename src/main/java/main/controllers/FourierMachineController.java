@@ -53,7 +53,6 @@ public class FourierMachineController implements Initializable {
     private XYChart.Series<Double, Double> belowZeroSeries;
 
     private int[] solutionArray = new int[4];
-
     private int[] suggestionArray = new int[4];
     private boolean gameWon;
 

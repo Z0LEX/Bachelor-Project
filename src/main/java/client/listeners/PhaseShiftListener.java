@@ -1,6 +1,8 @@
 package client.listeners;
 
 import javafx.application.Platform;
+import javafx.collections.ListChangeListener;
+import javafx.scene.Node;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import org.jspace.ActualField;
@@ -9,23 +11,33 @@ import org.jspace.Space;
 
 public class PhaseShiftListener implements Runnable {
 
-    private LineChart<Double, Double> lineChartSum;
-    private LineChart<Double, Double> lineChartResult;
+    private LineChart<Double, Double> lineGraphs;
     private Space space;
 
-    public PhaseShiftListener(LineChart<Double, Double> lineChartSum, LineChart<Double, Double> lineChartResult, Space space) {
-        this.lineChartSum = lineChartSum;
-        this.lineChartResult = lineChartResult;
+    public PhaseShiftListener(LineChart<Double, Double> lineGraphs, Space space) {
+        this.lineGraphs = lineGraphs;
         this.space = space;
 
         // Initialize the result chart given from host
         try {
             Object[] phaseData = space.get(new ActualField("Phase shift result"), new FormalField(double[][].class));
             double[][] data = (double[][]) phaseData[1];
-            XYChart.Series<Double, Double> series = arrayToSeries(data);
+            XYChart.Series<Double, Double> resultSeries = arrayToSeries(data);
+            // Add listener to linegraphs series. Change line color for result.
+            lineGraphs.getData().addListener((ListChangeListener<XYChart.Series<Double, Double>>) change -> {
+                while (change.next()) {
+                    for (XYChart.Series<Double, Double> series : change.getAddedSubList()) {
+                        if (series == resultSeries) {
+                            Node line = series.getNode().lookup(".chart-series-line");
+                            line.setStyle("-fx-stroke: #CC5500");
+                        }
+                    }
+
+                }
+            });
             Platform.runLater(() -> {
-                lineChartResult.getData().clear();
-                lineChartResult.getData().add(0, series);
+                lineGraphs.getData().add(0, resultSeries);
+                lineGraphs.getData().add(1, new XYChart.Series<>());
             });
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -41,8 +53,7 @@ public class PhaseShiftListener implements Runnable {
                 double[][] data = (double[][]) phaseData[1];
                 XYChart.Series<Double, Double> series = arrayToSeries(data);
                 Platform.runLater(() -> {
-                    lineChartSum.getData().clear();
-                    lineChartSum.getData().add(0, series);
+                    lineGraphs.getData().set(1, series);
                 });
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);

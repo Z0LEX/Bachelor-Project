@@ -82,7 +82,6 @@ public class AddWavesAmplitudeController implements Initializable {
         sumWave = new Wave(Wave.sumWaves(waves), lineChartResult);
 
         resultWave.getSeries().getNode().getStyleClass().add("result-series");
-
         // Add the combinationlock to the lockcontainer
         lockContainer.getChildren().add(lock.getRoot());
 

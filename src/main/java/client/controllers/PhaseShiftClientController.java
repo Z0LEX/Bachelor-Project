@@ -6,9 +6,5 @@ import javafx.scene.chart.LineChart;
 public class PhaseShiftClientController {
 
     @FXML
-    public LineChart<Double, Double> lineGraphBottom;
-
-    @FXML
-    public LineChart<Double, Double> lineGraphTop;
-
+    public LineChart<Double, Double> lineGraphs;
 }

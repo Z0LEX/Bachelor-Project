@@ -78,11 +78,11 @@ class PrintText implements Printable {
         // Print each line of the receipt
         int y = 10;
         for (String line : lines) {
-            drawString(g2d, line, 0, y, (int) pageFormat.getImageableWidth());
+            drawString(g2d, line, 10, y, (int) pageFormat.getImageableWidth());
             y += lineHeight;
         }
         for (int i = 0; i < 3; i++) {
-            g2d.drawString("", 0, y);
+            g2d.drawString("", 10, y);
             y += lineHeight;
         }
         // Return that this page is part of the printed document

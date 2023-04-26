@@ -70,7 +70,7 @@ class PrintText implements Printable {
         // Split the receipt text into lines
         String[] lines = printText.split("\n");
         // Set the font and line spacing
-        Font font = new Font("Monospaced", Font.PLAIN, 13);
+        Font font = new Font("Monospaced", Font.PLAIN, 16);
         g2d.setFont(font);
         int lineHeight = g2d.getFontMetrics().getHeight() + 2;
 
@@ -83,26 +83,5 @@ class PrintText implements Printable {
         }
         // Return that this page is part of the printed document
         return Printable.PAGE_EXISTS;
-    }
-
-    private void drawStringWrap(Graphics2D g, String text, int x, int y, int maxWidth) {
-        FontMetrics fm = g.getFontMetrics();
-        String[] words = text.split("\\s+"); // split text into words
-
-        int curX = x;
-        int curY = y;
-        int spaceWidth = fm.stringWidth(" ");
-
-        for (String word : words) {
-            int wordWidth = fm.stringWidth(word);
-
-            if (curX + wordWidth > x + maxWidth) { // if word exceeds maxWidth, wrap to next line
-                curX = x;
-                curY += fm.getHeight();
-            }
-
-            g.drawString(word, curX, curY);
-            curX += wordWidth + spaceWidth;
-        }
     }
 }

@@ -1,7 +1,5 @@
 package main.controllers;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.*;
@@ -9,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import main.application.AddWavesAmplitudeViewer;
 import main.application.PhaseShiftViewer;
 import main.components.CombinationLock;
 import main.components.Wave;
@@ -56,7 +53,6 @@ public class FourierMachineController implements Initializable {
     private XYChart.Series<Double, Double> belowZeroSeries;
 
     private int[] solutionArray = new int[4];
-
     private int[] suggestionArray = new int[4];
     private boolean gameWon;
 

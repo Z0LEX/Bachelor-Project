@@ -59,26 +59,26 @@ public class PhaseShiftController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        wave1 = new Wave(1, 1, lineChart1);
-        wave2 = new Wave(3, 1, lineChart2);
+        wave1 = new Wave(6, 1, lineChart1);
+        wave2 = new Wave(2, 1, lineChart2);
         wave3 = new Wave(5, 1, lineChart3);
-        wave4 = new Wave(8, 1, lineChart4);
+        wave4 = new Wave(3, 1, lineChart4);
 
         waves.add(wave1);
         waves.add(wave2);
         waves.add(wave3);
         waves.add(wave4);
 
-        Wave waveResult1 = new Wave(1, 1);
+        Wave waveResult1 = new Wave(6, 1);
         waveResult1.setPhaseShift(Math.PI);
         solutionArray[0] = String.valueOf(Math.PI).substring(0,6);
-        Wave waveResult2 = new Wave(3, 1);
+        Wave waveResult2 = new Wave(2, 1);
         waveResult2.setPhaseShift((3*Math.PI) / 4);
         solutionArray[1] = String.valueOf((3*Math.PI) / 4).substring(0,6);
         Wave waveResult3 = new Wave(5, 1);
         waveResult3.setPhaseShift(Math.PI / 2);
         solutionArray[2] = String.valueOf((Math.PI / 2)).substring(0,6);
-        Wave waveResult4 = new Wave(8, 1);
+        Wave waveResult4 = new Wave(3, 1);
         waveResult4.setPhaseShift(-Math.PI / 2);
         solutionArray[3] = String.valueOf(-Math.PI / 2).substring(0,6);
 

@@ -47,7 +47,7 @@ public class FourierMachineController implements Initializable {
     private Button lockButton;
 
     private Stage stage;
-    private CombinationLock lock = new CombinationLock(1, 3, 5 ,8);
+    private CombinationLock lock = new CombinationLock(4, 6, 8,5);
 
     private XYChart.Series<Double, Double> aboveZeroSeries;
     private XYChart.Series<Double, Double> belowZeroSeries;

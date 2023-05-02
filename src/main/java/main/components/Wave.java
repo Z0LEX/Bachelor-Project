@@ -43,6 +43,7 @@ public class Wave {
     public Wave(double frequency, double amplitude, LineChart<Double, Double> lineChart) {
         this.frequency = frequency;
         this.amplitude = amplitude;
+        this.lineChart = lineChart;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/wave.fxml"));
             root = fxmlLoader.load();
@@ -171,5 +172,9 @@ public class Wave {
 
     public XYChart.Series<Double, Double> getSeries() {
         return graph.getSeries();
+    }
+
+    public LineChart<Double, Double> getLineChart() {
+        return lineChart;
     }
 }

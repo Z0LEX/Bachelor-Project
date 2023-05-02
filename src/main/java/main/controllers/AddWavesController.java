@@ -105,11 +105,25 @@ public class AddWavesController implements Initializable {
 
     public void updateWave(double frequency, int index) {
         Wave wave = waves.get(index);
-        wave.clear();
+        updateTitle(wave, frequency);
         wave.setFrequency(frequency);
+        wave.clear();
         wave.plotFunction(wave.getFunction());
         getSumWave();
 
+        checkSolution();
+    }
+
+    private void updateTitle(Wave wave, double frequency) {
+//        int frequency = (int) wave.getFrequency();
+        String title = frequency + " Hz";
+        if (frequency == 0) {
+            title += " (DC)";
+        }
+        wave.getLineChart().setTitle(title);
+    }
+
+    private void checkSolution() {
         suggestionArray[0] = Integer.parseInt(lock.getController().getWheel1Number().getText());
         suggestionArray[1] = Integer.parseInt(lock.getController().getWheel2Number().getText());
         suggestionArray[2] = Integer.parseInt(lock.getController().getWheel3Number().getText());

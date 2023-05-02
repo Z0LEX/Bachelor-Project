@@ -75,4 +75,8 @@ public class FrequencyGraph {
         return series;
     }
 
+    public XYChart<Double, Double> getGraph() {
+        return graph;
+    }
 }
+

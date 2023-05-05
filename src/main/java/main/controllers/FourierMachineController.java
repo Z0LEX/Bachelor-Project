@@ -47,7 +47,7 @@ public class FourierMachineController implements Initializable {
     private Button lockButton;
 
     private Stage stage;
-    private CombinationLock lock = new CombinationLock(4, 6, 8,5);
+    private CombinationLock lock = new CombinationLock(4, 5, 6, 8);
 
     private XYChart.Series<Double, Double> aboveZeroSeries;
     private XYChart.Series<Double, Double> belowZeroSeries;
@@ -55,7 +55,6 @@ public class FourierMachineController implements Initializable {
     private int[] solutionArray = new int[4];
     private int[] suggestionArray = new int[4];
     private boolean gameWon;
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -74,7 +73,7 @@ public class FourierMachineController implements Initializable {
         solutionArray[1] = lock.getSecond();
         solutionArray[2] = lock.getThird();
         solutionArray[3] = lock.getForth();
-        
+
 
         lock.getController().getWheel1Number().textProperty().addListener((observableValue, s, newValue) -> {
             suggestionArray[0] = Integer.parseInt(newValue);
@@ -103,7 +102,7 @@ public class FourierMachineController implements Initializable {
         Wave wave4 = new Wave(lock.getForth(), 1);
         ArrayList<Wave> inputWaves = new ArrayList<>(Arrays.asList(wave1, wave2, wave3, wave4));
         Wave inputWave = new Wave(Wave.sumWaves(inputWaves), inputGraph);
-        
+
         // Initial testwave
         Wave testWave = new Wave(1, 1, testGraph);
 
@@ -126,6 +125,11 @@ public class FourierMachineController implements Initializable {
     }
 
     private void checkSolution() {
+        suggestionArray[0] = Integer.parseInt(lock.getController().getWheel1Number().getText());
+        suggestionArray[1] = Integer.parseInt(lock.getController().getWheel2Number().getText());
+        suggestionArray[2] = Integer.parseInt(lock.getController().getWheel3Number().getText());
+        suggestionArray[3] = Integer.parseInt(lock.getController().getWheel4Number().getText());
+        Arrays.sort(suggestionArray);
         if (Arrays.equals(suggestionArray, solutionArray)) {
             gameWon = true;
         } else {

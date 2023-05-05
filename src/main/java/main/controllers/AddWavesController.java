@@ -105,20 +105,20 @@ public class AddWavesController implements Initializable {
 
     public void updateWave(double frequency, int index) {
         Wave wave = waves.get(index);
-        updateTitle(wave, frequency);
         wave.setFrequency(frequency);
         wave.clear();
         wave.plotFunction(wave.getFunction());
+        updateTitle(wave, frequency);
         getSumWave();
 
         checkSolution();
     }
 
     private void updateTitle(Wave wave, double frequency) {
-//        int frequency = (int) wave.getFrequency();
-        String title = frequency + " Hz";
-        if (frequency == 0) {
-            title += " (DC)";
+        String title = (int) frequency + " Hz";
+        if ((int) frequency == 0) {
+            // Some JavaFX bug will cause the following to draw the graph incorrectly around 0
+//            title += " (DC)";
         }
         wave.getLineChart().setTitle(title);
     }

@@ -30,7 +30,7 @@
             <children>
                 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="root" stylesheets="graph-style.css">
                     <children>
-                        <LineChart fx:id="lineChart1" createSymbols="false" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0" title="0 Hz (DC)">
+                        <LineChart fx:id="lineChart1" createSymbols="false" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0" title="0 Hz">
                             <xAxis>
                                 <NumberAxis autoRanging="false" minorTickCount="10" minorTickLength="1.0" minorTickVisible="false" side="BOTTOM" tickLabelGap="1.0" tickLength="1.0" tickUnit="0.1" upperBound="1.0" visible="false" />
                             </xAxis>
@@ -50,7 +50,7 @@
             </Text>
                 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="root" stylesheets="graph-style.css">
                     <children>
-                        <LineChart fx:id="lineChart2" createSymbols="false" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0" title="0 Hz (DC)">
+                        <LineChart fx:id="lineChart2" createSymbols="false" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0" title="0 Hz">
                             <xAxis>
                                 <NumberAxis autoRanging="false" minorTickCount="10" minorTickLength="1.0" minorTickVisible="false" side="BOTTOM" tickLabelGap="1.0" tickLength="1.0" tickUnit="0.1" upperBound="1.0" visible="false" />
                             </xAxis>
@@ -86,7 +86,7 @@
             </Text>
                 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="root" stylesheets="graph-style.css">
                     <children>
-                        <LineChart fx:id="lineChart3" createSymbols="false" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0" title="0 Hz (DC)">
+                        <LineChart fx:id="lineChart3" createSymbols="false" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0" title="0 Hz">
                             <xAxis>
                                 <NumberAxis autoRanging="false" minorTickCount="10" minorTickLength="1.0" minorTickVisible="false" side="BOTTOM" tickLabelGap="1.0" tickLength="1.0" tickUnit="0.1" upperBound="1.0" visible="false" />
                             </xAxis>
@@ -106,7 +106,7 @@
             </Text>
                 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="root" stylesheets="graph-style.css">
                     <children>
-                        <LineChart fx:id="lineChart4" createSymbols="false" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0" title="0 Hz (DC)">
+                        <LineChart fx:id="lineChart4" createSymbols="false" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0" title="0 Hz">
                             <xAxis>
                                 <NumberAxis autoRanging="false" minorTickCount="10" minorTickLength="1.0" minorTickVisible="false" side="BOTTOM" tickLabelGap="1.0" tickLength="1.0" tickUnit="0.1" upperBound="1.0" visible="false" />
                             </xAxis>

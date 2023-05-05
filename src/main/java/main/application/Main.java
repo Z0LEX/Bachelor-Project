@@ -19,6 +19,8 @@ public class Main extends Application {
 
     private int screenIndex = 0;
 
+    private StageManager stageManager;
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -31,8 +33,15 @@ public class Main extends Application {
         stage.setWidth(WINDOW_WIDTH);
         stage.setHeight(WINDOW_HEIGHT);
         stage.centerOnScreen();
+//        stage.setFullScreen(true);
+
+        stageManager = new StageManager(stage);
+        stageManager.switchScene("/add-waves.fxml");
 
         Server server = new Server();
+
+        /*
+
 
         AddWavesViewer addWavesViewer = new AddWavesViewer(stage);
         Parent addWavesRoot = addWavesViewer.getRoot();
@@ -59,7 +68,7 @@ public class Main extends Application {
         BorderPane tempScene = setupTempScene(screens);
 
         stage.setScene(new Scene(tempScene));
-        stage.show();
+        */
 
         ArrayList<Stage> stages = new ArrayList<>();
         stages.add(stage);
@@ -67,6 +76,7 @@ public class Main extends Application {
         stages.add(clientStage);
 
         setCloseAllStagesOnExit(stages);
+
         new ClientApplication().start(clientStage);
     }
 

@@ -2,6 +2,7 @@ package main.datatypes;
 
 import java.awt.*;
 import java.awt.print.*;
+import java.util.Arrays;
 import javax.print.*;
 
 public class Print {
@@ -14,17 +15,15 @@ public class Print {
             PrinterJob job = PrinterJob.getPrinterJob();
 
             // Get the default printer (PDF)
-            PrintService service = PrintServiceLookup.lookupDefaultPrintService();
+            PrintService defaultPrintService = PrintServiceLookup.lookupDefaultPrintService();
 
             // If the available printservices contains the Epson TM-T88V printer, change service to it
-            for (PrintService printService : PrinterJob.lookupPrintServices()) {
-                if (printService.getName().contains("Epson")) {
-                    service = printService;
-                }
-            }
+            PrintService epsonPrintService = Arrays.stream(PrinterJob.lookupPrintServices())
+                    .filter(ps -> isEpsonPrinter(ps))
+                    .findAny().orElse(defaultPrintService);
 
             // Set the print service for the job
-            job.setPrintService(service);
+            job.setPrintService(epsonPrintService);
 
             // Create a new page format of 80x297 mm with 0 margin
             PageFormat format = new PageFormat();
@@ -49,6 +48,10 @@ public class Print {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private boolean isEpsonPrinter(PrintService ps) {
+        return ps.getName().contains("Epson");
     }
 }
 

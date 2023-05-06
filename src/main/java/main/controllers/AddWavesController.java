@@ -66,7 +66,7 @@ public class AddWavesController implements Initializable {
         solutionArray[0] = lock.getFirst();
         solutionArray[1] = lock.getSecond();
         solutionArray[2] = lock.getThird();
-        solutionArray[3] = lock.getForth();
+        solutionArray[3] = lock.getFourth();
         Arrays.sort(solutionArray);
 
 
@@ -74,7 +74,7 @@ public class AddWavesController implements Initializable {
         Wave wave1 = new Wave(lock.getFirst(), 1);
         Wave wave2 = new Wave(lock.getSecond(), 1);
         Wave wave3 = new Wave(lock.getThird(), 1);
-        Wave wave4 = new Wave(lock.getForth(), 1);
+        Wave wave4 = new Wave(lock.getFourth(), 1);
         ArrayList<Wave> waveResult = new ArrayList<>(Arrays.asList(wave1, wave2, wave3, wave4));
         resultWave = new Wave(Wave.sumWaves(waveResult), lineChartResult);
 
@@ -115,8 +115,9 @@ public class AddWavesController implements Initializable {
     }
 
     private void updateTitle(Wave wave, double frequency) {
-        String title = (int) frequency + " Hz";
-        if ((int) frequency == 0) {
+        int intFrequency = (int) frequency;
+        String title = intFrequency + " Hz";
+        if (intFrequency == 0) {
             // Some JavaFX bug will cause the following to draw the graph incorrectly around 0
 //            title += " (DC)";
         }

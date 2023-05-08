@@ -72,7 +72,7 @@ public class FourierMachineController implements Initializable {
         solutionArray[0] = lock.getFirst();
         solutionArray[1] = lock.getSecond();
         solutionArray[2] = lock.getThird();
-        solutionArray[3] = lock.getForth();
+        solutionArray[3] = lock.getFourth();
 
 
         lock.getController().getWheel1Number().textProperty().addListener((observableValue, s, newValue) -> {
@@ -99,7 +99,7 @@ public class FourierMachineController implements Initializable {
         Wave wave1 = new Wave(lock.getFirst(), 1);
         Wave wave2 = new Wave(lock.getSecond(), 1);
         Wave wave3 = new Wave(lock.getThird(), 1);
-        Wave wave4 = new Wave(lock.getForth(), 1);
+        Wave wave4 = new Wave(lock.getFourth(), 1);
         ArrayList<Wave> inputWaves = new ArrayList<>(Arrays.asList(wave1, wave2, wave3, wave4));
         Wave inputWave = new Wave(Wave.sumWaves(inputWaves), inputGraph);
 

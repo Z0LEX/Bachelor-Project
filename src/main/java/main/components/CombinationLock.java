@@ -52,7 +52,7 @@ public class CombinationLock {
         return third;
     }
 
-    public int getForth() {
+    public int getFourth() {
         return forth;
     }
 

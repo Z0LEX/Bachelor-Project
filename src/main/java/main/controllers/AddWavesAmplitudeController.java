@@ -71,7 +71,7 @@ public class AddWavesAmplitudeController implements Initializable {
         Wave wave1 = new Wave(0, lock.getFirst());
         Wave wave2 = new Wave(1, lock.getSecond());
         Wave wave3 = new Wave(2, lock.getThird());
-        Wave wave4 = new Wave(3, lock.getForth());
+        Wave wave4 = new Wave(3, lock.getFourth());
         ArrayList<Wave> waveResult = new ArrayList<>(Arrays.asList(wave1, wave2, wave3, wave4));
         resultWave = new Wave(Wave.sumWaves(waveResult), lineChartResult);
 
@@ -110,7 +110,7 @@ public class AddWavesAmplitudeController implements Initializable {
                 lock.getFirst() == Integer.parseInt(lock.getController().getWheel1Number().getText()) &&
                         lock.getSecond() == Integer.parseInt(lock.getController().getWheel2Number().getText()) &&
                         lock.getThird() == Integer.parseInt(lock.getController().getWheel3Number().getText()) &&
-                        lock.getForth() == Integer.parseInt(lock.getController().getWheel4Number().getText())
+                        lock.getFourth() == Integer.parseInt(lock.getController().getWheel4Number().getText())
         ) {
             gameWon = true;
         } else gameWon = false;

@@ -57,14 +57,10 @@ public class AddWavesController implements Initializable, StageAwareController {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        lockButton.setOpacity(0);
 
-        lockButton.setOpacity(1);
-        lockButton.setDisable(false);
         lockButton.setOnAction(actionEvent -> {
             stageManager.setScene("/add-waves-amplitude.fxml");
-            stageManager.test();
-//            AddWavesAmplitudeViewer addWavesAmplitudeViewer = new AddWavesAmplitudeViewer(stage);
-//            addWavesAmplitudeViewer.startAddWavesAmplitudeViewer(stage);
         });
 
         solutionArray[0] = lock.getFirst();

@@ -6,8 +6,6 @@ import javafx.scene.chart.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
-import main.application.PhaseShiftViewer;
 import main.application.StageAwareController;
 import main.application.StageManager;
 import main.components.CombinationLock;
@@ -48,7 +46,7 @@ public class FourierMachineController implements Initializable, StageAwareContro
     @FXML
     private Button lockButton;
 
-    private CombinationLock lock = new CombinationLock(4, 5, 6, 8);
+    private CombinationLock lock = new CombinationLock(1, 3, 5, 8);
 
     private XYChart.Series<Double, Double> aboveZeroSeries;
     private XYChart.Series<Double, Double> belowZeroSeries;
@@ -66,8 +64,7 @@ public class FourierMachineController implements Initializable, StageAwareContro
         lockButton.setOpacity(0);
 
         lockButton.setOnAction(actionEvent -> {
-//            PhaseShiftViewer phaseShiftViewer = new PhaseShiftViewer(stage);
-//            phaseShiftViewer.startPhaseShiftViewer(stage);
+            stageManager.setScene("/phase-shift.fxml");
         });
 
 

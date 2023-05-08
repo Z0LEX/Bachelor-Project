@@ -21,8 +21,6 @@ import java.util.function.Function;
 public class AddWavesAmplitudeController implements Initializable, StageAwareController {
     private ArrayList<Wave> waves = new ArrayList<>(4);
 
-    private Stage stage;
-
     private Wave sumWave;
     private Wave resultWave;
 
@@ -130,10 +128,6 @@ public class AddWavesAmplitudeController implements Initializable, StageAwareCon
         sumWave.getGraph().overwritePlot(sumWave.getFunction(), 0);
 
         resultWave.getSeries().getNode().getStyleClass().add("result-series");
-    }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
     }
 
     @Override

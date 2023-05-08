@@ -1,12 +1,9 @@
 package main.controllers;
 
-import client.application.ClientApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.Slider;
-import javafx.stage.Stage;
-import main.application.Main;
 import main.application.Server;
 import main.application.StageAwareController;
 import main.application.StageManager;
@@ -21,8 +18,6 @@ import java.util.ResourceBundle;
 import java.util.function.Function;
 
 public class PhaseShiftController implements Initializable, StageAwareController {
-    private double range = 1;
-
     @FXML
     private LineChart<Double, Double> lineChart1;
 

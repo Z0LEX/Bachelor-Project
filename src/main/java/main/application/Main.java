@@ -12,7 +12,7 @@ public class Main extends Application {
     private static final int WINDOW_HEIGHT = 768;
 
     private StageManager stageManager;
-    public static Stage clientStage;
+    public Stage clientStage;
 
     public static void main(String[] args) {
         launch(args);
@@ -28,6 +28,7 @@ public class Main extends Application {
         stage.centerOnScreen();
 //        stage.setFullScreen(true);
 
+        // Initialize StageManager with all FXML paths
         stageManager = new StageManager(stage, "/add-waves.fxml", "/add-waves-amplitude.fxml", "/fourier-machine.fxml", "/phase-shift.fxml", "/draw-graph.fxml");
         stageManager.setScene("/add-waves.fxml");
 

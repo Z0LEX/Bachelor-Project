@@ -3,14 +3,14 @@ package main.controllers;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import main.application.FourierMachineViewer;
+import main.application.StageAwareController;
+import main.application.StageManager;
 import main.components.CombinationLock;
 import main.components.Wave;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import main.datatypes.Print;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -18,10 +18,8 @@ import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.function.Function;
 
-public class AddWavesAmplitudeController implements Initializable {
+public class AddWavesAmplitudeController implements Initializable, StageAwareController {
     private ArrayList<Wave> waves = new ArrayList<>(4);
-
-    private Stage stage;
 
     private Wave sumWave;
     private Wave resultWave;
@@ -49,6 +47,7 @@ public class AddWavesAmplitudeController implements Initializable {
     private LineChart<Double, Double> lineChart4;
 
     private boolean gameWon;
+    private StageManager stageManager;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -59,9 +58,8 @@ public class AddWavesAmplitudeController implements Initializable {
         //lockButton.setGraphic(imageView);
 
         lockButton.setOnAction(actionEvent -> {
-            Print print = new Print("You've solved the problem\nThe code is: 4685");
-            FourierMachineViewer fourierMachineViewer = new FourierMachineViewer(stage);
-            fourierMachineViewer.startFourierMachineViewer(stage);
+//            Print print = new Print("You've solved the problem\nThe code is: 4685");
+            stageManager.setScene("/fourier-machine.fxml");
         });
 
         // Make button with continue invisible
@@ -132,7 +130,8 @@ public class AddWavesAmplitudeController implements Initializable {
         resultWave.getSeries().getNode().getStyleClass().add("result-series");
     }
 
-    public void setStage(Stage stage) {
-        this.stage = stage;
+    @Override
+    public void setStageManager(StageManager stageManager) {
+        this.stageManager = stageManager;
     }
 }

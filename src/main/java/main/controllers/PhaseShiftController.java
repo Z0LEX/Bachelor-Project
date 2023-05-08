@@ -8,6 +8,8 @@ import javafx.scene.control.Slider;
 import javafx.stage.Stage;
 import main.application.Main;
 import main.application.Server;
+import main.application.StageAwareController;
+import main.application.StageManager;
 import main.components.Wave;
 import main.datatypes.PiStringConverter;
 import main.datatypes.Print;
@@ -18,7 +20,7 @@ import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.function.Function;
 
-public class PhaseShiftController implements Initializable {
+public class PhaseShiftController implements Initializable, StageAwareController {
     private double range = 1;
 
     @FXML
@@ -54,14 +56,13 @@ public class PhaseShiftController implements Initializable {
 
     private ArrayList<Wave> waves = new ArrayList<>();
     private ArrayList<Wave> resultWaves = new ArrayList<>();
-    private Stage stage;
-
     private String[] solutionArray = new String[4];
     private String[] suggestionArray = new String[4];
+    private StageManager stageManager;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         wave1 = new Wave(6, 1, lineChart1);
         wave2 = new Wave(2, 1, lineChart2);
         wave3 = new Wave(5, 1, lineChart3);
@@ -162,7 +163,13 @@ public class PhaseShiftController implements Initializable {
                 //Yay we wonnered
                 System.out.println("Wonnered!");
                 new Print("You've solved the problem\nThe code is: 4685");
+                stageManager.setScene("/draw-graph.fxml");
             }
         }
+    }
+
+    @Override
+    public void setStageManager(StageManager stageManager) {
+        this.stageManager = stageManager;
     }
 }

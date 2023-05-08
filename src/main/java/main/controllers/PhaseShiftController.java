@@ -1,10 +1,12 @@
 package main.controllers;
 
+import client.application.ClientApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.Slider;
 import javafx.stage.Stage;
+import main.application.Main;
 import main.application.Server;
 import main.components.Wave;
 import main.datatypes.PiStringConverter;
@@ -144,6 +146,7 @@ public class PhaseShiftController implements Initializable {
         Function<Double, Double> sumFunction = Wave.sumWaves(resultWaves);
         Wave wave = new Wave(sumFunction);
         double[][] data = wave.getGraph().getDataAsArray();
+        System.out.println("Phase shift send to client" + Arrays.deepToString(data));
         try {
             Server.space.put("Phase shift result", data);
         } catch (InterruptedException e) {

@@ -8,6 +8,8 @@ import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import main.application.PhaseShiftViewer;
+import main.application.StageAwareController;
+import main.application.StageManager;
 import main.components.CombinationLock;
 import main.components.Wave;
 import javafx.scene.text.Text;
@@ -17,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
-public class FourierMachineController implements Initializable {
+public class FourierMachineController implements Initializable, StageAwareController {
 
     @FXML
     private LineChart<Double, Double> inputGraph;
@@ -46,7 +48,6 @@ public class FourierMachineController implements Initializable {
     @FXML
     private Button lockButton;
 
-    private Stage stage;
     private CombinationLock lock = new CombinationLock(4, 5, 6, 8);
 
     private XYChart.Series<Double, Double> aboveZeroSeries;
@@ -55,6 +56,8 @@ public class FourierMachineController implements Initializable {
     private int[] solutionArray = new int[4];
     private int[] suggestionArray = new int[4];
     private boolean gameWon;
+    private StageManager stageManager;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -63,8 +66,8 @@ public class FourierMachineController implements Initializable {
         lockButton.setOpacity(0);
 
         lockButton.setOnAction(actionEvent -> {
-            PhaseShiftViewer phaseShiftViewer = new PhaseShiftViewer(stage);
-            phaseShiftViewer.startPhaseShiftViewer(stage);
+//            PhaseShiftViewer phaseShiftViewer = new PhaseShiftViewer(stage);
+//            phaseShiftViewer.startPhaseShiftViewer(stage);
         });
 
 
@@ -193,7 +196,8 @@ public class FourierMachineController implements Initializable {
         wave.plotFunction(wave.getFunction());
     }
 
-    public void setStage(Stage stage) {
-        this.stage = stage;
+    @Override
+    public void setStageManager(StageManager stageManager) {
+        this.stageManager = stageManager;
     }
 }

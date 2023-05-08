@@ -1,14 +1,12 @@
 package main.application;
 
+import client.application.ClientApplication;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import client.application.ClientApplication;
-import main.datatypes.Print;
 
 import java.util.ArrayList;
 
@@ -20,6 +18,7 @@ public class Main extends Application {
     private int screenIndex = 0;
 
     private StageManager stageManager;
+    public static Stage clientStage;
 
     public static void main(String[] args) {
         launch(args);
@@ -35,8 +34,8 @@ public class Main extends Application {
         stage.centerOnScreen();
 //        stage.setFullScreen(true);
 
-        stageManager = new StageManager(stage);
-        stageManager.switchScene("/add-waves.fxml");
+        stageManager = new StageManager(stage, "/add-waves.fxml", "/add-waves-amplitude.fxml", "/fourier-machine.fxml", "/phase-shift.fxml", "/draw-graph.fxml");
+        stageManager.setScene("/add-waves.fxml");
 
         Server server = new Server();
 
@@ -69,15 +68,14 @@ public class Main extends Application {
 
         stage.setScene(new Scene(tempScene));
         */
-
         ArrayList<Stage> stages = new ArrayList<>();
+        clientStage = new Stage();
         stages.add(stage);
-        Stage clientStage = new Stage();
         stages.add(clientStage);
 
         setCloseAllStagesOnExit(stages);
 
-        new ClientApplication().start(clientStage);
+//        new ClientApplication().start(clientStage);
     }
 
     public BorderPane setupTempScene(ArrayList<Parent> screens) {

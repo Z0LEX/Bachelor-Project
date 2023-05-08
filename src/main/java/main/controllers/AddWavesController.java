@@ -3,7 +3,9 @@ package main.controllers;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import main.application.AddWavesAmplitudeViewer;
+import main.application.Main;
+import main.application.StageAwareController;
+import main.application.StageManager;
 import main.components.CombinationLock;
 import main.components.Wave;
 import javafx.fxml.FXML;
@@ -18,7 +20,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.function.Function;
 
-public class AddWavesController implements Initializable {
+public class AddWavesController implements Initializable, StageAwareController {
     private ArrayList<Wave> waves = new ArrayList<>(4);
 
     private Wave sumWave;
@@ -34,7 +36,7 @@ public class AddWavesController implements Initializable {
     private int[] solutionArray = new int[4];
     private int[] suggestionArray = new int[4];
 
-    private Stage stage;
+    private StageManager stageManager;
 
     @FXML
     private Button lockButton;
@@ -51,16 +53,18 @@ public class AddWavesController implements Initializable {
     private LineChart<Double, Double> lineChart3;
     @FXML
     private LineChart<Double, Double> lineChart4;
-    private boolean gameWon;
+    private boolean gameWon = true;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        lockButton.setOpacity(0);
-
+        lockButton.setOpacity(1);
+        lockButton.setDisable(false);
         lockButton.setOnAction(actionEvent -> {
-            AddWavesAmplitudeViewer addWavesAmplitudeViewer = new AddWavesAmplitudeViewer(stage);
-            addWavesAmplitudeViewer.startAddWavesAmplitudeViewer(stage);
+            stageManager.setScene("/add-waves-amplitude.fxml");
+            stageManager.test();
+//            AddWavesAmplitudeViewer addWavesAmplitudeViewer = new AddWavesAmplitudeViewer(stage);
+//            addWavesAmplitudeViewer.startAddWavesAmplitudeViewer(stage);
         });
 
         solutionArray[0] = lock.getFirst();
@@ -137,8 +141,8 @@ public class AddWavesController implements Initializable {
         resultWave.getSeries().getNode().getStyleClass().add("result-series");
     }
 
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
+    @Override
+    public void setStageManager(StageManager stageManager) {
+        this.stageManager = stageManager;
     }
 }

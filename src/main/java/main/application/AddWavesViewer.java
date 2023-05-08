@@ -22,7 +22,7 @@ public class AddWavesViewer {
             FXMLLoader addWavesLoader = new FXMLLoader(AddWavesController.class.getResource("/add-waves.fxml"));
             root = addWavesLoader.load();
             AddWavesController addWavesController = addWavesLoader.getController();
-            addWavesController.setStage(stage);
+//            addWavesController.setStage(stage);
             scene = new Scene(root);
         } catch (IOException e) {
             throw new RuntimeException(e);

@@ -1,20 +1,18 @@
 package main.application;
 
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import main.controllers.AddWavesController;
-import main.controllers.PhaseShiftController;
 
 import java.io.IOException;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.Arrays;
+
 
 public class StageManager {
 
@@ -23,15 +21,20 @@ public class StageManager {
     private BorderPane root = new BorderPane();
     private Map<String, Parent> containers = new HashMap<>();
     private Map<String, Object> controllers = new HashMap<>();
+    private String[] paths;
+    private int screenIndex = 0;
+    private String activeScene = "";
 
     public StageManager(Stage stage, String... fxmlPaths) {
-        this.stage = stage;
-        scene = new Scene(root);
-        stage.setScene(scene);
+        // testing purposes
+        paths = Arrays.copyOf(fxmlPaths, fxmlPaths.length);
 
+        this.stage = stage;
         for (String fxmlPath : fxmlPaths) {
             try {
+                // Get the loader for the controller class associated with the given FXML path string
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+                // Create a new instance of the controller and set its stage manager
                 loader.setControllerFactory(param -> {
                     try {
                         Object controller = param.getDeclaredConstructor().newInstance();
@@ -45,16 +48,25 @@ public class StageManager {
                         throw new RuntimeException(e);
                     }
                 });
-                containers.put(fxmlPath, loader.load());
+                // Load the FXML file and add the root to the map
+                Parent parent = loader.load();
+                containers.put(fxmlPath, parent);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
+        // Add next and prev buttons
+        setupTempScene();
 
+        scene = new Scene(root);
+        stage.setScene(scene);
         stage.show();
     }
 
     public void setScene(String fxmlPath) {
+        // Temp variable for testing
+        activeScene = fxmlPath;
+
         Parent container = containers.get(fxmlPath);
         if (container == null) {
             try {
@@ -67,7 +79,38 @@ public class StageManager {
         root.setCenter(container);
     }
 
-    public void test() {
-        System.out.println(controllers.toString());
+    public void setupTempScene() {
+        // Temp scene
+        Button nextScreenButton = new Button("Next");
+        nextScreenButton.alignmentProperty().set(Pos.CENTER);
+        nextScreenButton.setOnAction(actionEvent -> {
+            // Find the index of the active scene
+            int activeIndex = -1;
+            for (int i = 0; i < paths.length; i++) {
+                if (paths[i].equals(activeScene)) {
+                    activeIndex = i;
+                }
+            }
+            // Change the scene to the parent associated with that scene and change active scene
+            if (activeIndex < paths.length - 1) {
+                activeScene = paths[activeIndex + 1];
+                root.setCenter(containers.get(activeScene));
+            }
+        });
+        Button prevScreenButton = new Button("Previous");
+        prevScreenButton.setOnAction(actionEvent -> {
+            int activeIndex = -1;
+            for (int i = 0; i < paths.length; i++) {
+                if (paths[i].equals(activeScene)) {
+                    activeIndex = i;
+                }
+            }
+            if (activeIndex > 0) {
+                activeScene = paths[activeIndex - 1];
+                root.setCenter(containers.get(activeScene));
+            }
+        });
+        root.setLeft(prevScreenButton);
+        root.setRight(nextScreenButton);
     }
 }

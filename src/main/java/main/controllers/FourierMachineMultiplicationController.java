@@ -1,6 +1,5 @@
 package main.controllers;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.*;
@@ -40,7 +39,7 @@ public class FourierMachineMultiplicationController implements Initializable, St
     private LineChart<Double, Double> testGraph;
 
     @FXML
-    private Slider frequencySlider;
+    private Slider xAxisSlider;
 
     @FXML
     private HBox lockContainer;
@@ -54,7 +53,7 @@ public class FourierMachineMultiplicationController implements Initializable, St
     private int[] suggestionArray = new int[4];
     private boolean gameWon;
     private StageManager stageManager;
-    private int leftOffset = 18;
+    private int leftOffset = 28;
     private int topOffset = 13;
 
     @Override
@@ -103,14 +102,21 @@ public class FourierMachineMultiplicationController implements Initializable, St
         ArrayList<Wave> inputWaves = new ArrayList<>(Arrays.asList(wave1, wave2, wave3, wave4));
         Wave inputWave = new Wave(Wave.sumWaves(inputWaves), inputGraph);
 
-        // Initial testwave
-        Wave testWave = new Wave(4, 1, testGraph);
+        // Testwave
+        Wave testWave = new Wave(5, 1, testGraph);
 
         // Resulting output wave
         Wave outputWave = new Wave(Wave.multiplyWaves(inputWave, testWave));
 
-        // Split the datapoints into 2 series, below and above zero.
         updateOutput(outputWave);
+
+        Circle problem1Input = new Circle(5, Color.YELLOWGREEN);
+        inputGraph.boundsInLocalProperty().addListener((observable, oldBounds, newBounds) -> updatePointPosition(inputGraph, inputWave, problem1Input, 0.5));
+        inputPane.getChildren().add(problem1Input);
+
+        Circle problem1Test = new Circle(5, Color.YELLOWGREEN);
+        testGraph.boundsInLocalProperty().addListener((observable, oldBounds, newBounds) -> updatePointPosition(testGraph, testWave, problem1Test, 0.5));
+        testPane.getChildren().add(problem1Test);
 
         Circle inputPoint = new Circle(5, Color.RED);
         inputGraph.boundsInLocalProperty().addListener((observable, oldBounds, newBounds) -> updatePointPosition(inputGraph, inputWave, inputPoint, 0));
@@ -124,12 +130,13 @@ public class FourierMachineMultiplicationController implements Initializable, St
         outputGraph.boundsInLocalProperty().addListener((observable, oldBounds, newBounds) -> updatePointPosition(outputGraph, outputWave, resultPoint, 0));
         outputPane.getChildren().add(resultPoint);
 
-        frequencySlider.valueProperty().addListener((observableValue, oldValue, newValue) -> {
+        xAxisSlider.valueProperty().addListener((observableValue, oldValue, newValue) -> {
             double x = newValue.doubleValue();
             updatePointPosition(inputGraph, inputWave, inputPoint, x);
             updatePointPosition(testGraph, testWave, testPoint, x);
             updatePointPosition(outputGraph, outputWave, resultPoint, x);
         });
+
     }
 
     private void updatePointPosition(LineChart<Double, Double> graph, Wave wave, Circle point, double x) {

@@ -11,7 +11,8 @@
 }
 
 .result-series {
-    -fx-stroke: #CC5500
+    -fx-stroke: #CC5500;
+    -fx-stroke-width: 5px;
 }
 
 .chart-vertical-zero-line {

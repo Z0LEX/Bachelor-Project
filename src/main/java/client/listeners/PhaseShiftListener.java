@@ -29,7 +29,7 @@ public class PhaseShiftListener implements Runnable {
                     for (XYChart.Series<Double, Double> series : change.getAddedSubList()) {
                         if (series == resultSeries) {
                             Node line = series.getNode().lookup(".chart-series-line");
-                            line.setStyle("-fx-stroke: #CC5500");
+                            line.setStyle("-fx-stroke: #CC5500; -fx-stroke-width: 5px");
                         }
                     }
 
@@ -44,7 +44,7 @@ public class PhaseShiftListener implements Runnable {
         }
     }
 
-    // Update the sum graph (top) with new values given from host
+    // Update the sum graph with new values given from host
     @Override
     public void run() {
         while (true) {

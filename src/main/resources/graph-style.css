@@ -111,3 +111,6 @@
     -fx-padding: 0 2.5 0 2.5;
     -fx-background-color: white;
 }
+.axis-label {
+    -fx-text-fill: white;
+}

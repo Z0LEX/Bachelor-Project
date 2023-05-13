@@ -46,6 +46,9 @@ public class FourierMachineController implements Initializable, StageAwareContro
     @FXML
     private Button lockButton;
 
+    @FXML
+    private BarChart barChart;
+
     private CombinationLock lock = new CombinationLock(1, 3, 5, 8);
 
     private XYChart.Series<Double, Double> aboveZeroSeries;
@@ -61,12 +64,53 @@ public class FourierMachineController implements Initializable, StageAwareContro
     public void initialize(URL url, ResourceBundle resourceBundle) {
         lockContainer.getChildren().add(lock.getRoot());
 
+
+
+
         lockButton.setOpacity(0);
 
         lockButton.setOnAction(actionEvent -> {
             stageManager.setScene("/phase-shift.fxml");
         });
 
+        final String f1 = "1";
+        final String f2 = "2";
+        final String f3 = "3";
+        final String f4 = "4";
+        final String f5 = "5";
+        final String f6 = "6";
+        final String f7 = "7";
+        final String f8 = "8";
+        final String f9 = "9";
+
+        XYChart.Series frequencies = new XYChart.Series();
+        frequencies.getData().add(new XYChart.Data(f1, 0));
+        frequencies.getData().add(new XYChart.Data(f2, 0));
+        frequencies.getData().add(new XYChart.Data(f3, 0));
+        frequencies.getData().add(new XYChart.Data(f4, 0));
+        frequencies.getData().add(new XYChart.Data(f5, 0));
+        frequencies.getData().add(new XYChart.Data(f6, 0));
+        frequencies.getData().add(new XYChart.Data(f7, 0));
+        frequencies.getData().add(new XYChart.Data(f8, 0));
+        frequencies.getData().add(new XYChart.Data(f9, 0));
+
+        barChart.getData().add(frequencies);
+
+        String.valueOf(lock.getFirst());
+
+        XYChart.Series solution1 = new XYChart.Series();
+        //solution1.getData().add(new XYChart.Data( String.valueOf(lock.getFirst()), 1));
+
+        XYChart.Series solution2 = new XYChart.Series();
+        //solution2.getData().add(new XYChart.Data(String.valueOf(lock.getSecond()), 1));
+
+        XYChart.Series solution3 = new XYChart.Series();
+        //solution3.getData().add(new XYChart.Data(String.valueOf(lock.getThird()), 1));
+
+        XYChart.Series solution4 = new XYChart.Series();
+        //solution4.getData().add(new XYChart.Data(String.valueOf(lock.getFourth()), 1));
+
+        barChart.getData().addAll(solution1, solution2, solution3, solution4);
 
         // Update solution array
         solutionArray[0] = lock.getFirst();
@@ -121,7 +165,58 @@ public class FourierMachineController implements Initializable, StageAwareContro
             updateTestWave(newFrequency, testWave);
             updateOutputWave(inputWave, testWave);
             updateTextFields();
+
+            System.out.println(newValue.intValue());
+
+            if (newValue.intValue() == lock.getFirst() && solution1.getData().isEmpty()) {
+                solution1.getData().add(new XYChart.Data(String.valueOf(lock.getFirst()), 1));
+            }
+            else {
+                if (!solution1.getData().isEmpty()) {
+                    barChart.getData().remove(solution1);
+                }
+            }
+/*
+            if (newValue.intValue() == lock.getFirst() && !barChart.getData().remove(solution1)) {
+                barChart.getData().add(solution1);
+            } else {
+                if (barChart.getData().contains(solution1)) {
+                    barChart.getData().remove(solution1);
+                }
+            }
+            if (newValue.intValue() == lock.getSecond() && !barChart.getData().contains(solution2)) {
+                barChart.getData().add(solution2);
+            } else {
+                if (barChart.getData().contains(solution2)) {
+                    barChart.getData().remove(solution2);
+                }
+            }
+            if (newValue.intValue() == lock.getThird() && !barChart.getData().contains(solution3)) {
+                barChart.getData().add(solution3);
+            } else {
+                if (barChart.getData().contains(solution3)) {
+                    barChart.getData().remove(solution3);
+                }
+            }
+            if (newValue.intValue() == lock.getFourth() && !barChart.getData().contains(solution4)) {
+                barChart.getData().add(solution4);
+            } else {
+                if (barChart.getData().contains(solution4)) {
+                    barChart.getData().remove(solution4);
+                }
+            }
+
+ */
+
+
+            barChart.setBarGap(0.01);
         });
+
+
+
+
+
+
     }
 
     private void checkSolution() {

@@ -2,6 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.AreaChart?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
@@ -115,8 +117,20 @@
          <children>
             <AnchorPane>
                <children>
-                  <Button fx:id="lockButton" disable="true" layoutX="1.0" layoutY="432.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="84.0" prefWidth="147.0" style="-fx-background-color: #353434;" text="Continue" />
+                  <Button fx:id="lockButton" disable="true" layoutX="14.0" layoutY="613.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="84.0" prefWidth="147.0" style="-fx-background-color: #353434;" text="Continue" />
                   <HBox fx:id="lockContainer" layoutX="-26.0" layoutY="332.0" prefHeight="100.0" prefWidth="200.0" />
+                  <AnchorPane layoutX="21.0" layoutY="287.0" prefWidth="328.0" styleClass="root" stylesheets="@graph-style.css">
+                     <children>
+                        <BarChart fx:id="barChart" layoutX="12.0" layoutY="113.0" legendVisible="false" prefHeight="155.0" prefWidth="316.0" style="-fx-bar-gap: 20;">
+                          <xAxis>
+                            <CategoryAxis label="Frequencies" side="BOTTOM" tickLabelFill="WHITE" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis autoRanging="false" side="LEFT" upperBound="1.0" />
+                          </yAxis>
+                        </BarChart>
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
          </children>

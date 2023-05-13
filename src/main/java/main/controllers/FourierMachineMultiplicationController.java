@@ -1,14 +1,19 @@
 package main.controllers;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
 import main.application.StageAwareController;
 import main.application.StageManager;
 import main.components.CombinationLock;
@@ -20,6 +25,9 @@ import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class FourierMachineMultiplicationController implements Initializable, StageAwareController {
+    public static final double result1 = 0.5;
+    public static final double result2 = 0.1666;
+    public static final double result3 = 0.9666;
     @FXML
     private AnchorPane inputPane;
 
@@ -42,10 +50,17 @@ public class FourierMachineMultiplicationController implements Initializable, St
     private Slider xAxisSlider;
 
     @FXML
-    private HBox lockContainer;
+    private Button lockButton;
 
     @FXML
-    private Button lockButton;
+    private Text outputText;
+    @FXML
+    private Text inputText;
+    @FXML
+    private Text testText;
+
+    @FXML
+    private TextField resultInput;
 
     private CombinationLock lock = new CombinationLock(1, 3, 5, 8);
 
@@ -53,13 +68,11 @@ public class FourierMachineMultiplicationController implements Initializable, St
     private int[] suggestionArray = new int[4];
     private boolean gameWon;
     private StageManager stageManager;
-    private int leftOffset = 28;
+    private int leftOffset = 48;
     private int topOffset = 13;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        lockContainer.getChildren().add(lock.getRoot());
-
         lockButton.setOpacity(0);
 
         lockButton.setOnAction(actionEvent -> {
@@ -110,33 +123,68 @@ public class FourierMachineMultiplicationController implements Initializable, St
 
         updateOutput(outputWave);
 
-        Circle problem1Input = new Circle(5, Color.YELLOWGREEN);
-        inputGraph.boundsInLocalProperty().addListener((observable, oldBounds, newBounds) -> updatePointPosition(inputGraph, inputWave, problem1Input, 0.5));
-        inputPane.getChildren().add(problem1Input);
+        addStaticPoint(outputWave, outputGraph, outputPane, result1);
+        addStaticPoint(outputWave, outputGraph, outputPane, result2);
+        addStaticPoint(outputWave, outputGraph, outputPane, result3);
 
-        Circle problem1Test = new Circle(5, Color.YELLOWGREEN);
-        testGraph.boundsInLocalProperty().addListener((observable, oldBounds, newBounds) -> updatePointPosition(testGraph, testWave, problem1Test, 0.5));
-        testPane.getChildren().add(problem1Test);
 
-        Circle inputPoint = new Circle(5, Color.RED);
-        inputGraph.boundsInLocalProperty().addListener((observable, oldBounds, newBounds) -> updatePointPosition(inputGraph, inputWave, inputPoint, 0));
+        Circle inputPoint = new Circle(5, Color.BLUE);
+        inputGraph.getYAxis().boundsInLocalProperty().addListener((observable, oldBounds, newBounds) -> {
+            Timeline timeline = new Timeline(new KeyFrame(Duration.millis(10), event -> updatePointPosition(inputGraph, inputWave, inputPoint, 0)));
+            timeline.play();
+
+            updateText(inputWave, inputText, 0);
+        });
         inputPane.getChildren().add(inputPoint);
 
-        Circle testPoint = new Circle(5, Color.RED);
-        testGraph.boundsInLocalProperty().addListener((observable, oldBounds, newBounds) -> updatePointPosition(testGraph, testWave, testPoint, 0));
+        Circle testPoint = new Circle(5, Color.YELLOW);
+        testGraph.boundsInLocalProperty().addListener((observable, oldBounds, newBounds) -> {
+            Timeline timeline = new Timeline(new KeyFrame(Duration.millis(10), event -> updatePointPosition(testGraph, testWave, testPoint, 0)));
+            timeline.play();
+        });
         testPane.getChildren().add(testPoint);
 
-        Circle resultPoint = new Circle(5, Color.RED);
-        outputGraph.boundsInLocalProperty().addListener((observable, oldBounds, newBounds) -> updatePointPosition(outputGraph, outputWave, resultPoint, 0));
-        outputPane.getChildren().add(resultPoint);
+        Circle outputPoint = new Circle(3, Color.GREEN);
+        outputGraph.boundsInLocalProperty().addListener((observable, oldBounds, newBounds) -> {
+            Timeline timeline = new Timeline(new KeyFrame(Duration.millis(10), event -> updatePointPosition(outputGraph, outputWave, outputPoint, 0)));
+            timeline.play();
+        });
+        outputPane.getChildren().add(outputPoint);
 
         xAxisSlider.valueProperty().addListener((observableValue, oldValue, newValue) -> {
             double x = newValue.doubleValue();
             updatePointPosition(inputGraph, inputWave, inputPoint, x);
             updatePointPosition(testGraph, testWave, testPoint, x);
-            updatePointPosition(outputGraph, outputWave, resultPoint, x);
+            updatePointPosition(outputGraph, outputWave, outputPoint, x);
+
+            updateText(inputWave, inputText, x);
+            updateText(testWave, testText, x);
+            updateText(outputWave, outputText, x);
         });
 
+        resultInput.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            
+        });
+
+        resultInput.setOnKeyPressed(e -> {
+            if (e.getCode().equals(KeyCode.ENTER)) {
+                resultInput.getParent().requestFocus();
+            }
+        });
+    }
+
+    private void addStaticPoint(Wave wave, LineChart<Double, Double> graph, AnchorPane pane, double x) {
+        Circle point = new Circle(5, Color.GREEN);
+        graph.boundsInLocalProperty().addListener((observable, oldBounds, newBounds) -> {
+            Timeline timeline = new Timeline(new KeyFrame(Duration.millis(10), event -> updatePointPosition(graph, wave, point, x)));
+            timeline.play();
+        });
+        pane.getChildren().add(point);
+    }
+
+    private void updateText(Wave wave, Text text, double x) {
+        Double result = wave.getFunction().apply(x);
+        text.setText(String.format("%.2f", result));
     }
 
     private void updatePointPosition(LineChart<Double, Double> graph, Wave wave, Circle point, double x) {
@@ -149,23 +197,6 @@ public class FourierMachineMultiplicationController implements Initializable, St
     }
 
     private void checkSolution() {
-        suggestionArray[0] = Integer.parseInt(lock.getController().getWheel1Number().getText());
-        suggestionArray[1] = Integer.parseInt(lock.getController().getWheel2Number().getText());
-        suggestionArray[2] = Integer.parseInt(lock.getController().getWheel3Number().getText());
-        suggestionArray[3] = Integer.parseInt(lock.getController().getWheel4Number().getText());
-        Arrays.sort(suggestionArray);
-        if (Arrays.equals(suggestionArray, solutionArray)) {
-            gameWon = true;
-        } else {
-            gameWon = false;
-        }
-        if (gameWon == true) {
-            lockButton.setDisable(false);
-            lockButton.setOpacity(1);
-        } else {
-            lockButton.setDisable(true);
-            lockButton.setOpacity(0);
-        }
     }
 
     private void updateOutputWave(Wave inputWave, Wave testWave) {

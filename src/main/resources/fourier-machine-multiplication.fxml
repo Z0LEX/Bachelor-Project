@@ -4,6 +4,7 @@
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
 <HBox alignment="TOP_CENTER" style="-fx-background-color: lightgray;" styleClass="root" stylesheets="@graph-style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.FourierMachineMultiplicationController">
@@ -13,14 +14,14 @@
               <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
           </padding>
          <children>
-            <AnchorPane fx:id="inputPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0" styleClass="root" stylesheets="@graph-style.css">
+            <AnchorPane fx:id="inputPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="root" stylesheets="@graph-style.css">
                <children>
-                  <LineChart fx:id="inputGraph" createSymbols="false" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0">
+                  <LineChart fx:id="inputGraph" createSymbols="false" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="600.0">
                      <xAxis>
-                        <NumberAxis autoRanging="false" minorTickCount="10" minorTickLength="1.0" minorTickVisible="false" side="BOTTOM" tickLabelGap="1.0" tickLength="1.0" tickUnit="0.1" upperBound="1.0" visible="false" />
+                        <NumberAxis autoRanging="false" label="Time" minorTickCount="10" minorTickLength="1.0" minorTickVisible="false" prefWidth="232.0" side="BOTTOM" tickLabelFill="WHITE" tickLabelGap="1.0" tickLength="1.0" tickUnit="0.1" upperBound="1.0" visible="false" />
                      </xAxis>
                      <yAxis>
-                        <NumberAxis autoRanging="false" forceZeroInRange="false" lowerBound="-5.0" minorTickVisible="false" side="LEFT" tickMarkVisible="false" tickUnit="1" upperBound="5.0" visible="false" />
+                        <NumberAxis autoRanging="false" forceZeroInRange="false" label="Amplitude" lowerBound="-3.0" minorTickVisible="false" side="LEFT" tickLabelFill="WHITE" tickMarkVisible="false" tickUnit="1" upperBound="5.0" visible="false" />
                      </yAxis>
                   </LineChart>
                </children>
@@ -33,14 +34,14 @@
                   <Font size="30.0" />
                </font>
             </Text>
-            <AnchorPane fx:id="testPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0" styleClass="root" stylesheets="@graph-style.css">
+            <AnchorPane fx:id="testPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="root" stylesheets="@graph-style.css">
                <children>
-                  <LineChart fx:id="testGraph" animated="false" createSymbols="false" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0">
+                  <LineChart fx:id="testGraph" animated="false" createSymbols="false" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="600.0">
                      <xAxis>
-                        <NumberAxis autoRanging="false" minorTickCount="10" minorTickLength="1.0" minorTickVisible="false" side="BOTTOM" tickLabelGap="1.0" tickLength="1.0" tickUnit="0.1" upperBound="1.0" visible="false" />
+                        <NumberAxis autoRanging="false" label="Time" minorTickCount="10" minorTickLength="1.0" minorTickVisible="false" side="BOTTOM" tickLabelGap="1.0" tickLength="1.0" tickUnit="0.1" upperBound="1.0" visible="false" />
                      </xAxis>
                      <yAxis>
-                        <NumberAxis autoRanging="false" forceZeroInRange="false" lowerBound="-2.0" minorTickVisible="false" side="LEFT" tickUnit="1" upperBound="2.0" visible="false" />
+                        <NumberAxis autoRanging="false" forceZeroInRange="false" label="Amplitude" lowerBound="-2.0" minorTickVisible="false" side="LEFT" tickUnit="1" upperBound="2.0" visible="false" />
                      </yAxis>
                   </LineChart>
                </children>
@@ -53,30 +54,66 @@
                   <Insets bottom="-30.0" top="-30.0" />
                </VBox.margin>
             </Text>
-            <AnchorPane fx:id="outputPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0" styleClass="root" stylesheets="@graph-style.css">
+            <AnchorPane fx:id="outputPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="root" stylesheets="@graph-style.css">
                <children>
-                  <LineChart fx:id="outputGraph" animated="false" createSymbols="false" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0">
+                  <LineChart fx:id="outputGraph" animated="false" createSymbols="false" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="600.0">
                       <xAxis>
-                          <NumberAxis autoRanging="false" minorTickCount="10" minorTickLength="1.0" minorTickVisible="false" side="BOTTOM" tickLabelGap="1.0" tickLength="1.0" tickUnit="0.1" upperBound="1.0" visible="false" />
+                          <NumberAxis autoRanging="false" label="Time" minorTickCount="10" minorTickLength="1.0" minorTickVisible="false" side="BOTTOM" tickLabelGap="1.0" tickLength="1.0" tickUnit="0.1" upperBound="1.0" visible="false" />
                       </xAxis>
                       <yAxis>
-                          <NumberAxis autoRanging="false" forceZeroInRange="false" lowerBound="-5.0" minorTickVisible="false" side="LEFT" tickMarkVisible="false" tickUnit="1" upperBound="5.0" visible="false" />
+                          <NumberAxis autoRanging="false" forceZeroInRange="false" label="Amplitude" lowerBound="-2.0" minorTickVisible="false" side="LEFT" tickMarkVisible="false" tickUnit="1" upperBound="5.0" visible="false" />
                       </yAxis>
                   </LineChart>
                </children>
             </AnchorPane>
-            <Slider fx:id="xAxisSlider" blockIncrement="0.1" majorTickUnit="0.1" max="1.0" minorTickCount="5" showTickLabels="true" showTickMarks="true" snapToTicks="true" stylesheets="@slider-style.css" />
+            <Slider blockIncrement="0.1" majorTickUnit="0.1" max="1.0" minorTickCount="5" showTickLabels="true" showTickMarks="true" snapToTicks="true" stylesheets="@slider-style.css" fx:id="xAxisSlider" />
          </children>
       </VBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <VBox>
          <children>
-            <AnchorPane>
+            <AnchorPane prefHeight="679.0" prefWidth="174.0">
                <children>
-                  <Button fx:id="lockButton" disable="true" layoutX="1.0" layoutY="432.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="84.0" prefWidth="147.0" style="-fx-background-color: #353434;" text="Continue" />
-                  <HBox fx:id="lockContainer" layoutX="-26.0" layoutY="332.0" prefHeight="100.0" prefWidth="200.0" />
+                  <Pane prefHeight="59.0" prefWidth="200.0">
+                     <children>
+                        <Circle fill="BLUE" layoutX="19.0" layoutY="30.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                        <Text layoutX="47.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Text>
+                        <Circle fill="YELLOW" layoutX="90.0" layoutY="30.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                        <Text layoutX="115.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="=">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Text>
+                        <Circle fill="GREEN" layoutX="170.0" layoutY="30.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                     </children>
+                  </Pane>
+                  <Button fx:id="lockButton" disable="true" layoutX="14.0" layoutY="565.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="84.0" prefWidth="147.0" style="-fx-background-color: #353434;" text="Continue" />
+                  <Text fx:id="inputText" fill="BLUE" layoutX="73.0" layoutY="104.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                     <font>
+                        <Font size="29.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="testText" fill="YELLOW" layoutX="73.0" layoutY="280.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                     <font>
+                        <Font size="29.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="outputText" layoutX="73.0" layoutY="383.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                     <font>
+                        <Font size="29.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="resultInput" alignment="CENTER" layoutX="10.0" layoutY="415.0" prefHeight="109.0" prefWidth="181.0" promptText="_ , _ _">
+                     <font>
+                        <Font size="52.0" />
+                     </font>
+                  </TextField>
                </children>
             </AnchorPane>
          </children>
-      </HBox>
+      </VBox>
    </children>
 </HBox>

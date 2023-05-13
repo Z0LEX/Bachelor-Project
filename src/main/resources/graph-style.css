@@ -53,13 +53,15 @@
 }
 
 .chart .axis {
-    -fx-stroke: white;
-    -fx-fill: white;
-    -fx-font-size: 1.4em;
+    -fx-font-size: 1em;
     -fx-tick-label-fill: white;
     -fx-font-family: Tahoma;
     -fx-tick-length: 0;
     -fx-minor-tick-length: 0;
+}
+
+.chart .axis-label {
+    -fx-text-fill: white;
 }
 
 .background {

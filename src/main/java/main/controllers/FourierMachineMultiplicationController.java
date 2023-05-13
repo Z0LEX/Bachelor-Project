@@ -7,9 +7,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.chart.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
@@ -17,6 +16,7 @@ import javafx.util.Duration;
 import main.application.StageAwareController;
 import main.application.StageManager;
 import main.components.CombinationLock;
+import main.components.MultiplicationInput;
 import main.components.Wave;
 
 import java.net.URL;
@@ -28,6 +28,7 @@ public class FourierMachineMultiplicationController implements Initializable, St
     public static final double result1 = 0.5;
     public static final double result2 = 0.1666;
     public static final double result3 = 0.9666;
+    public static final Color resultColor = Color.rgb(204, 85, 0);
     @FXML
     private AnchorPane inputPane;
 
@@ -60,9 +61,10 @@ public class FourierMachineMultiplicationController implements Initializable, St
     private Text testText;
 
     @FXML
-    private TextField resultInput;
+    private HBox inputContainer;
 
     private CombinationLock lock = new CombinationLock(1, 3, 5, 8);
+    private MultiplicationInput multiplcationInput = new MultiplicationInput();
 
     private int[] solutionArray = new int[4];
     private int[] suggestionArray = new int[4];
@@ -73,6 +75,8 @@ public class FourierMachineMultiplicationController implements Initializable, St
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        inputContainer.getChildren().add(multiplcationInput.getRoot());
+
         lockButton.setOpacity(0);
 
         lockButton.setOnAction(actionEvent -> {
@@ -137,14 +141,14 @@ public class FourierMachineMultiplicationController implements Initializable, St
         });
         inputPane.getChildren().add(inputPoint);
 
-        Circle testPoint = new Circle(5, Color.YELLOW);
+        Circle testPoint = new Circle(5, Color.RED);
         testGraph.boundsInLocalProperty().addListener((observable, oldBounds, newBounds) -> {
             Timeline timeline = new Timeline(new KeyFrame(Duration.millis(10), event -> updatePointPosition(testGraph, testWave, testPoint, 0)));
             timeline.play();
         });
         testPane.getChildren().add(testPoint);
 
-        Circle outputPoint = new Circle(3, Color.GREEN);
+        Circle outputPoint = new Circle(3, resultColor);
         outputGraph.boundsInLocalProperty().addListener((observable, oldBounds, newBounds) -> {
             Timeline timeline = new Timeline(new KeyFrame(Duration.millis(10), event -> updatePointPosition(outputGraph, outputWave, outputPoint, 0)));
             timeline.play();
@@ -161,20 +165,10 @@ public class FourierMachineMultiplicationController implements Initializable, St
             updateText(testWave, testText, x);
             updateText(outputWave, outputText, x);
         });
-
-        resultInput.textProperty().addListener((observableValue, oldValue, newValue) -> {
-            
-        });
-
-        resultInput.setOnKeyPressed(e -> {
-            if (e.getCode().equals(KeyCode.ENTER)) {
-                resultInput.getParent().requestFocus();
-            }
-        });
     }
 
     private void addStaticPoint(Wave wave, LineChart<Double, Double> graph, AnchorPane pane, double x) {
-        Circle point = new Circle(5, Color.GREEN);
+        Circle point = new Circle(5, resultColor);
         graph.boundsInLocalProperty().addListener((observable, oldBounds, newBounds) -> {
             Timeline timeline = new Timeline(new KeyFrame(Duration.millis(10), event -> updatePointPosition(graph, wave, point, x)));
             timeline.play();

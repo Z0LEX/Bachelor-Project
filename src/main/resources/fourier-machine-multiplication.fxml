@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.LineChart?>
-<?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Slider?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<HBox alignment="TOP_CENTER" style="-fx-background-color: lightgray;" styleClass="root" stylesheets="@graph-style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.FourierMachineMultiplicationController">
+<HBox alignment="TOP_CENTER" style="-fx-background-color: lightgray;" styleClass="root" stylesheets="@graph-style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.FourierMachineMultiplicationController">
    <children>
       <VBox alignment="CENTER" spacing="30.0">
           <padding>
@@ -96,27 +90,17 @@
                         <Circle fill="#cc5500" layoutX="170.0" layoutY="30.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
                      </children>
                   </Pane>
-                  <Button fx:id="lockButton" disable="true" layoutX="14.0" layoutY="565.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="84.0" prefWidth="147.0" style="-fx-background-color: #353434;" text="Continue" />
-                  <Text fx:id="inputText" fill="BLUE" layoutX="73.0" layoutY="104.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-                     <font>
-                        <Font size="29.0" />
-                     </font>
-                  </Text>
-                  <Pane layoutX="73.0" layoutY="248.7060546875">
-                     <children>
-                        <Text fx:id="testText" fill="RED" layoutY="30.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-                           <font>
-                              <Font size="29.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </Pane>
-                  <Text fx:id="outputText" layoutX="73.0" layoutY="383.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                  <Text fx:id="outputText" layoutX="74.0" layoutY="403.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                      <font>
                         <Font size="29.0" />
                      </font>
                   </Text>
                   <HBox fx:id="inputContainer" alignment="CENTER" layoutY="432.0" prefHeight="100.0" prefWidth="200.0" />
+                  <Button fx:id="checkButton" layoutX="26.0" layoutY="532.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: #353434;" text="Check answer" />
+                  <Button fx:id="lockButton" disable="true" layoutX="26.0" layoutY="532.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.0" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: #353434;" text="Continue">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Button>
                </children>
             </AnchorPane>
          </children>

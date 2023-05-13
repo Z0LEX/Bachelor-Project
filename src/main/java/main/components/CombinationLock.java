@@ -21,8 +21,6 @@ public class CombinationLock {
         this.third = third;
         this.forth = fourth;
 
-
-
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/combination-lock.fxml"));
             root = fxmlLoader.load();

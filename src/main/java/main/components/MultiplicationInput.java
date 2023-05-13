@@ -18,9 +18,26 @@ public class MultiplicationInput {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
     }
 
     public HBox getRoot() {
         return root;
+    }
+
+    public String getSign() {
+        return controller.getSign().getText();
+    }
+
+    public String getInteger() {
+        return controller.getIntegerNumber().getText();
+    }
+
+    public String getTenths() {
+        return controller.getTenthDecimal().getText();
+    }
+
+    public String getHundreths() {
+        return controller.getHundredthsDecimal().getText();
     }
 }

@@ -7,16 +7,16 @@ import javafx.scene.control.Label;
 public class MultiplicationInputController {
 
     @FXML
-    private Label wheel1Number;
+    private Label sign;
 
     @FXML
-    private Label wheel2Number;
+    private Label integerNumber;
 
     @FXML
-    private Label wheel3Number;
+    private Label tenthDecimal;
 
     @FXML
-    private Label wheel4Number;
+    private Label hundredthsDecimal;
 
     @FXML
     void wheel1Down(ActionEvent event) {
@@ -25,17 +25,17 @@ public class MultiplicationInputController {
 
     @FXML
     void wheel2Down(ActionEvent event) {
-        decrementNumber(wheel2Number);
+        decrementNumber(integerNumber);
     }
 
     @FXML
     void wheel3Down(ActionEvent event) {
-        decrementNumber(wheel3Number);
+        decrementNumber(tenthDecimal);
     }
 
     @FXML
     void wheel4Down(ActionEvent event) {
-        decrementNumber(wheel4Number);
+        decrementNumber(hundredthsDecimal);
     }
 
     @FXML
@@ -45,17 +45,17 @@ public class MultiplicationInputController {
 
     @FXML
     void wheel2Up(ActionEvent event) {
-        incrementNumber(wheel2Number);
+        incrementNumber(integerNumber);
     }
 
     @FXML
     void wheel3Up(ActionEvent event) {
-        incrementNumber(wheel3Number);
+        incrementNumber(tenthDecimal);
     }
 
     @FXML
     void wheel4Up(ActionEvent event) {
-        incrementNumber(wheel4Number);
+        incrementNumber(hundredthsDecimal);
     }
 
     private void incrementNumber(Label numberLabel) {
@@ -80,26 +80,26 @@ public class MultiplicationInputController {
     }
 
     private void toggleSign() {
-        if (wheel1Number.getText().equals("+")) {
-            wheel1Number.setText("-");
+        if (sign.getText().equals("+")) {
+            sign.setText("-");
         } else {
-            wheel1Number.setText("+");
+            sign.setText("+");
         }
     }
 
-    public Label getWheel1Number() {
-        return wheel1Number;
+    public Label getSign() {
+        return sign;
     }
 
-    public Label getWheel2Number() {
-        return wheel2Number;
+    public Label getIntegerNumber() {
+        return integerNumber;
     }
 
-    public Label getWheel3Number() {
-        return wheel3Number;
+    public Label getTenthDecimal() {
+        return tenthDecimal;
     }
 
-    public Label getWheel4Number() {
-        return wheel4Number;
+    public Label getHundredthsDecimal() {
+        return hundredthsDecimal;
     }
 }

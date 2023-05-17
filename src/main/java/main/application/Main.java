@@ -29,7 +29,7 @@ public class Main extends Application {
 //        stage.setFullScreen(true);
 
         // Initialize StageManager with all FXML paths
-        stageManager = new StageManager(stage, "/add-waves.fxml", "/add-waves-amplitude.fxml", "/fourier-machine.fxml", "/phase-shift.fxml", "/draw-graph.fxml");
+        stageManager = new StageManager(stage, "/add-waves.fxml", "/add-waves-amplitude.fxml", "/fourier-machine-multiplication.fxml", "/fourier-machine.fxml", "/phase-shift.fxml", "/draw-graph.fxml");
         stageManager.setScene("/add-waves.fxml");
 
         Server server = new Server();

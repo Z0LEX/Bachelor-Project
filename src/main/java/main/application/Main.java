@@ -3,7 +3,6 @@ package main.application;
 import client.application.ClientApplication;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import main.datatypes.Print;
 
 import java.util.ArrayList;
 
@@ -33,7 +32,6 @@ public class Main extends Application {
         stageManager = new StageManager(stage, "/add-waves.fxml", "/add-waves-amplitude.fxml", "/fourier-machine-multiplication.fxml", "/fourier-machine.fxml", "/phase-shift.fxml", "/win.fxml");
         stageManager.setScene("/add-waves.fxml");
 
-        new Print("You've solved the problem\nThe code is: 4685");
         Server server = new Server();
         ArrayList<Stage> stages = new ArrayList<>();
         clientStage = new Stage();

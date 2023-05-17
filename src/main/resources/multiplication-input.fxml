@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<HBox alignment="TOP_CENTER" style="-fx-background-color: lightgray;" styleClass="root" stylesheets="@graph-style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.MultiplicationInputController">
+   <children>
+      <VBox alignment="CENTER">
+         <children>
+            <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#wheel1Up" text="↑" textAlignment="CENTER" />
+            <Label fx:id="sign" alignment="TOP_LEFT" graphicTextGap="0.0" prefHeight="7.0" prefWidth="12.0" text="+" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font></Label>
+            <Button mnemonicParsing="false" onAction="#wheel1Down" text="↓" />
+         </children>
+      </VBox>
+      <VBox alignment="CENTER">
+         <children>
+            <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#wheel2Up" text="↑" textAlignment="CENTER" />
+            <Label fx:id="integerNumber" text="0" textAlignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <Button mnemonicParsing="false" onAction="#wheel2Down" text="↓" />
+         </children>
+      </VBox>
+      <AnchorPane>
+         <children>
+            <Text layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="," textAlignment="CENTER">
+               <font>
+                  <Font size="34.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <VBox alignment="CENTER">
+         <children>
+            <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#wheel3Up" text="↑" textAlignment="CENTER" />
+            <Label fx:id="tenthDecimal" text="0" textAlignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <Button mnemonicParsing="false" onAction="#wheel3Down" text="↓" />
+         </children>
+      </VBox>
+      <VBox alignment="CENTER">
+         <children>
+            <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#wheel4Up" text="↑" textAlignment="CENTER" />
+            <Label fx:id="hundredthsDecimal" text="0" textAlignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <Button mnemonicParsing="false" onAction="#wheel4Down" text="↓" />
+         </children>
+      </VBox>
+   </children>
+</HBox>

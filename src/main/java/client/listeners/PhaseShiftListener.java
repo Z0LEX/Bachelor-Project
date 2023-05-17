@@ -1,5 +1,6 @@
 package client.listeners;
 
+import client.controllers.PhaseShiftClientController;
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.scene.Node;
@@ -10,12 +11,14 @@ import org.jspace.FormalField;
 import org.jspace.Space;
 
 public class PhaseShiftListener implements Runnable {
+    private PhaseShiftClientController controller;
 
     private LineChart<Double, Double> lineGraphs;
     private Space space;
 
-    public PhaseShiftListener(LineChart<Double, Double> lineGraphs, Space space) {
-        this.lineGraphs = lineGraphs;
+    public PhaseShiftListener(PhaseShiftClientController controller, Space space) {
+        this.controller = controller;
+        this.lineGraphs = controller.lineGraphs;
         this.space = space;
 
         // Initialize the result chart given from host
@@ -49,6 +52,9 @@ public class PhaseShiftListener implements Runnable {
     public void run() {
         while (true) {
             try {
+                Object[] show = space.get(new ActualField("Show"));
+                controller.graphContainer.setVisible(true);
+                controller.root.setStyle("-fx-background-color: lightgray");
                 Object[] phaseData = space.get(new ActualField("Phase shift"), new FormalField(double[][].class));
                 double[][] data = (double[][]) phaseData[1];
                 XYChart.Series<Double, Double> series = arrayToSeries(data);

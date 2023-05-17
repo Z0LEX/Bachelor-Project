@@ -39,9 +39,10 @@ public class ClientApplication extends Application {
     @Override
     public void start(Stage stage) {
         stage.setTitle("Client title");
-        stage.setResizable(false);
+//        stage.setResizable(false);
         stage.setWidth(WINDOW_WIDTH);
         stage.setHeight(WINDOW_HEIGHT);
+
         // Only place client application on 2nd monitor if there's more than 1 screen
         ObservableList<Screen> screens = Screen.getScreens();
         if (screens.size() > 1) {
@@ -49,7 +50,7 @@ public class ClientApplication extends Application {
             stage.setX(bounds.getMinX());
             stage.setY(bounds.getMinY());
         }
-//        stage.setFullScreen(true);
+        stage.setMaximized(true);
         stage.centerOnScreen();
 
 
@@ -65,8 +66,12 @@ public class ClientApplication extends Application {
         ArrayList<Parent> parents = new ArrayList<>();
         parents.add(phaseShiftRoot);
 
-        BorderPane tempScene = setupTempScene(parents);
-        stage.setScene(new Scene(tempScene));
+//        BorderPane tempScene = setupTempScene(parents);
+//        stage.setScene(new Scene(tempScene));
+
+        BorderPane pane = new BorderPane();
+        pane.setCenter(phaseShiftRoot);
+        stage.setScene(new Scene(pane));
         stage.show();
     }
 

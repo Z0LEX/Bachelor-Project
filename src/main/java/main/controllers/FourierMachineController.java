@@ -34,15 +34,6 @@ public class FourierMachineController implements Initializable, StageAwareContro
     private StackedBarChart<String, Number> frequencyBarChart;
 
     @FXML
-    private Text purpleText;
-
-    @FXML
-    private Text redText;
-
-    @FXML
-    private Text blueText;
-
-    @FXML
     private Slider frequencySlider;
 
     @FXML
@@ -150,13 +141,12 @@ public class FourierMachineController implements Initializable, StageAwareContro
         belowZeroSeries = new XYChart.Series<>();
         updateOutput(outputWave);
 
-        updateTextFields();
+
 
         frequencySlider.valueProperty().addListener((observableValue, oldValue, newValue) -> {
             double newFrequency = newValue.doubleValue();
             updateTestWave(newFrequency, testWave);
             updateOutputWave(inputWave, testWave);
-            updateTextFields();
         });
     }
 
@@ -180,17 +170,6 @@ public class FourierMachineController implements Initializable, StageAwareContro
         }
     }
 
-    private void updateTextFields() {
-        double aboveSum = getSeriesSum(aboveZeroSeries);
-        blueText.setText(String.format("%.1f", aboveSum));
-        double belowSum = getSeriesSum(belowZeroSeries);
-        redText.setText(String.format("(%.1f)", belowSum));
-        double result = aboveSum + belowSum;
-        if (Math.abs(result) < 0.001) {
-            result = 0;
-        }
-        purpleText.setText(String.format("%.1f", result));
-    }
 
     private void updateOutputWave(Wave inputWave, Wave testWave) {
         Wave outputWave = new Wave(Wave.multiplyWaves(inputWave, testWave));

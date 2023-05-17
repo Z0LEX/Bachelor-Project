@@ -6,13 +6,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.chart.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import main.application.StageAwareController;
 import main.application.StageManager;
 import main.components.CombinationLock;
 import main.components.Wave;
-import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -92,7 +90,7 @@ public class FourierMachineController implements Initializable, StageAwareContro
 
         lock.getController().getWheel1Number().textProperty().addListener((observableValue, s, newValue) -> {
             series1.getData().clear();
-            series1.getData().add(new XYChart.Data(newValue.toString(), 1));
+            series1.getData().add(new XYChart.Data(newValue, 1));
 
             suggestionArray[0] = Integer.parseInt(newValue);
             checkSolution();
@@ -100,7 +98,7 @@ public class FourierMachineController implements Initializable, StageAwareContro
 
         lock.getController().getWheel2Number().textProperty().addListener((observableValue, s, newValue) -> {
             series2.getData().clear();
-            series2.getData().add(new XYChart.Data(newValue.toString(), 1));
+            series2.getData().add(new XYChart.Data(newValue, 1));
 
             suggestionArray[1] = Integer.parseInt(newValue);
             checkSolution();
@@ -108,7 +106,7 @@ public class FourierMachineController implements Initializable, StageAwareContro
 
         lock.getController().getWheel3Number().textProperty().addListener((observableValue, s, newValue) -> {
             series3.getData().clear();
-            series3.getData().add(new XYChart.Data(newValue.toString(), 1));
+            series3.getData().add(new XYChart.Data(newValue, 1));
 
             suggestionArray[2] = Integer.parseInt(newValue);
             checkSolution();
@@ -116,7 +114,7 @@ public class FourierMachineController implements Initializable, StageAwareContro
 
         lock.getController().getWheel4Number().textProperty().addListener((observableValue, s, newValue) -> {
             series4.getData().clear();
-            series4.getData().add(new XYChart.Data(newValue.toString(), 1));
+            series4.getData().add(new XYChart.Data(newValue, 1));
 
             suggestionArray[3] = Integer.parseInt(newValue);
             checkSolution();
@@ -140,8 +138,6 @@ public class FourierMachineController implements Initializable, StageAwareContro
         aboveZeroSeries = new XYChart.Series<>();
         belowZeroSeries = new XYChart.Series<>();
         updateOutput(outputWave);
-
-
 
         frequencySlider.valueProperty().addListener((observableValue, oldValue, newValue) -> {
             double newFrequency = newValue.doubleValue();

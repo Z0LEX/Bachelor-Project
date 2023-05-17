@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="CENTER" spacing="50.0" style="-fx-background-color: lightgray;" styleClass="root" stylesheets="@graph-style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.WinController">
+   <padding>
+      <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+   </padding>
+   <children>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="wow nice job you won " />
+   </children>
+</VBox>

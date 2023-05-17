@@ -158,7 +158,7 @@ public class PhaseShiftController implements Initializable, StageAwareController
                 //Yay we wonnered
                 System.out.println("Wonnered!");
                 new Print("You've solved the problem\nThe code is: 4685");
-                stageManager.setScene("/draw-graph.fxml");
+                stageManager.setScene("/win.fxml");
             }
         }
     }

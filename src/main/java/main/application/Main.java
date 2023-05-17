@@ -25,15 +25,14 @@ public class Main extends Application {
         // Set stage dimensions to a fixed size if necessary
         stage.setWidth(WINDOW_WIDTH);
         stage.setHeight(WINDOW_HEIGHT);
+        stage.setMaximized(true);
         stage.centerOnScreen();
-//        stage.setFullScreen(true);
 
         // Initialize StageManager with all FXML paths
-        stageManager = new StageManager(stage, "/add-waves.fxml", "/add-waves-amplitude.fxml", "/fourier-machine-multiplication.fxml", "/fourier-machine.fxml", "/phase-shift.fxml", "/draw-graph.fxml");
+        stageManager = new StageManager(stage, "/add-waves.fxml", "/add-waves-amplitude.fxml", "/fourier-machine-multiplication.fxml", "/fourier-machine.fxml", "/phase-shift.fxml", "/win.fxml");
         stageManager.setScene("/add-waves.fxml");
 
         Server server = new Server();
-
         ArrayList<Stage> stages = new ArrayList<>();
         clientStage = new Stage();
         stages.add(stage);

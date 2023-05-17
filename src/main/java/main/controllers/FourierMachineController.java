@@ -1,10 +1,12 @@
 package main.controllers;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import main.application.StageAwareController;
 import main.application.StageManager;
@@ -27,6 +29,9 @@ public class FourierMachineController implements Initializable, StageAwareContro
 
     @FXML
     private LineChart<Double, Double> testGraph;
+
+    @FXML
+    private StackedBarChart<String, Number> frequencyBarChart;
 
     @FXML
     private Text purpleText;
@@ -59,6 +64,25 @@ public class FourierMachineController implements Initializable, StageAwareContro
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        XYChart.Series series1 = new XYChart.Series();
+        series1.getData().add(new XYChart.Data("0", 1));
+
+        XYChart.Series series2 = new XYChart.Series();
+        series2.getData().add(new XYChart.Data("0", 1));
+
+        XYChart.Series series3 = new XYChart.Series();
+        series3.getData().add(new XYChart.Data("0", 1));
+
+        XYChart.Series series4 = new XYChart.Series();
+        series4.getData().add(new XYChart.Data("0", 1));
+
+        CategoryAxis xAxis = (CategoryAxis) frequencyBarChart.getXAxis();
+        xAxis.setCategories(FXCollections.observableArrayList(
+                "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"
+        ));
+
+        frequencyBarChart.getData().addAll(series1, series2, series3, series4);
+
         lockContainer.getChildren().add(lock.getRoot());
 
         lockButton.setOpacity(0);
@@ -76,21 +100,33 @@ public class FourierMachineController implements Initializable, StageAwareContro
 
 
         lock.getController().getWheel1Number().textProperty().addListener((observableValue, s, newValue) -> {
+            series1.getData().clear();
+            series1.getData().add(new XYChart.Data(newValue.toString(), 1));
+
             suggestionArray[0] = Integer.parseInt(newValue);
             checkSolution();
         });
 
         lock.getController().getWheel2Number().textProperty().addListener((observableValue, s, newValue) -> {
+            series2.getData().clear();
+            series2.getData().add(new XYChart.Data(newValue.toString(), 1));
+
             suggestionArray[1] = Integer.parseInt(newValue);
             checkSolution();
         });
 
         lock.getController().getWheel3Number().textProperty().addListener((observableValue, s, newValue) -> {
+            series3.getData().clear();
+            series3.getData().add(new XYChart.Data(newValue.toString(), 1));
+
             suggestionArray[2] = Integer.parseInt(newValue);
             checkSolution();
         });
 
         lock.getController().getWheel4Number().textProperty().addListener((observableValue, s, newValue) -> {
+            series4.getData().clear();
+            series4.getData().add(new XYChart.Data(newValue.toString(), 1));
+
             suggestionArray[3] = Integer.parseInt(newValue);
             checkSolution();
         });

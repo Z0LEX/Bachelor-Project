@@ -74,16 +74,47 @@ class PrintText implements Printable {
         // Split the receipt text into lines
         String[] lines = printText.split("\n");
         // Set the font and line spacing
-        Font font = new Font("Monospaced", Font.PLAIN, 16);
+        Font font = new Font("Monospaced", Font.PLAIN, 10); // Adjust the font size as needed
         g2d.setFont(font);
-        int lineHeight = g2d.getFontMetrics().getHeight() + 2;
+        int lineHeight = g2d.getFontMetrics().getHeight();
 
-        // Print each line of the receipt
-        int y = 10;
+        // Calculate the available width and height for printing
+        int printableWidth = (int) pageFormat.getImageableWidth();
+        int printableHeight = (int) pageFormat.getImageableHeight();
+
+        // Print each line of the receipt, adjusting for text wrapping
+        int y = lineHeight; // Start printing from the second line
         for (String line : lines) {
-            g2d.drawString(line, 10, y);
-            y += lineHeight;
+            int textWidth = g2d.getFontMetrics().stringWidth(line);
+            if (textWidth <= printableWidth) {
+                // The line fits within the printable area
+                g2d.drawString(line, 0, y);
+                y += lineHeight;
+            } else {
+                // The line needs to be wrapped
+                int startIndex = 0;
+                int endIndex = line.length();
+                while (startIndex < endIndex) {
+                    String subLine = line.substring(startIndex, endIndex);
+                    int subLineWidth = g2d.getFontMetrics().stringWidth(subLine);
+                    if (subLineWidth <= printableWidth) {
+                        // The wrapped sub-line fits within the printable area
+                        g2d.drawString(subLine, 0, y);
+                        y += lineHeight;
+                        startIndex = endIndex;
+                    } else {
+                        // Adjust the endIndex to wrap the text
+                        endIndex--;
+                    }
+                }
+            }
+
+            // Check if the next line will exceed the printable height
+            if (y + lineHeight > printableHeight) {
+                break; // Stop printing if the height limit is reached
+            }
         }
+
         // Return that this page is part of the printed document
         return Printable.PAGE_EXISTS;
     }

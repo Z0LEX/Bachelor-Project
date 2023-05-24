@@ -1,5 +1,6 @@
 package client.listeners;
 
+import client.application.ClientStageManager;
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.scene.Node;
@@ -32,7 +33,6 @@ public class PhaseShiftListener implements Runnable {
                             line.setStyle("-fx-stroke: #CC5500; -fx-stroke-width: 5px");
                         }
                     }
-
                 }
             });
             Platform.runLater(() -> {

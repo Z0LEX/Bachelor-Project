@@ -93,7 +93,7 @@
                               <Font size="36.0" />
                            </font>
                         </Text>
-                        <Circle fill="#cc5500" layoutX="170.0" layoutY="30.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                         <Circle fill="#cc5500" layoutX="170.0" layoutY="30.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
                      </children>
                   </Pane>
                   <HBox fx:id="inputContainer" alignment="CENTER" layoutY="432.0" prefHeight="100.0" prefWidth="200.0" />

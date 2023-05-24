@@ -57,7 +57,7 @@ public class ClientStageManager {
             }
         }
         // Add next and prev buttons
-        setupTempScene();
+//        setupTempScene();
 
         scene = new Scene(root);
         stage.setScene(scene);

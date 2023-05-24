@@ -5,9 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -59,39 +57,9 @@ public class ClientApplication extends Application {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        PhaseShiftViewer phaseShiftViewer = new PhaseShiftViewer(clientSpace);
-        Parent phaseShiftRoot = phaseShiftViewer.getRoot();
 
-        ArrayList<Parent> parents = new ArrayList<>();
-        parents.add(phaseShiftRoot);
-
-        BorderPane tempScene = setupTempScene(parents);
-        stage.setScene(new Scene(tempScene));
-        stage.show();
-    }
-
-    private BorderPane setupTempScene(ArrayList<Parent> parents) {
-        // Temp scene
-        BorderPane pane = new BorderPane();
-        pane.setCenter(parents.get(screenIndex));
-        Button nextScreenButton = new Button("Next");
-        nextScreenButton.alignmentProperty().set(Pos.CENTER);
-        nextScreenButton.setOnAction(actionEvent -> {
-            if (screenIndex < parents.size() - 1) {
-                screenIndex++;
-                pane.setCenter(parents.get(screenIndex));
-            }
-        });
-        Button prevScreenButton = new Button("Previous");
-        prevScreenButton.setOnAction(actionEvent -> {
-            if (screenIndex > 0) {
-                screenIndex--;
-                pane.setCenter(parents.get(screenIndex));
-            }
-        });
-        pane.setLeft(prevScreenButton);
-        pane.setRight(nextScreenButton);
-        return pane;
+        ClientStageManager clientStageManager = new ClientStageManager(clientSpace, stage, "/client-phase-shift.fxml", "/client-fourier-machine.fxml");
+        clientStageManager.setScene("/client-phase-shift.fxml");
     }
 
     // Get the outgoing IP address

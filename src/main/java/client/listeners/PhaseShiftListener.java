@@ -14,10 +14,12 @@ public class PhaseShiftListener implements Runnable {
 
     private LineChart<Double, Double> lineGraphs;
     private Space space;
+    private ClientStageManager stageManager;
 
-    public PhaseShiftListener(LineChart<Double, Double> lineGraphs, Space space) {
+    public PhaseShiftListener(LineChart<Double, Double> lineGraphs, Space space, ClientStageManager stageManager) {
         this.lineGraphs = lineGraphs;
         this.space = space;
+        this.stageManager = stageManager;
 
         // Initialize the result chart given from host
         try {
@@ -49,6 +51,10 @@ public class PhaseShiftListener implements Runnable {
     public void run() {
         while (true) {
             try {
+                Object[] showPhaseShifts = space.query(new ActualField("Show phase shift"));
+                Platform.runLater(() ->{
+                    stageManager.setScene("/client-phase-shift.fxml");
+                });
                 Object[] phaseData = space.get(new ActualField("Phase shift"), new FormalField(double[][].class));
                 double[][] data = (double[][]) phaseData[1];
                 XYChart.Series<Double, Double> series = arrayToSeries(data);

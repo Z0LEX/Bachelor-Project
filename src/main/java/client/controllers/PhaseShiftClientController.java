@@ -25,7 +25,7 @@ public class PhaseShiftClientController implements SpaceAwareController, Initial
     }
 
     public void startListener() {
-        Thread phaseShfitListenerThread = new Thread(new PhaseShiftListener(lineGraphs, space));
+        Thread phaseShfitListenerThread = new Thread(new PhaseShiftListener(lineGraphs, space, stageManager));
         phaseShfitListenerThread.setDaemon(true);
         phaseShfitListenerThread.start();
     }

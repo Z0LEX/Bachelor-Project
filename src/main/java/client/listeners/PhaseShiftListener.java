@@ -52,7 +52,7 @@ public class PhaseShiftListener implements Runnable {
     public void run() {
         while (true) {
             try {
-                Object[] show = space.get(new ActualField("Show"));
+                space.query(new ActualField("Show"));
                 controller.graphContainer.setVisible(true);
                 controller.root.setStyle("-fx-background-color: lightgray");
                 Object[] phaseData = space.get(new ActualField("Phase shift"), new FormalField(double[][].class));

@@ -63,8 +63,6 @@ public class FourierMachineMultiplicationController implements Initializable, St
     @FXML
     private Button checkButton;
     @FXML
-    private Text outputText;
-    @FXML
     private HBox inputContainer;
 
     private MultiplicationInput multiplcationInput = new MultiplicationInput();
@@ -144,7 +142,6 @@ public class FourierMachineMultiplicationController implements Initializable, St
             // Update the text accordingly
             updateText(inputWave, inputText, x);
             updateText(testWave, testText, x);
-            updateText(outputWave, outputText, x);
         });
 
         checkButton.setOnAction(actionEvent -> {

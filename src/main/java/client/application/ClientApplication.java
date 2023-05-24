@@ -47,7 +47,7 @@ public class ClientApplication extends Application {
             stage.setX(bounds.getMinX());
             stage.setY(bounds.getMinY());
         }
-//        stage.setFullScreen(true);
+        stage.setMaximized(true);
         stage.centerOnScreen();
 
 

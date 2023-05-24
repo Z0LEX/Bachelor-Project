@@ -26,7 +26,7 @@ public class Main extends Application {
         stage.setWidth(WINDOW_WIDTH);
         stage.setHeight(WINDOW_HEIGHT);
         stage.centerOnScreen();
-//        stage.setFullScreen(true);
+        stage.setMaximized(true);
 
         // Initialize StageManager with all FXML paths
         stageManager = new StageManager(stage, "/add-waves.fxml", "/add-waves-amplitude.fxml", "/fourier-machine-multiplication.fxml", "/fourier-machine.fxml", "/phase-shift.fxml", "/draw-graph.fxml", "/win.fxml");

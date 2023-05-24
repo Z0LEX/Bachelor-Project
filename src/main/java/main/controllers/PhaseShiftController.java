@@ -155,10 +155,8 @@ public class PhaseShiftController implements Initializable, StageAwareController
         if (Arrays.equals(suggestionArray, solutionArray)) {
             if (!hasWon) {
                 hasWon = true;
-                //Yay we wonnered
-                System.out.println("Wonnered!");
+                stageManager.setScene("/win.fxml");
                 new Print("You've solved the problem\nThe code is: 4685");
-                stageManager.setScene("/draw-graph.fxml");
             }
         }
     }

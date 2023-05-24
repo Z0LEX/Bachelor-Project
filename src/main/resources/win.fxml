@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="CENTER" style="-fx-background-color: lightgray;" styleClass="root" stylesheets="@graph-style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.WinController">
+   <children>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Wow you won good job :)" />
+   </children>
+</VBox>

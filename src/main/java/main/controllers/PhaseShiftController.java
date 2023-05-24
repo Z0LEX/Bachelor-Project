@@ -48,11 +48,12 @@ public class PhaseShiftController implements Initializable, StageAwareController
     private Wave wave4;
 
     private boolean hasWon = false;
+    private static final double tolerance = 0.01;
 
     private ArrayList<Wave> waves = new ArrayList<>();
     private ArrayList<Wave> resultWaves = new ArrayList<>();
-    private String[] solutionArray = new String[4];
-    private String[] suggestionArray = new String[4];
+    private double[] solutionArray = new double[4];
+    private double[] suggestionArray = new double[4];
     private StageManager stageManager;
 
 
@@ -70,16 +71,16 @@ public class PhaseShiftController implements Initializable, StageAwareController
 
         Wave waveResult1 = new Wave(6, 1);
         waveResult1.setPhaseShift(Math.PI);
-        solutionArray[0] = String.valueOf(Math.PI).substring(0, 6);
+        solutionArray[0] = Math.PI;
         Wave waveResult2 = new Wave(2, 1);
         waveResult2.setPhaseShift((3 * Math.PI) / 4);
-        solutionArray[1] = String.valueOf((3 * Math.PI) / 4).substring(0, 6);
+        solutionArray[1] = (3 * Math.PI) / 4;
         Wave waveResult3 = new Wave(5, 1);
         waveResult3.setPhaseShift(Math.PI / 2);
-        solutionArray[2] = String.valueOf((Math.PI / 2)).substring(0, 6);
+        solutionArray[2] = Math.PI / 2;
         Wave waveResult4 = new Wave(3, 1);
         waveResult4.setPhaseShift(-Math.PI / 2);
-        solutionArray[3] = String.valueOf(-Math.PI / 2).substring(0, 6);
+        solutionArray[3] = -Math.PI / 2;
 
         resultWaves.add(waveResult1);
         resultWaves.add(waveResult2);
@@ -89,25 +90,25 @@ public class PhaseShiftController implements Initializable, StageAwareController
 
         slider1.valueProperty().addListener((observableValue, oldValue, newValue) -> {
             double newPhase = newValue.doubleValue();
-            suggestionArray[0] = String.valueOf(newPhase).substring(0, 6);
+            suggestionArray[0] = newPhase;
             handleSlider(newPhase, wave1);
             checkSolution();
         });
         slider2.valueProperty().addListener((observableValue, oldValue, newValue) -> {
             double newPhase = newValue.doubleValue();
-            suggestionArray[1] = String.valueOf(newPhase).substring(0, 6);
+            suggestionArray[1] = newPhase;
             handleSlider(newPhase, wave2);
             checkSolution();
         });
         slider3.valueProperty().addListener((observableValue, oldValue, newValue) -> {
             double newPhase = newValue.doubleValue();
-            suggestionArray[2] = String.valueOf(newPhase).substring(0, 6);
+            suggestionArray[2] = newPhase;
             handleSlider(newPhase, wave3);
             checkSolution();
         });
         slider4.valueProperty().addListener((observableValue, oldValue, newValue) -> {
             double newPhase = newValue.doubleValue();
-            suggestionArray[3] = String.valueOf(newPhase).substring(0, 6);
+            suggestionArray[3] = newPhase;
             handleSlider(newPhase, wave4);
             checkSolution();
         });
@@ -152,13 +153,28 @@ public class PhaseShiftController implements Initializable, StageAwareController
     }
 
     private void checkSolution() {
-        if (Arrays.equals(suggestionArray, solutionArray)) {
+        if (areArraysEqual(suggestionArray, solutionArray)) {
             if (!hasWon) {
                 hasWon = true;
                 stageManager.setScene("/win.fxml");
-                new Print("You've solved the problem\nThe code is: 4685");
+                new Print("You've solved\nthe problem\n\nThe code is: 4685");
             }
         }
+    }
+    private boolean areArraysEqual(double[] array1, double[] array2) {
+        if (array1 == null || array2 == null || array1.length != array2.length) {
+            return false;
+        }
+        for (int i = 0; i < array1.length; i++) {
+            if (!isDoubleEqual(array1[i], array2[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isDoubleEqual(double a, double b) {
+        return Math.abs(a - b) < tolerance;
     }
 
     @Override

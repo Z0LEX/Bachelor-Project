@@ -58,8 +58,8 @@ public class ClientApplication extends Application {
             throw new RuntimeException(e);
         }
 
-        ClientStageManager clientStageManager = new ClientStageManager(clientSpace, stage, "/client-phase-shift.fxml", "/client-fourier-machine.fxml");
-        clientStageManager.setScene("/client-phase-shift.fxml");
+        ClientStageManager clientStageManager = new ClientStageManager(clientSpace, stage, "/client-blank.fxml", "/client-phase-shift.fxml", "/client-fourier-machine.fxml");
+        clientStageManager.setScene("/client-blank.fxml");
     }
 
     // Get the outgoing IP address

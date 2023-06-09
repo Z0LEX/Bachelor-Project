@@ -3,6 +3,7 @@ package main.application;
 import client.application.ClientApplication;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.util.ArrayList;
 
@@ -20,6 +21,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
+        stage.initStyle(StageStyle.UNDECORATED);
+
         stage.setTitle("Title");
         stage.setResizable(false);
         // Set stage dimensions to a fixed size if necessary

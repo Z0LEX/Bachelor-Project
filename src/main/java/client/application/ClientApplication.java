@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.jspace.RemoteSpace;
 
 import java.io.IOException;
@@ -36,6 +37,7 @@ public class ClientApplication extends Application {
 
     @Override
     public void start(Stage stage) {
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.setTitle("Client title");
         stage.setResizable(false);
         stage.setWidth(WINDOW_WIDTH);
@@ -48,6 +50,7 @@ public class ClientApplication extends Application {
             stage.setY(bounds.getMinY());
         }
         stage.setMaximized(true);
+
         stage.centerOnScreen();
 
 

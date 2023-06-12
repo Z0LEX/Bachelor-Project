@@ -1,3 +1,1 @@
-cd target
-java -jar bachelor_project-1.0-SNAPSHOT.jar
-cd ..
+java -jar target/bachelor_project-1.0-SNAPSHOT.jar

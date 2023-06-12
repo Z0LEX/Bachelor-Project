@@ -14,5 +14,6 @@
          </children>
       </Group>
       <Button mnemonicParsing="false" onAction="#handleCloseButton" text="Close" />
+      <Button mnemonicParsing="false" onAction="#handleRestartButton" text="Restart" />
    </children>
 </VBox>

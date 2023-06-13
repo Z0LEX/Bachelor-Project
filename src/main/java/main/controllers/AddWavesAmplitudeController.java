@@ -2,7 +2,6 @@ package main.controllers;
 
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
 import main.application.StageAwareController;
 import main.application.StageManager;
 import main.components.CombinationLock;

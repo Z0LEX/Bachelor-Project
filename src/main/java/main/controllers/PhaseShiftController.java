@@ -13,7 +13,6 @@ import main.datatypes.Print;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.function.Function;
 

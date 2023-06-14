@@ -69,17 +69,24 @@ public class PhaseShiftController implements Initializable, StageAwareController
         waves.add(wave4);
 
         Wave waveResult1 = new Wave(6, 1);
-        waveResult1.setPhaseShift(Math.PI);
-        solutionArray[0] = Math.PI;
+        double solution1 = (3 * Math.PI) / 4;
+        waveResult1.setPhaseShift(solution1);
+        solutionArray[0] = solution1;
+
         Wave waveResult2 = new Wave(2, 1);
-        waveResult2.setPhaseShift((3 * Math.PI) / 4);
-        solutionArray[1] = (3 * Math.PI) / 4;
+        double solution2 = Math.PI / 2;
+        waveResult2.setPhaseShift(solution2);
+        solutionArray[1] = solution2;
+
         Wave waveResult3 = new Wave(5, 1);
-        waveResult3.setPhaseShift(Math.PI / 2);
-        solutionArray[2] = Math.PI / 2;
+        double solution3 = Math.PI / 4;
+        waveResult3.setPhaseShift(solution3);
+        solutionArray[2] = solution3;
+
         Wave waveResult4 = new Wave(3, 1);
-        waveResult4.setPhaseShift(-Math.PI / 2);
-        solutionArray[3] = -Math.PI / 2;
+        double solution4 = -Math.PI / 2;
+        waveResult4.setPhaseShift(solution4);
+        solutionArray[3] = solution4;
 
         resultWaves.add(waveResult1);
         resultWaves.add(waveResult2);

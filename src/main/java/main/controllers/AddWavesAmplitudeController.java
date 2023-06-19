@@ -2,7 +2,6 @@ package main.controllers;
 
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
 import main.application.StageAwareController;
 import main.application.StageManager;
 import main.components.CombinationLock;
@@ -59,7 +58,7 @@ public class AddWavesAmplitudeController implements Initializable, StageAwareCon
 
         lockButton.setOnAction(actionEvent -> {
 //            Print print = new Print("You've solved the problem\nThe code is: 4685");
-            stageManager.setScene("/fourier-machine.fxml");
+            stageManager.setScene("/fourier-machine-multiplication.fxml");
         });
 
         // Make button with continue invisible

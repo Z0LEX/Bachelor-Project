@@ -15,6 +15,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import main.application.Server;
 import main.application.StageAwareController;
 import main.application.StageManager;
 import main.components.MultiplicationInput;
@@ -62,8 +63,6 @@ public class FourierMachineMultiplicationController implements Initializable, St
     @FXML
     private Button checkButton;
     @FXML
-    private Text outputText;
-    @FXML
     private HBox inputContainer;
 
     private MultiplicationInput multiplcationInput = new MultiplicationInput();
@@ -81,6 +80,11 @@ public class FourierMachineMultiplicationController implements Initializable, St
         inputContainer.getChildren().add(multiplcationInput.getRoot());
         lockButton.setOnAction(actionEvent -> {
             stageManager.setScene("/fourier-machine.fxml");
+            try {
+                Server.space.put("Show fourier machine");
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         });
 
         // Create input wave
@@ -138,7 +142,6 @@ public class FourierMachineMultiplicationController implements Initializable, St
             // Update the text accordingly
             updateText(inputWave, inputText, x);
             updateText(testWave, testText, x);
-            updateText(outputWave, outputText, x);
         });
 
         checkButton.setOnAction(actionEvent -> {

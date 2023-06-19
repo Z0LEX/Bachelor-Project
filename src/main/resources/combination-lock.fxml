@@ -4,34 +4,47 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<HBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.CombinationLockController">
+<HBox style="-fx-background-color: lightgray;" styleClass="root" stylesheets="@graph-style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.CombinationLockController">
    <children>
       <VBox alignment="CENTER">
          <children>
             <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#wheel1Up" text="↑" textAlignment="CENTER" />
-            <Label fx:id="wheel1Number" text="0" textAlignment="CENTER" />
+            <Label fx:id="wheel1Number" text="0" textAlignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
             <Button mnemonicParsing="false" onAction="#wheel1Down" text="↓" />
          </children>
       </VBox>
       <VBox alignment="CENTER">
          <children>
             <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#wheel2Up" text="↑" textAlignment="CENTER" />
-            <Label fx:id="wheel2Number" text="0" textAlignment="CENTER" />
+            <Label fx:id="wheel2Number" text="0" textAlignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
             <Button mnemonicParsing="false" onAction="#wheel2Down" text="↓" />
          </children>
       </VBox>
       <VBox alignment="CENTER">
          <children>
             <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#wheel3Up" text="↑" textAlignment="CENTER" />
-            <Label fx:id="wheel3Number" text="0" textAlignment="CENTER" />
+            <Label fx:id="wheel3Number" text="0" textAlignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
             <Button mnemonicParsing="false" onAction="#wheel3Down" text="↓" />
          </children>
       </VBox>
       <VBox alignment="CENTER">
          <children>
             <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#wheel4Up" text="↑" textAlignment="CENTER" />
-            <Label fx:id="wheel4Number" text="0" textAlignment="CENTER" />
+            <Label fx:id="wheel4Number" text="0" textAlignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
             <Button mnemonicParsing="false" onAction="#wheel4Down" text="↓" />
          </children>
       </VBox>

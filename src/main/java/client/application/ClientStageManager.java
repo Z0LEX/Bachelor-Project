@@ -1,4 +1,4 @@
-package main.application;
+package client.application;
 
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -7,14 +7,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import org.jspace.Space;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.*;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 
-public class StageManager {
+public class ClientStageManager {
 
     private Scene scene;
     private BorderPane root = new BorderPane();
@@ -23,7 +25,7 @@ public class StageManager {
     private String[] paths;
     private String activeScene = "";
 
-    public StageManager(Stage stage, String... fxmlPaths) {
+    public ClientStageManager(Space space, Stage stage, String... fxmlPaths) {
         // testing purposes
         paths = Arrays.copyOf(fxmlPaths, fxmlPaths.length);
 
@@ -35,8 +37,10 @@ public class StageManager {
                 loader.setControllerFactory(param -> {
                     try {
                         Object controller = param.getDeclaredConstructor().newInstance();
-                        if (controller instanceof StageAwareController) {
-                            ((StageAwareController) controller).setStageManager(this);
+                        if (controller instanceof SpaceAwareController) {
+                            SpaceAwareController c = (SpaceAwareController) controller;
+                            c.setStageManager(this);
+                            c.setSpace(space);
                         }
                         controllers.put(fxmlPath, controller);
                         return controller;

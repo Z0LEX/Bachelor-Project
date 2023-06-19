@@ -7,6 +7,7 @@ import javafx.scene.chart.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
+import main.application.Server;
 import main.application.StageAwareController;
 import main.application.StageManager;
 import main.components.CombinationLock;
@@ -78,6 +79,11 @@ public class FourierMachineController implements Initializable, StageAwareContro
 
         lockButton.setOnAction(actionEvent -> {
             stageManager.setScene("/phase-shift.fxml");
+            try {
+                Server.space.put("Show phase shift");
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         });
 
 

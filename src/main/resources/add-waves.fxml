@@ -15,28 +15,11 @@
 
 <HBox alignment="CENTER" spacing="30.0" style="-fx-background-color: lightgray;" styleClass="root" stylesheets="@graph-style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.AddWavesController">
     <children>
-      <VBox alignment="CENTER" prefWidth="200.0" spacing="20.0">
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Frequency (Hz)" textAlignment="CENTER">
-               <VBox.margin>
-                  <Insets left="25.0" right="25.0" />
-               </VBox.margin>
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Text>
-              <HBox fx:id="lockContainer" alignment="CENTER">
-               <padding>
-                  <Insets left="30.0" />
-               </padding>
-              </HBox>
-         </children>
-      </VBox>
         <VBox alignment="CENTER" spacing="5.0">
             <children>
                 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="root" stylesheets="graph-style.css">
                     <children>
-                        <LineChart fx:id="lineChart1" createSymbols="false" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0" title="0 Hz">
+                        <LineChart fx:id="lineChart1" createSymbols="false" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" title="0 Hz">
                             <xAxis>
                                 <NumberAxis autoRanging="false" minorTickCount="10" minorTickLength="1.0" minorTickVisible="false" side="BOTTOM" tickLabelGap="1.0" tickLength="1.0" tickUnit="0.1" upperBound="1.0" visible="false" />
                             </xAxis>
@@ -56,7 +39,7 @@
             </Text>
                 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="root" stylesheets="graph-style.css">
                     <children>
-                        <LineChart fx:id="lineChart2" createSymbols="false" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0" title="0 Hz">
+                        <LineChart fx:id="lineChart2" createSymbols="false" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" title="0 Hz">
                             <xAxis>
                                 <NumberAxis autoRanging="false" minorTickCount="10" minorTickLength="1.0" minorTickVisible="false" side="BOTTOM" tickLabelGap="1.0" tickLength="1.0" tickUnit="0.1" upperBound="1.0" visible="false" />
                             </xAxis>
@@ -92,7 +75,7 @@
             </Text>
                 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="root" stylesheets="graph-style.css">
                     <children>
-                        <LineChart fx:id="lineChart3" createSymbols="false" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0" title="0 Hz">
+                        <LineChart fx:id="lineChart3" createSymbols="false" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" title="0 Hz">
                             <xAxis>
                                 <NumberAxis autoRanging="false" minorTickCount="10" minorTickLength="1.0" minorTickVisible="false" side="BOTTOM" tickLabelGap="1.0" tickLength="1.0" tickUnit="0.1" upperBound="1.0" visible="false" />
                             </xAxis>
@@ -112,7 +95,7 @@
             </Text>
                 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="root" stylesheets="graph-style.css">
                     <children>
-                        <LineChart fx:id="lineChart4" createSymbols="false" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0" title="0 Hz">
+                        <LineChart fx:id="lineChart4" createSymbols="false" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" title="0 Hz">
                             <xAxis>
                                 <NumberAxis autoRanging="false" minorTickCount="10" minorTickLength="1.0" minorTickVisible="false" side="BOTTOM" tickLabelGap="1.0" tickLength="1.0" tickUnit="0.1" upperBound="1.0" visible="false" />
                             </xAxis>
@@ -146,7 +129,13 @@
                         </LineChart>
                     </children>
                 </AnchorPane>
-            <Button fx:id="lockButton" disable="true" layoutX="100.0" layoutY="600.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="84.0" prefWidth="133.0" style="-fx-background-color: #353434;" text="Continue" />
+            <Text layoutX="54.0" layoutY="506.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frequency (Hz)" textAlignment="CENTER">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Text>
+              <HBox fx:id="lockContainer" alignment="CENTER" layoutY="525.0" prefHeight="70.0" prefWidth="300.0" />
+            <Button fx:id="lockButton" disable="true" layoutX="83.0" layoutY="620.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="84.0" prefWidth="133.0" text="Continue" />
          </children>
       </AnchorPane>
     </children>

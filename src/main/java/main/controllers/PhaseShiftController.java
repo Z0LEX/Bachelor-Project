@@ -69,12 +69,14 @@ public class PhaseShiftController implements Initializable, StageAwareController
         waves.add(wave4);
 
         Wave waveResult1 = new Wave(6, 1);
-        double solution1 = (3 * Math.PI) / 4;
+//        double solution1 = (3 * Math.PI) / 4;
+        double solution1 = Math.PI;
         waveResult1.setPhaseShift(solution1);
         solutionArray[0] = solution1;
 
         Wave waveResult2 = new Wave(2, 1);
-        double solution2 = Math.PI / 2;
+//        double solution2 = Math.PI / 2;
+        double solution2 = -Math.PI;
         waveResult2.setPhaseShift(solution2);
         solutionArray[1] = solution2;
 
@@ -167,6 +169,7 @@ public class PhaseShiftController implements Initializable, StageAwareController
             }
         }
     }
+
     private boolean areArraysEqual(double[] array1, double[] array2) {
         if (array1 == null || array2 == null || array1.length != array2.length) {
             return false;
@@ -180,7 +183,16 @@ public class PhaseShiftController implements Initializable, StageAwareController
     }
 
     private boolean isDoubleEqual(double a, double b) {
-        return Math.abs(a - b) < tolerance;
+        if (Math.abs(a - b) < tolerance) {
+            return true;
+        }
+        if (Math.abs(a - Math.PI) < tolerance && Math.abs(b + Math.PI) < tolerance) {
+            return true;
+        }
+        if (Math.abs(a + Math.PI) < tolerance && Math.abs(b - Math.PI) < tolerance) {
+            return true;
+        }
+        return false;
     }
 
     @Override

@@ -2,6 +2,9 @@ package main.application;
 
 import client.application.ClientApplication;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
+import javafx.geometry.Rectangle2D;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -28,8 +31,13 @@ public class Main extends Application {
         // Set stage dimensions to a fixed size if necessary
         stage.setWidth(WINDOW_WIDTH);
         stage.setHeight(WINDOW_HEIGHT);
+
+        ObservableList<Screen> screens = Screen.getScreens();
+        if (screens.size() > 1) {
+            stage.setMaximized(true);
+        }
         stage.centerOnScreen();
-        stage.setMaximized(true);
+
 
         // Initialize StageManager with all FXML paths
         stageManager = new StageManager(stage, "/add-waves.fxml", "/add-waves-amplitude.fxml", "/fourier-machine-multiplication.fxml", "/fourier-machine.fxml", "/phase-shift.fxml", "/draw-graph.fxml", "/win.fxml");

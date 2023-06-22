@@ -24,8 +24,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
-        stage.initStyle(StageStyle.UNDECORATED);
-
+        stage.initStyle(StageStyle.DECORATED);
         stage.setTitle("Title");
         stage.setResizable(false);
         // Set stage dimensions to a fixed size if necessary
@@ -35,7 +34,7 @@ public class Main extends Application {
         ObservableList<Screen> screens = Screen.getScreens();
         if (screens.size() > 1) {
             stage.setMaximized(true);
-            stage.initStyle(StageStyle.DECORATED);
+            stage.initStyle(StageStyle.UNDECORATED);
         }
         stage.centerOnScreen();
 

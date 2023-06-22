@@ -32,7 +32,7 @@ public class ClientApplication extends Application {
 
     @Override
     public void start(Stage stage) {
-        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initStyle(StageStyle.DECORATED);
         stage.setTitle("Client title");
         stage.setResizable(false);
         stage.setWidth(WINDOW_WIDTH);
@@ -44,7 +44,7 @@ public class ClientApplication extends Application {
             stage.setX(bounds.getMinX());
             stage.setY(bounds.getMinY());
             stage.setMaximized(true);
-            stage.initStyle(StageStyle.DECORATED);
+            stage.initStyle(StageStyle.UNDECORATED);
         }
         stage.centerOnScreen();
 

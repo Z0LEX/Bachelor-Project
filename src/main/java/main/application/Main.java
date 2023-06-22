@@ -35,6 +35,7 @@ public class Main extends Application {
         ObservableList<Screen> screens = Screen.getScreens();
         if (screens.size() > 1) {
             stage.setMaximized(true);
+            stage.initStyle(StageStyle.DECORATED);
         }
         stage.centerOnScreen();
 

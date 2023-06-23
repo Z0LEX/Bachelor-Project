@@ -53,7 +53,7 @@ public class StageManager {
             }
         }
         // Add next and prev buttons
-//        setupTempScene();
+        setupTempScene();
 
         scene = new Scene(root);
         stage.setScene(scene);

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class Main extends Application {
     // Screen resolution of touchscreen
-    private static final int WINDOW_WIDTH = 1024;
+    private static final int WINDOW_WIDTH = 1100;
     private static final int WINDOW_HEIGHT = 768;
 
     private StageManager stageManager;
@@ -33,8 +33,8 @@ public class Main extends Application {
 
         ObservableList<Screen> screens = Screen.getScreens();
         if (screens.size() > 1) {
-            stage.setMaximized(true);
-            stage.initStyle(StageStyle.UNDECORATED);
+//            stage.setMaximized(true);
+//            stage.initStyle(StageStyle.UNDECORATED);
         }
         stage.centerOnScreen();
 

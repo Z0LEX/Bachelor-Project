@@ -43,8 +43,8 @@ public class ClientApplication extends Application {
             Rectangle2D bounds = screens.get(1).getVisualBounds();
             stage.setX(bounds.getMinX());
             stage.setY(bounds.getMinY());
-            stage.setMaximized(true);
-            stage.initStyle(StageStyle.UNDECORATED);
+//            stage.setMaximized(true);
+//            stage.initStyle(StageStyle.UNDECORATED);
         }
         stage.centerOnScreen();
 

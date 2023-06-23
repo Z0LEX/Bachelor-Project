@@ -51,15 +51,15 @@ public class PhaseShiftListener implements Runnable {
     public void run() {
         while (true) {
             try {
-                Object[] showPhaseShifts = space.query(new ActualField("Show phase shift"));
-                Platform.runLater(() ->{
-                    stageManager.setScene("/client-phase-shift.fxml");
-                });
                 Object[] phaseData = space.get(new ActualField("Phase shift"), new FormalField(double[][].class));
                 double[][] data = (double[][]) phaseData[1];
                 XYChart.Series<Double, Double> series = arrayToSeries(data);
                 Platform.runLater(() -> {
                     lineGraphs.getData().set(1, series);
+                });
+                Object[] showPhaseShifts = space.query(new ActualField("Show phase shift"));
+                Platform.runLater(() -> {
+                    stageManager.setScene("/client-phase-shift.fxml");
                 });
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);

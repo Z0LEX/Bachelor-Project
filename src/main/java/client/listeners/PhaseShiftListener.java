@@ -57,10 +57,10 @@ public class PhaseShiftListener implements Runnable {
                 Platform.runLater(() -> {
                     lineGraphs.getData().set(1, series);
                 });
-                Object[] showPhaseShifts = space.query(new ActualField("Show phase shift"));
-                Platform.runLater(() -> {
-                    stageManager.setScene("/client-phase-shift.fxml");
-                });
+//                Object[] showPhaseShifts = space.query(new ActualField("Show phase shift"));
+//                Platform.runLater(() -> {
+//                    stageManager.setScene("/client-phase-shift.fxml");
+//                });
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
